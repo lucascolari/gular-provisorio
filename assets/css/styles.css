@@ -154,13 +154,20 @@ body.intro-lock { overflow: hidden; }
   transition: background .4s ease, backdrop-filter .4s ease, border-color .4s ease;
   border-bottom: 1px solid transparent;
 }
-.nav[data-scrolled] { background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(14px); border-bottom-color: var(--line-soft); }
+/* Al scrollear la barra pasa a fondo NEGRO con texto blanco (el rojo se mantiene). */
+.nav[data-scrolled] { background: #0a0a0a; backdrop-filter: blur(14px); border-bottom-color: rgba(255, 255, 255, 0.14); }
+.nav[data-scrolled] .nav__brand,
+.nav[data-scrolled] .nav__center a { color: #f3efe6; }
+.nav[data-scrolled] .nav__center .accent { color: #ff5a4e; }
+.nav[data-scrolled] .nav__menu .iso__top,
+.nav[data-scrolled] .nav__menu .iso__tail { background-color: #f3efe6; }
+
 .nav__brand { justify-self: start; font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.01em; line-height: 1; }
-.nav__center { justify-self: center; display: flex; gap: clamp(.9rem, 2.4vw, 2rem); font-size: .74rem; letter-spacing: .04em; color: var(--muted); }
+.nav__center { justify-self: center; display: flex; gap: clamp(1rem, 2.6vw, 2.2rem); font-size: .9rem; letter-spacing: .02em; color: var(--text); }
 .nav__center a { transition: color .25s; }
-.nav__center a:hover { color: var(--text); }
+.nav__center a:hover { opacity: .7; }
 .nav__center .accent { color: #e83b2f; }
-.nav__center .accent:hover { color: #cf2d22; }
+.nav__center .accent:hover { color: #cf2d22; opacity: 1; }
 
 .nav__menu {
   justify-self: end;
@@ -171,7 +178,12 @@ body.intro-lock { overflow: hidden; }
 .nav__menu:hover { transform: scale(1.08); }
 .nav__menu .iso { width: 100%; }
 
-@media (max-width: 680px) { .nav__center { display: none; } }
+/* En celular la barra central (clientes · agency · trabajemos juntos) SÍ se muestra. */
+@media (max-width: 680px) {
+  .nav__brand { font-size: 1.2rem; }
+  .nav__center { gap: .6rem; font-size: .58rem; letter-spacing: 0; }
+  .nav { gap: .4rem; padding-inline: clamp(.7rem, 3vw, 1.2rem); }
+}
 
 /* Overlay de menú */
 .menu {
@@ -412,15 +424,16 @@ body.intro-lock { overflow: hidden; }
 /* =========================================================================
    Footer
    ========================================================================= */
-.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 2.6rem var(--gutter); border-top: 1px solid var(--line-soft); color: var(--muted); font-size: .82rem; letter-spacing: .02em; background: transparent; }
-.footer__brand { font-family: var(--font-display); font-size: 1.3rem; color: var(--text); }
+.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 2.6rem var(--gutter); border-top: 1px solid rgba(255, 255, 255, 0.12); color: #f3efe6; font-size: .82rem; letter-spacing: .02em; background: #0a0a0a; }
+.footer__brand { font-family: var(--font-display); font-size: 1.3rem; color: #f3efe6; }
 
 /* =========================================================================
    Responsive
    ========================================================================= */
 @media (max-width: 860px) {
   .contact__grid { grid-template-columns: 1fr; }
-  .hero__title { white-space: normal; }
+  /* En celular, las imágenes/videos del caso entran COMPLETAS (sin recorte agresivo). */
+  .case__media img, .case__media video { object-fit: contain; }
 }
 
 @media (prefers-reduced-motion: reduce) {
