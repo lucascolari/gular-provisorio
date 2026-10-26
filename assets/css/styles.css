@@ -30,8 +30,8 @@
 :root {
   --bg: #ffffff;
   --text: #0a0a0a;
-  --secondary: #2b2b2b;
-  --muted: #8a8a8a;
+  --secondary: #0a0a0a; /* sin gris: todo el texto en negro */
+  --muted: #0a0a0a;     /* sin gris: todo el texto en negro */
   --line: rgba(0, 0, 0, 0.14);
   --line-soft: rgba(0, 0, 0, 0.08);
   --ghost: #c7c7c7;      /* gris claro para "agency" y acentos tenues */
@@ -353,8 +353,8 @@ body.intro-lock { overflow: hidden; }
 
 /* Cuerpo de texto (sans, claro) + marca */
 .case__panel--body { width: min(88vw, 560px); gap: 1rem; }
-.case__logo { font-family: var(--font-body); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: .95rem; color: #cfc9bd; align-self: flex-end; margin-bottom: .8rem; }
-.case__body-p { font-family: var(--font-body); font-size: .9rem; line-height: 1.65; color: #b9b4a9; max-width: 48ch; margin: 0; }
+.case__logo { font-family: var(--font-body); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: .95rem; color: #f3efe6; align-self: flex-end; margin-bottom: .8rem; }
+.case__body-p { font-family: var(--font-body); font-size: .9rem; line-height: 1.65; color: #f3efe6; max-width: 48ch; margin: 0; }
 .case__body-p + .case__body-p { margin-top: .85rem; }
 
 .case__hint {
