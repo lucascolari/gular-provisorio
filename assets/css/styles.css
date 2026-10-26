@@ -376,7 +376,7 @@ body.intro-lock { overflow: hidden; }
 /* =========================================================================
    3 · GULAR (nosotros)
    ========================================================================= */
-.about { position: relative; z-index: 10; padding: var(--section-gap) var(--gutter); display: grid; place-items: center; text-align: center; background: var(--bg); }
+.about { position: relative; z-index: 10; padding: var(--section-gap) var(--gutter); display: grid; place-items: center; text-align: center; background: transparent; }
 .about__inner { max-width: 54rem; }
 .about__title { font-family: var(--font-display); font-size: var(--text-heading); line-height: 1.06; letter-spacing: -0.02em; }
 .about__text { font-family: var(--font-body); color: var(--secondary); font-size: clamp(1rem, 1.8vw, 1.25rem); margin-top: 1.6rem; line-height: 1.6; }
@@ -384,7 +384,7 @@ body.intro-lock { overflow: hidden; }
 /* =========================================================================
    4 · CONTACTO
    ========================================================================= */
-.contact { position: relative; z-index: 10; padding: var(--section-gap) var(--gutter) calc(var(--section-gap) / 1.6); max-width: 1160px; margin: 0 auto; background: var(--bg); }
+.contact { position: relative; z-index: 10; padding: var(--section-gap) var(--gutter) calc(var(--section-gap) / 1.6); max-width: 1160px; margin: 0 auto; background: transparent; }
 .contact__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
 .contact__intro h2 { font-family: var(--font-display); font-size: var(--text-heading); line-height: 1.04; letter-spacing: -0.02em; }
 .contact__intro p { color: var(--muted); max-width: 44ch; margin: 1rem 0 0; }
@@ -412,7 +412,7 @@ body.intro-lock { overflow: hidden; }
 /* =========================================================================
    Footer
    ========================================================================= */
-.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 2.6rem var(--gutter); border-top: 1px solid var(--line-soft); color: var(--muted); font-size: .82rem; letter-spacing: .02em; background: var(--bg); }
+.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 2.6rem var(--gutter); border-top: 1px solid var(--line-soft); color: var(--muted); font-size: .82rem; letter-spacing: .02em; background: transparent; }
 .footer__brand { font-family: var(--font-display); font-size: 1.3rem; color: var(--text); }
 
 /* =========================================================================
