@@ -11,6 +11,21 @@
   font-style: normal;
   font-display: swap;
 }
+/* Satoshi (fuente de marca para texto; variable 300–900) — self-host desde Fontshare */
+@font-face {
+  font-family: "Satoshi";
+  src: url("../fonts/satoshi.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("../fonts/satoshi-italic.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
   --bg: #ffffff;
@@ -24,10 +39,10 @@
   --inverse: #ffffff;
 
   --font-display: "Sahlia", Georgia, "Times New Roman", serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-body: "Satoshi", "Inter", system-ui, sans-serif;
   --font-intro: "Archivo", system-ui, sans-serif;
 
-  --text-display: clamp(3.4rem, 15vw, 15rem);
+  --text-display: clamp(3.4rem, 16vw, 16rem);
   --text-heading: clamp(2rem, 5vw, 4rem);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -144,8 +159,8 @@ body.intro-lock { overflow: hidden; }
 .nav__center { justify-self: center; display: flex; gap: clamp(.9rem, 2.4vw, 2rem); font-size: .74rem; letter-spacing: .04em; color: var(--muted); }
 .nav__center a { transition: color .25s; }
 .nav__center a:hover { color: var(--text); }
-.nav__center .accent { color: #b5542f; }
-.nav__center .accent:hover { color: #8f3f20; }
+.nav__center .accent { color: #ee5f5a; }
+.nav__center .accent:hover { color: #d94a46; }
 
 .nav__menu {
   justify-self: end;
@@ -193,30 +208,30 @@ body.intro-lock { overflow: hidden; }
 .hero {
   position: relative; min-height: 100svh;
   display: flex; flex-direction: column; justify-content: flex-start;
-  padding: calc(var(--nav-h) + clamp(.5rem, 3vh, 2rem)) var(--gutter) 0;
+  padding: calc(var(--nav-h) + clamp(.5rem, 3vh, 2rem)) clamp(.9rem, 2.4vw, 1.6rem) 0;
   text-align: center;
 }
 .hero__title {
   font-family: var(--font-display);
-  font-size: var(--text-display);
-  line-height: .9; letter-spacing: -0.02em; font-weight: 400;
+  font-size: var(--text-display); /* el ancho final lo fija el JS (fitHero) */
+  line-height: .9; letter-spacing: -0.03em; font-weight: 400;
   white-space: nowrap;
-  margin: 0 0 clamp(2rem, 7vh, 5rem);
+  margin: 0 0 clamp(2.5rem, 8vh, 6rem);
 }
-.hero__title .agency { font-style: italic; color: var(--ghost); }
+.hero__title .agency { font-family: var(--font-body); font-style: italic; font-weight: 400; color: #8a8a8a; letter-spacing: -0.015em; }
 .hero__statement {
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2.6vw, 2rem);
-  line-height: 1.15; letter-spacing: -0.01em;
-  margin: 0 auto .9rem;
+  font-size: clamp(1.05rem, 1.7vw, 1.45rem);
+  line-height: 1.2; letter-spacing: -0.005em;
+  margin: 0 auto .8rem;
 }
 .hero__statement .accent { font-style: italic; }
 .hero__lead {
   font-family: var(--font-body);
-  font-size: clamp(.86rem, 1.1vw, 1rem); color: var(--secondary);
-  max-width: 54ch; margin: 0 auto; line-height: 1.6;
+  font-size: clamp(.76rem, .95vw, .9rem); color: var(--secondary);
+  max-width: 50ch; margin: 0 auto; line-height: 1.65;
 }
-.hero__place { margin: 1.4rem 0 0; font-family: var(--font-display); font-style: italic; color: var(--muted); font-size: 1rem; }
+.hero__place { margin: 1.3rem 0 0; font-family: var(--font-display); font-style: italic; color: var(--muted); font-size: .9rem; }
 .hero__scroll {
   margin-top: auto; align-self: center;
   display: flex; flex-direction: column; align-items: center; gap: .6rem;

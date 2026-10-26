@@ -313,6 +313,21 @@ menuBtn.addEventListener("click", () => setMenu(!menuPanel.hasAttribute("data-op
 menuPanel.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") { setMenu(false); if (openProj) closeProject(); } });
 
+/* ---------- Hero a ancho completo (como el boceto) ---------- */
+const heroTitle = document.querySelector(".hero__title");
+function fitHero() {
+  if (!heroTitle) return;
+  const BASE = 1000;                             // base grande para forzar overflow y medir bien
+  heroTitle.style.fontSize = BASE + "px";
+  const avail = heroTitle.clientWidth;           // ancho disponible (sin padding del hero)
+  const text = heroTitle.scrollWidth;            // ancho real del texto a BASE px
+  if (text > 0) heroTitle.style.fontSize = (BASE * avail / text) * 0.995 + "px";
+}
+fitHero();
+window.addEventListener("resize", fitHero, { passive: true });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHero);
+window.addEventListener("load", fitHero);
+
 /* ---------- Reveals al entrar en viewport ---------- */
 const revealIO = new IntersectionObserver(
   (entries) => {
