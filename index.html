@@ -1,18 +1,34 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Gular — No hay solución sin Gular</title>
-  <meta name="description" content="Agencia creativa con base en Buenos Aires. Combinamos sensibilidad artística, estrategia comercial y tecnología para encontrar la solución singular de cada proyecto." />
+  <title>Gular — Agencia creativa en Buenos Aires</title>
+  <meta name="description" content="Agencia creativa con base en Buenos Aires. Branding, producción audiovisual, estrategia y desarrollo web para construir el universo de cada marca." />
   <meta name="theme-color" content="#ffffff" />
+
+  <!-- Canonical / indexación -->
+  <link rel="canonical" href="https://gular.agency/" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="author" content="Gular" />
+  <meta name="publisher" content="Gular" />
+  <meta name="keywords" content="agencia creativa, Buenos Aires, Argentina, branding, identidad de marca, producción audiovisual, estrategia de marca, desarrollo web, dirección de arte, Gular" />
+  <link rel="alternate" hreflang="es-ar" href="https://gular.agency/" />
+  <link rel="alternate" hreflang="x-default" href="https://gular.agency/" />
+
+  <!-- Geo / local (Buenos Aires, Argentina) -->
+  <meta name="geo.region" content="AR-C" />
+  <meta name="geo.placename" content="Buenos Aires, Argentina" />
+  <meta name="geo.position" content="-34.6037;-58.3816" />
+  <meta name="ICBM" content="-34.6037, -58.3816" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gular.agency/" />
   <meta property="og:site_name" content="Gular" />
-  <meta property="og:title" content="Gular — No hay solución sin Gular" />
-  <meta property="og:description" content="Agencia creativa con base en Buenos Aires. Universos construidos y soluciones singulares." />
+  <meta property="og:title" content="Gular — Agencia creativa en Buenos Aires" />
+  <meta property="og:description" content="Branding, producción audiovisual, estrategia y desarrollo web. Construimos el universo de cada marca. No hay solución sin Gular." />
   <meta property="og:locale" content="es_AR" />
   <meta property="og:image" content="https://gular.agency/assets/img/og-gular.png" />
   <meta property="og:image:width" content="1200" />
@@ -22,20 +38,119 @@
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Gular — No hay solución sin Gular" />
-  <meta name="twitter:description" content="Agencia creativa con base en Buenos Aires. Universos construidos y soluciones singulares." />
+  <meta name="twitter:title" content="Gular — Agencia creativa en Buenos Aires" />
+  <meta name="twitter:description" content="Branding, producción audiovisual, estrategia y desarrollo web. Construimos el universo de cada marca." />
   <meta name="twitter:image" content="https://gular.agency/assets/img/og-gular.png" />
+  <meta name="twitter:image:alt" content="Gular — agencia creativa en Buenos Aires" />
 
   <link rel="icon" href="assets/img/isomenu.svg" type="image/svg+xml" />
 
   <!-- Satoshi (texto de marca) es self-host en assets/fonts. Archivo solo para la intro. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/styles.css" />
   <!-- Si no hay JS, no dejamos la intro tapando el sitio -->
   <noscript><style>.intro{display:none!important}</style></noscript>
+
+  <!-- Datos estructurados (SEO + GEO): organización, sitio, FAQ y proyectos -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "ProfessionalService"],
+        "@id": "https://gular.agency/#organization",
+        "name": "Gular",
+        "alternateName": ["Gular Agency", "Gular Agencia Creativa"],
+        "url": "https://gular.agency/",
+        "logo": "https://gular.agency/assets/img/og-gular.png",
+        "image": "https://gular.agency/assets/img/og-gular.png",
+        "slogan": "No hay solución sin Gular",
+        "description": "Agencia creativa con base en Buenos Aires. Combinamos sensibilidad artística, estrategia comercial y tecnología para construir el universo de cada marca: branding, producción audiovisual, estrategia y desarrollo web.",
+        "foundingLocation": { "@type": "Place", "name": "Buenos Aires, Argentina" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Buenos Aires",
+          "addressRegion": "Ciudad Autónoma de Buenos Aires",
+          "addressCountry": "AR"
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "Argentina" },
+          { "@type": "Place", "name": "Latinoamérica" }
+        ],
+        "knowsLanguage": ["es", "en"],
+        "knowsAbout": [
+          "Branding", "Identidad de marca", "Dirección de arte", "Producción audiovisual",
+          "Postproducción", "Estrategia de marca", "Desarrollo web", "Experiencias digitales", "CGI"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de Gular",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding e identidad de marca" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Estrategia y dirección creativa" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Producción y postproducción audiovisual" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desarrollo web y experiencias digitales" } }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://gular.agency/#website",
+        "url": "https://gular.agency/",
+        "name": "Gular",
+        "inLanguage": "es-AR",
+        "publisher": { "@id": "https://gular.agency/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://gular.agency/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué es Gular?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Gular es una agencia creativa con base en Buenos Aires, Argentina. Combina sensibilidad artística, estrategia comercial y tecnología para construir el universo de cada marca." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué servicios ofrece Gular?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Branding e identidad de marca, estrategia y dirección creativa, producción y postproducción audiovisual, y desarrollo web y experiencias digitales." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Dónde está ubicada Gular?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Gular está en Buenos Aires, Argentina, y trabaja con marcas de Argentina y del exterior." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Con qué marcas trabajó Gular?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Gular realizó proyectos para marcas como Triumph, Aperol, Envision, Jolly Hygge, Motorola y Megaled, entre otras." }
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://gular.agency/#proyectos",
+        "name": "Proyectos de Gular",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@type": "CreativeWork", "name": "Triumph Rider Academy", "description": "Dirección, edición y posproducción de la campaña Rider Academy de Triumph.", "creator": { "@id": "https://gular.agency/#organization" } } },
+          { "@type": "ListItem", "position": 2, "item": { "@type": "CreativeWork", "name": "Yuze", "description": "Producción audiovisual y contenido de marca.", "creator": { "@id": "https://gular.agency/#organization" } } },
+          { "@type": "ListItem", "position": 3, "item": { "@type": "CreativeWork", "name": "Jolly Hygge", "description": "Sistema de identidad de marca y manual de uso para una marca de real food.", "creator": { "@id": "https://gular.agency/#organization" } } },
+          { "@type": "ListItem", "position": 4, "item": { "@type": "CreativeWork", "name": "Team Uniforms", "description": "Diseño y desarrollo del sitio web de la marca.", "creator": { "@id": "https://gular.agency/#organization" } } },
+          { "@type": "ListItem", "position": 5, "item": { "@type": "CreativeWork", "name": "Envision", "description": "Showreel de marca y campaña audiovisual integral.", "creator": { "@id": "https://gular.agency/#organization" } } },
+          { "@type": "ListItem", "position": 6, "item": { "@type": "CreativeWork", "name": "Aperol", "description": "Activación y pieza audiovisual de marca en Ultra 2025.", "creator": { "@id": "https://gular.agency/#organization" } } },
+          { "@type": "ListItem", "position": 7, "item": { "@type": "CreativeWork", "name": "Sky", "description": "Pieza audiovisual de marca en Ultra 2025.", "creator": { "@id": "https://gular.agency/#organization" } } },
+          { "@type": "ListItem", "position": 8, "item": { "@type": "CreativeWork", "name": "FIT 2025", "description": "Video institucional para la Feria Internacional de Turismo.", "creator": { "@id": "https://gular.agency/#organization" } } },
+          { "@type": "ListItem", "position": 9, "item": { "@type": "CreativeWork", "name": "Motorola", "description": "Dirección de arte y propuesta creativa con CGI.", "creator": { "@id": "https://gular.agency/#organization" } } },
+          { "@type": "ListItem", "position": 10, "item": { "@type": "CreativeWork", "name": "Megaled", "description": "Propuesta creativa y de contenido.", "creator": { "@id": "https://gular.agency/#organization" } } }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <!-- Three.js (fijado por versión) para el fondo de partículas -->
   <script type="importmap">
@@ -86,7 +201,7 @@
   <main>
     <!-- 1 · HERO -->
     <section class="hero" id="hero">
-      <h1 class="hero__title">gular<span class="agency">agency</span></h1>
+      <h1 class="hero__title">gular<span class="agency">agency</span><span class="sr-only"> — agencia creativa en Buenos Aires: branding, producción audiovisual, estrategia y desarrollo web</span></h1>
       <p class="hero__statement">No hay solución sin <span class="accent">Gular</span></p>
       <p class="hero__lead">
         Y cada proyecto tiene una solución <em>singular</em>. En Gular combinamos sensibilidad

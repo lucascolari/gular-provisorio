@@ -157,22 +157,23 @@ const PROJECTS = [
 /* ---------- Render del índice ---------- */
 const indexEl = document.getElementById("proyectos");
 
-function mediaPanel(m) {
+function mediaPanel(m, p, i) {
+  const label = `${p.name} — ${p.cat}, proyecto de Gular`;
   if (m.type === "video") {
     return `<div class="case__panel case__panel--media">
       <div class="case__media">
-        <video data-src="${m.src}" poster="${m.poster}" muted loop playsinline preload="none"></video>
+        <video data-src="${m.src}" poster="${m.poster}" muted loop playsinline preload="none" aria-label="${label}"></video>
       </div></div>`;
   }
   return `<div class="case__panel case__panel--media">
-    <div class="case__media"><img data-src="${m.src}" alt="" loading="lazy" /></div></div>`;
+    <div class="case__media"><img data-src="${m.src}" alt="${p.name} — ${p.cat} (${i + 1})" loading="lazy" /></div></div>`;
 }
 
 function renderProject(p) {
   const statementHTML = p.statement.replace(/\n/g, "<br />");
   const bodyHTML = p.body.map((t) => `<p class="case__body-p">${t}</p>`).join("");
   const panels = [
-    ...p.media.map(mediaPanel),
+    ...p.media.map((m, i) => mediaPanel(m, p, i)),
     `<div class="case__panel case__panel--statement"><p class="case__statement">${statementHTML}</p></div>`,
     `<div class="case__panel case__panel--body">
        ${p.logo ? `<span class="case__logo">${p.logo}</span>` : ""}
@@ -201,7 +202,7 @@ function renderProject(p) {
   </article>`;
 }
 
-indexEl.innerHTML = PROJECTS.map(renderProject).join("");
+indexEl.innerHTML = '<h2 class="sr-only">Proyectos de Gular</h2>' + PROJECTS.map(renderProject).join("");
 if (useNative) indexEl.setAttribute("data-native", "");
 
 /* ---------- Apertura / cierre de casos (uno por vez) ---------- */
