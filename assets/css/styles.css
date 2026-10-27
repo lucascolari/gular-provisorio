@@ -154,15 +154,19 @@ body.intro-lock { overflow: hidden; }
   transition: background .4s ease, backdrop-filter .4s ease, border-color .4s ease;
   border-bottom: 1px solid transparent;
 }
-/* Al scrollear la barra pasa a fondo NEGRO con texto blanco (el rojo se mantiene). */
-.nav[data-scrolled] { background: #0a0a0a; backdrop-filter: blur(14px); border-bottom-color: rgba(255, 255, 255, 0.14); }
-.nav[data-scrolled] .nav__brand,
-.nav[data-scrolled] .nav__center a { color: #f3efe6; }
-.nav[data-scrolled] .nav__center .accent { color: #ff5a4e; }
-.nav[data-scrolled] .nav__menu .iso__top,
-.nav[data-scrolled] .nav__menu .iso__tail { background-color: #f3efe6; }
+/* Al scrollear aparece la barra (fondo BLANCO, a probar) con el wordmark "gular agency". */
+.nav[data-scrolled] { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(14px); border-bottom-color: var(--line-soft); }
+.nav[data-scrolled] .nav__brand .agency { display: inline; }
 
 .nav__brand { justify-self: start; font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.01em; line-height: 1; }
+/* "agency" en el wordmark del nav: oculto arriba, se revela al scrollear. */
+.nav__brand .agency {
+  font-family: var(--font-body); font-style: italic; font-weight: 400; letter-spacing: -0.01em;
+  background: linear-gradient(90deg, #0a0a0a 0%, #0a0a0a 25%, rgba(10, 10, 10, 0.08) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  display: none;
+}
 .nav__center { justify-self: center; display: flex; gap: clamp(1rem, 2.6vw, 2.2rem); font-size: .9rem; letter-spacing: .02em; color: var(--text); }
 .nav__center a { transition: color .25s; }
 .nav__center a:hover { opacity: .7; }
