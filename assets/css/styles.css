@@ -457,6 +457,10 @@ body.intro-lock { overflow: hidden; }
   .contact__grid { grid-template-columns: 1fr; }
   /* En celular, las imágenes/videos del caso entran COMPLETAS (sin recorte agresivo). */
   .case__media img, .case__media video { object-fit: contain; }
+  /* Fotos grandes del caso (Triumph): en celular se ven ENTERAS de una,
+     cada una ocupa una pantalla (aunque el scroll total se alargue). */
+  .case__panel--shot { width: 100vw; padding: clamp(1rem, 4vw, 2rem); }
+  .case__panel--shot .case__media img { object-fit: contain; }
 }
 
 @media (prefers-reduced-motion: reduce) {

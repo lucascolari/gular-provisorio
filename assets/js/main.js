@@ -244,6 +244,10 @@ function loadMedia(caseEl) {
     if (el.tagName === "VIDEO") {
       if (el.hasAttribute("data-hero")) el.muted = false; // el hero arranca con sonido
       playVideo(el);
+    } else if (el.tagName === "IMG" && !el.complete) {
+      // El ancho del panel puede depender del tamaño real de la foto (celular):
+      // re-medimos el recorrido cuando la imagen termina de cargar.
+      el.addEventListener("load", () => measureOpen(), { once: true });
     }
   });
 }
