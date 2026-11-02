@@ -347,19 +347,19 @@ body.intro-lock { overflow: hidden; }
   display: flex; flex-direction: column;
 }
 
-/* Barra superior (blanca): chevron + título sans + servicios. Cierra al click. */
+/* Encabezado del caso: sobre el NEGRO (chevron + título sans + servicios). Cierra al click. */
 .case__bar {
   flex: 0 0 auto; z-index: 4; width: 100%; border: 0; font: inherit; cursor: pointer;
-  background: var(--bg); color: var(--text); text-align: left;
+  background: #0a0a0a; color: #f3efe6; text-align: left;
   display: grid; grid-template-columns: auto 1fr auto; align-items: center;
   gap: clamp(.9rem, 3vw, 2.5rem);
   padding: clamp(.7rem, 1.6vw, 1.05rem) var(--gutter);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 0;
 }
 .case__bar-title { font-family: var(--font-body); font-weight: 600; font-size: clamp(1rem, 2.4vw, 1.4rem); letter-spacing: -0.01em; }
-.case__bar-services { font-family: var(--font-body); font-size: .8rem; color: var(--muted); text-align: right; }
+.case__bar-services { font-family: var(--font-body); font-size: .8rem; color: rgba(243, 239, 230, 0.65); text-align: right; }
 .case__bar-chev { width: 14px; height: 14px; position: relative; }
-.case__bar-chev::before, .case__bar-chev::after { content: ""; position: absolute; top: 50%; width: 9px; height: 1.5px; background: var(--text); }
+.case__bar-chev::before, .case__bar-chev::after { content: ""; position: absolute; top: 50%; width: 9px; height: 1.5px; background: #f3efe6; }
 .case__bar-chev::before { left: 0; transform: rotate(-45deg); }  /* apunta hacia arriba (cerrar) */
 .case__bar-chev::after { right: 0; transform: rotate(45deg); }
 
