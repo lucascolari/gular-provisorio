@@ -162,15 +162,10 @@
   </script>
 </head>
 <body>
-  <!-- Intro / ceremonia (se mantiene): "g" → No hay solución → SINGULAR → "g" -->
-  <div class="intro" id="intro" data-step="pre">
-    <div class="intro__stage">
-      <div class="intro__beat intro__g">
-        <span class="iso"><span class="iso__top"></span><span class="iso__tail"></span></span>
-      </div>
-      <p class="intro__beat intro__word" data-beat="frase">No hay solución</p>
-      <p class="intro__beat intro__word intro__word--singular" data-beat="singular">SINGULAR</p>
-    </div>
+  <!-- Intro / ceremonia: video de marca -->
+  <div class="intro" id="intro">
+    <video class="intro__video" id="introVideo" src="assets/media/intro.mp4"
+           muted playsinline preload="auto" aria-hidden="true"></video>
   </div>
 
   <!-- Fondo de partículas (WebGL). Fallback por CSS si no hay WebGL. -->

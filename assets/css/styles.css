@@ -29,13 +29,13 @@
 
 :root {
   --bg: #ffffff;
-  --text: #0a0a0a;
-  --secondary: #0a0a0a; /* sin gris: todo el texto en negro */
-  --muted: #0a0a0a;     /* sin gris: todo el texto en negro */
+  --text: #000000;
+  --secondary: #000000; /* sin gris: todo el texto en negro */
+  --muted: #000000;     /* sin gris: todo el texto en negro */
   --line: rgba(0, 0, 0, 0.14);
   --line-soft: rgba(0, 0, 0, 0.08);
   --ghost: #c7c7c7;      /* gris claro para "agency" y acentos tenues */
-  --ink: #0a0a0a;
+  --ink: #000000;
   --inverse: #ffffff;
 
   --font-display: "Sahlia", Georgia, "Times New Roman", serif;
@@ -126,21 +126,12 @@ main, .nav, .footer { position: relative; z-index: 10; }
    ========================================================================= */
 .intro {
   position: fixed; inset: 0; z-index: 90;
-  background: #05060d;
-  display: grid; place-content: center;
+  background: #000000;
+  display: grid; place-items: center;
   transition: opacity 1s var(--ease-out-expo), visibility 1s;
 }
 .intro.is-hidden { opacity: 0; visibility: hidden; }
-.intro__stage { position: relative; display: grid; place-items: center; width: min(90vw, 780px); min-height: 42vh; }
-.intro__beat { grid-area: 1 / 1; opacity: 0; transform: translateY(10px); transition: opacity .7s var(--ease-out-expo), transform 1s var(--ease-out-expo); }
-.intro__g .iso { width: clamp(66px, 13vw, 132px); }
-.intro__g .iso__top, .intro__g .iso__tail { background-color: #f3efe6; }
-.intro__word { margin: 0; text-align: center; font-family: var(--font-intro); font-weight: 800; color: #f3efe6; font-size: clamp(2rem, 7vw, 5rem); line-height: 1; letter-spacing: -0.03em; }
-.intro__word--singular { font-weight: 700; letter-spacing: .14em; }
-.intro[data-step="g1"] .intro__g,
-.intro[data-step="g2"] .intro__g,
-.intro[data-step="frase"] [data-beat="frase"],
-.intro[data-step="singular"] [data-beat="singular"] { opacity: 1; transform: none; }
+.intro__video { width: 100%; height: 100%; object-fit: cover; display: block; background: #000000; }
 
 body.intro-lock { overflow: hidden; }
 
@@ -168,7 +159,7 @@ body.intro-lock { overflow: hidden; }
 /* "agency" en el wordmark del nav: oculto arriba, se revela al scrollear. */
 .nav__brand .agency {
   font-family: var(--font-body); font-style: italic; font-weight: 400; letter-spacing: -0.01em;
-  background: linear-gradient(90deg, #0a0a0a 0%, #0a0a0a 25%, rgba(10, 10, 10, 0.08) 100%);
+  background: linear-gradient(90deg, #000000 0%, #000000 25%, rgba(0, 0, 0, 0.08) 100%);
   -webkit-background-clip: text; background-clip: text;
   color: transparent; -webkit-text-fill-color: transparent;
   display: none;
@@ -249,7 +240,7 @@ body.intro-lock { overflow: hidden; }
 /* "agency": negro que se esfuma hacia la derecha (degradé sobre el texto) */
 .hero__title .agency {
   font-family: var(--font-body); font-style: italic; font-weight: 400; letter-spacing: -0.015em;
-  background: linear-gradient(90deg, #0a0a0a 0%, #0a0a0a 20%, rgba(10, 10, 10, 0.06) 100%);
+  background: linear-gradient(90deg, #000000 0%, #000000 20%, rgba(0, 0, 0, 0.06) 100%);
   -webkit-background-clip: text; background-clip: text;
   color: transparent; -webkit-text-fill-color: transparent;
 }
@@ -343,7 +334,7 @@ body.intro-lock { overflow: hidden; }
 .case__pin {
   position: sticky; top: var(--nav-h);
   height: calc(100svh - var(--nav-h));
-  overflow: hidden; background: #0a0a0a; color: #f3efe6;
+  overflow: hidden; background: #000000; color: #f3efe6;
   display: flex; flex-direction: column;
 }
 
@@ -351,7 +342,7 @@ body.intro-lock { overflow: hidden; }
    centrado arriba, y debajo el nombre + servicios. Todo el encabezado cierra al click. */
 .case__bar {
   flex: 0 0 auto; z-index: 4; width: 100%; border: 0; font: inherit; cursor: pointer;
-  background: #0a0a0a; color: #f3efe6;
+  background: #000000; color: #f3efe6;
   display: flex; flex-direction: column; align-items: center; gap: clamp(.5rem, 1.4vh, .9rem);
   padding: clamp(1rem, 2.6vh, 1.7rem) var(--gutter);
 }
@@ -446,7 +437,7 @@ body.intro-lock { overflow: hidden; }
 /* =========================================================================
    Footer
    ========================================================================= */
-.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 2.6rem var(--gutter); border-top: 1px solid rgba(255, 255, 255, 0.12); color: #f3efe6; font-size: .82rem; letter-spacing: .02em; background: #0a0a0a; }
+.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 2.6rem var(--gutter); border-top: 1px solid rgba(255, 255, 255, 0.12); color: #f3efe6; font-size: .82rem; letter-spacing: .02em; background: #000000; }
 .footer__brand { font-family: var(--font-display); font-size: 1.3rem; color: #f3efe6; }
 
 /* =========================================================================

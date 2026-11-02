@@ -80,7 +80,7 @@ function init() {
         float core = smoothstep(0.5, 0.0, d);
         float a = core * vTw;            // alpha del punto
         if (a < 0.015) discard;
-        gl_FragColor = vec4(0.03, 0.03, 0.03, a * 0.85); // puntos casi negros
+        gl_FragColor = vec4(0.0, 0.0, 0.0, a * 0.9); // puntos negro puro
       }
     `,
   });
