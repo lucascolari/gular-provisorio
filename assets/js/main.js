@@ -41,15 +41,36 @@ const PROJECTS = [
   },
   {
     slug: "yuze", name: "Yuze", cat: "Universo construido",
-    desc: "Producción audiovisual y contenido de marca.",
-    services: "Concepto creativo · Producción audiovisual",
-    logo: "Yuze",
-    statement: "Una marca\ncon pulso propio.",
-    media: [{ type: "video", src: "assets/media/video/yuze.mp4", poster: "assets/media/video/yuze.jpg" }],
-    body: [
-      "Yuze necesitaba una pieza que hablara su idioma: cercana, actual y con ritmo. Partimos de una idea simple y la llevamos a imágenes pensadas para su público y sus canales.",
-      "Trabajamos la realización completa —concepto, grabación y postproducción— cuidando el tono y el detalle en cada plano, para que la marca se sintiera viva y reconocible.",
-      "El resultado es contenido que no solo se ve bien: construye marca y acompaña el momento de Yuze.",
+    desc: "Marca, producto y campaña de lanzamiento para un banco digital.",
+    services: "Branding · Producto digital · Campaña de lanzamiento",
+    caseTitle: "Yuze Digital Bank",
+    panels: [
+      // Hero: film de marca a pantalla completa, con sonido.
+      { type: "video", src: "assets/media/video/yuze-hero.mp4", poster: "assets/media/video/yuze-hero.jpg", hero: true },
+      // Intro
+      { body: ["Yuze se preparaba para salir al mercado desde Emiratos Árabes Unidos. Ya tenía nombre, logo y una estrategia inicial. El desafío era transformar esa base en una marca con una forma propia de presentarse, explicar su propuesta y conectar con las personas."] },
+      { statement: "A partir de una identidad.\nUn universo por construir." },
+      // Producto / app
+      { type: "image", src: "assets/media/proyectos/yuze/hero-silk.webp", full: true },
+      { type: "image", src: "assets/media/proyectos/yuze/app-wallet.webp", slide: true },
+      // Identidad / brandbook
+      { type: "image", src: "assets/media/proyectos/yuze/bb-01-portada.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/yuze/bb-02-clearspace.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/yuze/bb-03-compositional.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/yuze/bb-04-graphic.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/yuze/bb-05-tone.webp", slide: true },
+      // Producto en mano
+      { type: "image", src: "assets/media/proyectos/yuze/phones-app.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/yuze/cards.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/yuze/next-gen.webp", slide: true },
+      // Campaña de lanzamiento (Freelancer app)
+      { body: ["Con la identidad definida, desarrollamos la campaña de lanzamiento: una pieza de marca en video y un sistema de contenidos para redes, pensado para hablarle a la comunidad freelancer y mostrar la propuesta de Yuze en movimiento."] },
+      { type: "video", src: "assets/media/video/yuze-ad1.mp4", poster: "assets/media/video/yuze-ad1.jpg", slide: true },
+      { type: "video", src: "assets/media/video/yuze-ad2.mp4", poster: "assets/media/video/yuze-ad2.jpg", slide: true },
+      { type: "image", src: "assets/media/proyectos/yuze/camp-01.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/yuze/camp-02.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/yuze/camp-03.webp", slide: true },
+      { body: [], logo: "Yuze" },
     ],
   },
   {
@@ -163,7 +184,7 @@ const indexEl = document.getElementById("proyectos");
 
 function mediaPanel(m, p, i) {
   const label = `${p.name} — ${p.cat}, proyecto de Gular`;
-  const full = m.hero ? " case__panel--full" : (m.bleed ? " case__panel--bleed" : (m.full ? " case__panel--shot" : ""));
+  const full = m.hero ? " case__panel--full" : (m.bleed ? " case__panel--bleed" : (m.slide ? " case__panel--slide" : (m.full ? " case__panel--shot" : "")));
   if (m.type === "video") {
     // Video "hero": a pantalla completa y con sonido mientras el usuario lo mira.
     const hero = m.hero ? ` data-hero` : ` muted`;
@@ -177,19 +198,35 @@ function mediaPanel(m, p, i) {
     <div class="case__media"><img data-src="${m.src}" alt="${p.name} — ${p.cat} (${i + 1})" loading="lazy"${posStyle} /></div></div>`;
 }
 
+function statementPanel(text) {
+  return `<div class="case__panel case__panel--statement"><p class="case__statement">${text.replace(/\n/g, "<br />")}</p></div>`;
+}
+function bodyPanel(paragraphs, logo) {
+  const bodyHTML = paragraphs.map((t) => `<p class="case__body-p">${t}</p>`).join("");
+  return `<div class="case__panel case__panel--body">${logo ? `<span class="case__logo">${logo}</span>` : ""}${bodyHTML}</div>`;
+}
+// Un panel puede ser media, statement o body (texto).
+function panelHTML(panel, p, i) {
+  if (panel.statement) return statementPanel(panel.statement);
+  if (panel.body) return bodyPanel(panel.body, panel.logo);
+  return mediaPanel(panel, p, i);
+}
+
 function renderProject(p) {
-  const statementHTML = p.statement.replace(/\n/g, "<br />");
-  const bodyHTML = p.body.map((t) => `<p class="case__body-p">${t}</p>`).join("");
-  const outroHTML = (p.outro || []).map((m, i) => mediaPanel(m, p, p.media.length + i)).join("");
-  const panels = [
-    ...p.media.map((m, i) => mediaPanel(m, p, i)),
-    `<div class="case__panel case__panel--statement"><p class="case__statement">${statementHTML}</p></div>`,
-    `<div class="case__panel case__panel--body">
-       ${p.logo ? `<span class="case__logo">${p.logo}</span>` : ""}
-       ${bodyHTML}
-     </div>`,
-    outroHTML,
-  ].join("");
+  let panels;
+  if (p.panels) {
+    // Orden de paneles a medida (ej. Yuze).
+    panels = p.panels.map((pan, i) => panelHTML(pan, p, i)).join("");
+  } else {
+    // Estructura por defecto: media(s) → statement → cuerpo → outro.
+    const outroHTML = (p.outro || []).map((m, i) => mediaPanel(m, p, p.media.length + i)).join("");
+    panels = [
+      ...p.media.map((m, i) => mediaPanel(m, p, i)),
+      statementPanel(p.statement),
+      bodyPanel(p.body, p.logo),
+      outroHTML,
+    ].join("");
+  }
 
   return `<article class="proj" data-slug="${p.slug}">
     <button class="proj__row" aria-expanded="false" aria-controls="case-${p.slug}">
@@ -203,7 +240,7 @@ function renderProject(p) {
         <button class="case__bar" aria-label="Cerrar ${p.name}">
           <span class="iso" aria-hidden="true"><span class="iso__top"></span><span class="iso__tail"></span></span>
           <span class="case__bar-head">
-            <span class="case__bar-title">${p.name}</span>
+            <span class="case__bar-title">${p.caseTitle || p.name}</span>
             <span class="case__bar-services">${p.services}</span>
           </span>
         </button>

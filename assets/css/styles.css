@@ -387,6 +387,11 @@ body.intro-lock { overflow: hidden; }
 .case__panel--bleed { width: min(64vw, 880px); padding: 0; }
 .case__panel--bleed .case__media img, .case__panel--bleed .case__media video { object-fit: cover; }
 
+/* Slide: imagen/placa ENTERA (brandbook, mockups, slides de campaña), sin recorte */
+.case__panel--slide { width: min(92vw, 1180px); padding: clamp(1rem, 3.5vh, 2.4rem) clamp(1rem, 3vw, 2.4rem); }
+.case__panel--slide .case__media { background: transparent; }
+.case__panel--slide .case__media img, .case__panel--slide .case__media video { object-fit: contain; }
+
 /* Statement (serif, grande, blanco) */
 .case__panel--statement { width: min(90vw, 620px); justify-content: flex-end; }
 .case__statement { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.02em; color: #fff; }
@@ -468,6 +473,9 @@ body.intro-lock { overflow: hidden; }
   /* Imagen "a sangre" (motor): en celular ocupa toda la pantalla (bien grande). */
   .case__panel--bleed { width: 100vw; padding: 0; }
   .case__panel--bleed .case__media img { object-fit: cover; }
+  /* Slides (brandbook, campaña): enteras, una por pantalla en celular. */
+  .case__panel--slide { width: 100vw; }
+  .case__panel--slide .case__media img, .case__panel--slide .case__media video { object-fit: contain; }
 }
 
 @media (prefers-reduced-motion: reduce) {
