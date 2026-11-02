@@ -27,13 +27,17 @@ const PROJECTS = [
     desc: "Dirección, edición y posproducción de la campaña Rider Academy.",
     services: "Concepto creativo · Producción audiovisual · Edición y posproducción",
     logo: "Triumph",
-    statement: "Una incorporación.\nUna historia compartida.",
-    media: [{ type: "video", src: "assets/media/video/triumph.mp4", poster: "assets/media/video/triumph.jpg" }],
+    statement: "Una historia\ncompartida.",
+    media: [
+      { type: "video", src: "assets/media/video/triumph.mp4", poster: "assets/media/video/triumph.jpg", hero: true },
+      { type: "image", src: "assets/media/proyectos/triumph/triumph-01.webp", full: true },
+    ],
     body: [
       "Triumph nos convocó para anunciar la incorporación de Diego Graziosi a su Rider Academy. Detrás de la noticia encontramos una oportunidad: presentar al instructor desde aquello que lo conecta con quienes se suben a una moto.",
       "Propusimos una videoentrevista breve, centrada en su vínculo personal con el motociclismo. Desarrollamos el enfoque narrativo, realizamos la grabación y trabajamos la edición y la posproducción para que su voz y su experiencia condujeran el relato.",
       "El resultado fue una presentación más humana: además de comunicar quién se incorpora, la pieza puso en primer plano la pasión compartida entre Diego y la comunidad Triumph.",
     ],
+    outro: [{ type: "image", src: "assets/media/proyectos/triumph/triumph-02.webp", full: true, pos: "right center" }],
   },
   {
     slug: "yuze", name: "Yuze", cat: "Universo construido",
@@ -159,19 +163,24 @@ const indexEl = document.getElementById("proyectos");
 
 function mediaPanel(m, p, i) {
   const label = `${p.name} — ${p.cat}, proyecto de Gular`;
+  const full = m.hero ? " case__panel--full" : (m.full ? " case__panel--shot" : "");
   if (m.type === "video") {
-    return `<div class="case__panel case__panel--media">
+    // Video "hero": a pantalla completa y con sonido mientras el usuario lo mira.
+    const hero = m.hero ? ` data-hero` : ` muted`;
+    return `<div class="case__panel case__panel--media${full}">
       <div class="case__media">
-        <video data-src="${m.src}" poster="${m.poster}" muted loop playsinline preload="none" aria-label="${label}"></video>
+        <video data-src="${m.src}" poster="${m.poster}" loop playsinline preload="none"${hero} aria-label="${label}"></video>
       </div></div>`;
   }
-  return `<div class="case__panel case__panel--media">
-    <div class="case__media"><img data-src="${m.src}" alt="${p.name} — ${p.cat} (${i + 1})" loading="lazy" /></div></div>`;
+  const posStyle = m.pos ? ` style="object-position:${m.pos}"` : "";
+  return `<div class="case__panel case__panel--media${full}">
+    <div class="case__media"><img data-src="${m.src}" alt="${p.name} — ${p.cat} (${i + 1})" loading="lazy"${posStyle} /></div></div>`;
 }
 
 function renderProject(p) {
   const statementHTML = p.statement.replace(/\n/g, "<br />");
   const bodyHTML = p.body.map((t) => `<p class="case__body-p">${t}</p>`).join("");
+  const outroHTML = (p.outro || []).map((m, i) => mediaPanel(m, p, p.media.length + i)).join("");
   const panels = [
     ...p.media.map((m, i) => mediaPanel(m, p, i)),
     `<div class="case__panel case__panel--statement"><p class="case__statement">${statementHTML}</p></div>`,
@@ -179,6 +188,7 @@ function renderProject(p) {
        ${p.logo ? `<span class="case__logo">${p.logo}</span>` : ""}
        ${bodyHTML}
      </div>`,
+    outroHTML,
   ].join("");
 
   return `<article class="proj" data-slug="${p.slug}">
@@ -212,20 +222,33 @@ let openProj = null;      // <article> abierto
 let openCase = null;      // su .proj__case
 let openTrack = null;     // su .case__track
 let overflow = 0;         // px horizontales a recorrer
+let heroVideo = null;     // video "hero" (full screen + sonido) del caso abierto
+let heroPanelW = 0;       // ancho del panel del video hero
 
 function navHeight() {
   const v = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h"), 10);
   return Number.isFinite(v) ? v : 72;
 }
 
+function playVideo(v) {
+  const pr = v.play();
+  if (pr && pr.catch) pr.catch(() => {
+    // Si el navegador bloquea el autoplay con sonido, reproducimos en silencio
+    // y marcamos que hace falta un toque del usuario para activarlo.
+    if (!v.muted) { v.muted = true; v.dataset.needsTap = "1"; const p2 = v.play(); if (p2 && p2.catch) p2.catch(() => {}); }
+  });
+}
 function loadMedia(caseEl) {
   caseEl.querySelectorAll("[data-src]").forEach((el) => {
     if (!el.src) el.src = el.dataset.src;
-    if (el.tagName === "VIDEO") { const pr = el.play(); if (pr && pr.catch) pr.catch(() => {}); }
+    if (el.tagName === "VIDEO") {
+      if (el.hasAttribute("data-hero")) el.muted = false; // el hero arranca con sonido
+      playVideo(el);
+    }
   });
 }
 function stopMedia(caseEl) {
-  caseEl.querySelectorAll("video").forEach((v) => v.pause());
+  caseEl.querySelectorAll("video").forEach((v) => { v.pause(); v.muted = true; });
 }
 
 function measureOpen() {
@@ -234,6 +257,7 @@ function measureOpen() {
   overflow = Math.max(0, openTrack.scrollWidth - vw);
   const pinH = window.innerHeight - navHeight();
   openCase.style.height = (pinH + overflow) + "px";
+  if (heroVideo) { const panel = heroVideo.closest(".case__panel"); heroPanelW = panel ? panel.offsetWidth : 0; }
   updateTrack();
 }
 
@@ -242,7 +266,21 @@ function updateTrack() {
   const rect = openCase.getBoundingClientRect();
   const scrolled = Math.min(Math.max(navHeight() - rect.top, 0), overflow);
   const progress = overflow > 0 ? scrolled / overflow : 0;
-  openTrack.style.transform = `translate3d(${-overflow * progress}px,0,0)`;
+  const tx = -overflow * progress;
+  openTrack.style.transform = `translate3d(${tx}px,0,0)`;
+
+  // Sonido del video hero: suena solo mientras el video ocupa la pantalla.
+  if (heroVideo && heroPanelW > 0) {
+    const vw = document.documentElement.clientWidth;
+    const visible = Math.max(0, Math.min(vw, tx + heroPanelW) - Math.max(0, tx));
+    const onVideo = visible > vw * 0.5;
+    if (onVideo) {
+      if (heroVideo.dataset.needsTap !== "1") heroVideo.muted = false;
+      if (heroVideo.paused) playVideo(heroVideo);
+    } else {
+      heroVideo.muted = true;
+    }
+  }
 }
 
 function closeProject() {
@@ -256,6 +294,7 @@ function closeProject() {
   stopMedia(caseEl);
   caseEl.setAttribute("hidden", "");
   openProj = openCase = openTrack = null; overflow = 0;
+  heroVideo = null; heroPanelW = 0;
   // Volvemos la fila a la vista.
   const y = window.scrollY + art.getBoundingClientRect().top - navHeight() - 8;
   window.scrollTo({ top: Math.max(0, y), behavior: reduceMotion ? "auto" : "smooth" });
@@ -272,7 +311,21 @@ function openProject(proj) {
   proj.setAttribute("data-open", "");
   proj.querySelector(".proj__row").setAttribute("aria-expanded", "true");
   if (openTrack) openTrack.style.transform = "translate3d(0,0,0)";
+  heroVideo = openCase.querySelector("video[data-hero]");
   loadMedia(openCase);
+  // Tocar el video hero activa/silencia el sonido (y lo desbloquea si el navegador lo frenó).
+  if (heroVideo) {
+    const stage = heroVideo.closest(".case__media");
+    if (stage && !stage.dataset.soundBound) {
+      stage.dataset.soundBound = "1";
+      stage.addEventListener("click", (e) => {
+        e.stopPropagation();
+        heroVideo.dataset.needsTap = "";
+        heroVideo.muted = !heroVideo.muted;
+        playVideo(heroVideo);
+      });
+    }
+  }
 
   // Llevamos la fila al tope para que el pin arranque desde arriba.
   const y = window.scrollY + proj.getBoundingClientRect().top - navHeight();
