@@ -347,21 +347,22 @@ body.intro-lock { overflow: hidden; }
   display: flex; flex-direction: column;
 }
 
-/* Encabezado del caso: sobre el NEGRO (chevron + título sans + servicios). Cierra al click. */
+/* Encabezado del caso: sobre el NEGRO. Isotipo "g" (gira, igual que el del nav)
+   centrado arriba, y debajo el nombre + servicios. Todo el encabezado cierra al click. */
 .case__bar {
   flex: 0 0 auto; z-index: 4; width: 100%; border: 0; font: inherit; cursor: pointer;
-  background: #0a0a0a; color: #f3efe6; text-align: left;
-  display: grid; grid-template-columns: auto 1fr auto; align-items: center;
-  gap: clamp(.9rem, 3vw, 2.5rem);
-  padding: clamp(.7rem, 1.6vw, 1.05rem) var(--gutter);
-  border-bottom: 0;
+  background: #0a0a0a; color: #f3efe6;
+  display: flex; flex-direction: column; align-items: center; gap: clamp(.5rem, 1.4vh, .9rem);
+  padding: clamp(1rem, 2.6vh, 1.7rem) var(--gutter);
 }
-.case__bar-title { font-family: var(--font-body); font-weight: 600; font-size: clamp(1rem, 2.4vw, 1.4rem); letter-spacing: -0.01em; }
-.case__bar-services { font-family: var(--font-body); font-size: .8rem; color: rgba(243, 239, 230, 0.65); text-align: right; }
-.case__bar-chev { width: 14px; height: 14px; position: relative; }
-.case__bar-chev::before, .case__bar-chev::after { content: ""; position: absolute; top: 50%; width: 9px; height: 1.5px; background: #f3efe6; }
-.case__bar-chev::before { left: 0; transform: rotate(-45deg); }  /* apunta hacia arriba (cerrar) */
-.case__bar-chev::after { right: 0; transform: rotate(45deg); }
+.case__bar .iso { width: clamp(26px, 3vw, 34px); }
+.case__bar .iso__top, .case__bar .iso__tail { background-color: #f3efe6; }
+.case__bar-head {
+  display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap;
+  gap: clamp(1rem, 2.6vw, 2.2rem); text-align: left;
+}
+.case__bar-title { font-family: var(--font-body); font-weight: 600; font-size: clamp(1rem, 1.7vw, 1.2rem); letter-spacing: -0.01em; line-height: 1.2; }
+.case__bar-services { font-family: var(--font-body); font-size: .72rem; line-height: 1.45; color: rgba(243, 239, 230, 0.7); max-width: 28ch; }
 
 .case__track { flex: 1 1 auto; display: flex; align-items: stretch; min-height: 0; will-change: transform; }
 .case__panel {
@@ -391,7 +392,6 @@ body.intro-lock { overflow: hidden; }
   color: rgba(243, 239, 230, .55); z-index: 3; pointer-events: none;
 }
 
-@media (max-width: 560px) { .case__bar-services { display: none; } }
 
 /* Caso con reduce-motion: apilado vertical (sin pin horizontal) */
 .work-index[data-native] .case__pin { position: static; height: auto; }

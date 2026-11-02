@@ -190,10 +190,12 @@ function renderProject(p) {
     </button>
     <div class="proj__case" id="case-${p.slug}" hidden>
       <div class="case__pin">
-        <button class="case__bar" aria-label="Cerrar proyecto">
-          <span class="case__bar-chev" aria-hidden="true"></span>
-          <span class="case__bar-title">${p.name}</span>
-          <span class="case__bar-services">${p.services}</span>
+        <button class="case__bar" aria-label="Cerrar ${p.name}">
+          <span class="iso" aria-hidden="true"><span class="iso__top"></span><span class="iso__tail"></span></span>
+          <span class="case__bar-head">
+            <span class="case__bar-title">${p.name}</span>
+            <span class="case__bar-services">${p.services}</span>
+          </span>
         </button>
         <div class="case__track">${panels}</div>
         <div class="case__hint">Scrollea ↓ · recorré →</div>
