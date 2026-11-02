@@ -37,7 +37,7 @@ const PROJECTS = [
       "Propusimos una videoentrevista breve, centrada en su vínculo personal con el motociclismo. Desarrollamos el enfoque narrativo, realizamos la grabación y trabajamos la edición y la posproducción para que su voz y su experiencia condujeran el relato.",
       "El resultado fue una presentación más humana: además de comunicar quién se incorpora, la pieza puso en primer plano la pasión compartida entre Diego y la comunidad Triumph.",
     ],
-    outro: [{ type: "image", src: "assets/media/proyectos/triumph/triumph-02.webp", full: true, pos: "right center" }],
+    outro: [{ type: "image", src: "assets/media/proyectos/triumph/triumph-02.webp", bleed: true, pos: "right center" }],
   },
   {
     slug: "yuze", name: "Yuze", cat: "Universo construido",
@@ -163,7 +163,7 @@ const indexEl = document.getElementById("proyectos");
 
 function mediaPanel(m, p, i) {
   const label = `${p.name} — ${p.cat}, proyecto de Gular`;
-  const full = m.hero ? " case__panel--full" : (m.full ? " case__panel--shot" : "");
+  const full = m.hero ? " case__panel--full" : (m.bleed ? " case__panel--bleed" : (m.full ? " case__panel--shot" : ""));
   if (m.type === "video") {
     // Video "hero": a pantalla completa y con sonido mientras el usuario lo mira.
     const hero = m.hero ? ` data-hero` : ` muted`;

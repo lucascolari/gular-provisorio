@@ -333,7 +333,7 @@ body.intro-lock { overflow: hidden; }
 
 .case__pin {
   position: sticky; top: var(--nav-h);
-  height: calc(100svh - var(--nav-h));
+  height: calc(100dvh - var(--nav-h));
   overflow: hidden; background: #000000; color: #f3efe6;
   display: flex; flex-direction: column;
 }
@@ -382,6 +382,10 @@ body.intro-lock { overflow: hidden; }
 /* Imagen grande (sin márgenes, encuadrada) para el recorrido del caso */
 .case__panel--shot { width: min(64vw, 880px); padding: 0; }
 .case__panel--shot .case__media img, .case__panel--shot .case__media video { object-fit: cover; }
+
+/* Imagen a sangre (motor Triumph): llena el panel, encuadrada (cover) */
+.case__panel--bleed { width: min(64vw, 880px); padding: 0; }
+.case__panel--bleed .case__media img, .case__panel--bleed .case__media video { object-fit: cover; }
 
 /* Statement (serif, grande, blanco) */
 .case__panel--statement { width: min(90vw, 620px); justify-content: flex-end; }
@@ -461,6 +465,9 @@ body.intro-lock { overflow: hidden; }
      cada una ocupa una pantalla (aunque el scroll total se alargue). */
   .case__panel--shot { width: 100vw; padding: clamp(1rem, 4vw, 2rem); }
   .case__panel--shot .case__media img { object-fit: contain; }
+  /* Imagen "a sangre" (motor): en celular ocupa toda la pantalla (bien grande). */
+  .case__panel--bleed { width: 100vw; padding: 0; }
+  .case__panel--bleed .case__media img { object-fit: cover; }
 }
 
 @media (prefers-reduced-motion: reduce) {
