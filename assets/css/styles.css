@@ -356,7 +356,13 @@ body.intro-lock { overflow: hidden; }
   padding: clamp(1rem, 2.6vh, 1.7rem) var(--gutter);
 }
 .case__bar .iso { width: clamp(26px, 3vw, 34px); }
-.case__bar .iso__top, .case__bar .iso__tail { background-color: #f3efe6; }
+.case__bar .iso { aspect-ratio: 1 / 1; }
+.case__bar .iso__top { display: none; }
+.case__bar .iso__tail {
+  background-color: #f3efe6;
+  -webkit-mask-image: url("../img/iso-tail-only.svg"); mask-image: url("../img/iso-tail-only.svg");
+  transform-origin: 50% 50%;
+}
 .case__bar-head {
   display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap;
   gap: clamp(1rem, 2.6vw, 2.2rem); text-align: left;
