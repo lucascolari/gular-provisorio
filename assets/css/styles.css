@@ -131,7 +131,7 @@ main, .nav, .footer { position: relative; z-index: 10; }
   transition: opacity 1s var(--ease-out-expo), visibility 1s;
 }
 .intro.is-hidden { opacity: 0; visibility: hidden; }
-.intro__video { width: 100%; height: 100%; object-fit: cover; display: block; background: #000000; }
+.intro__video { width: 100%; height: 100%; object-fit: cover; display: block; background: #000000; transform: translateY(-4.5%); }
 
 body.intro-lock { overflow: hidden; }
 
