@@ -476,6 +476,9 @@ body.intro-lock { overflow: hidden; }
   /* Slides (brandbook, campaña): enteras, una por pantalla en celular. */
   .case__panel--slide { width: 100vw; }
   .case__panel--slide .case__media img, .case__panel--slide .case__media video { object-fit: contain; }
+  /* Hero-IMAGEN a pantalla completa: en celular se ve ENTERO (no corta el wordmark);
+     el hero-VIDEO sigue en cover. */
+  .case__panel--full .case__media img { object-fit: contain; }
 }
 
 @media (prefers-reduced-motion: reduce) {

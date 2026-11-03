@@ -74,6 +74,31 @@ const PROJECTS = [
     ],
   },
   {
+    slug: "noormenaa", name: "Noormenaa", cat: "Universo construido",
+    desc: "Diseño y desarrollo de la identidad de una agencia creativa.",
+    services: "Diseño y desarrollo de identidad de marca",
+    caseTitle: "Noormenaa Agency",
+    panels: [
+      // Hero: cielo + wordmark Noormenaa, a pantalla completa.
+      { type: "image", src: "assets/media/proyectos/noormenaa/hero.webp", hero: true },
+      { type: "image", src: "assets/media/proyectos/noormenaa/p-03.webp", slide: true },
+      { body: ["El punto de partida fue un nombre y una breve descripción sensorial. El desafío era convertir esa intención en una marca: encontrar un concepto que le diera dirección y construir un universo visual capaz de expresar una mirada propia."] },
+      { statement: "De una sensación,\na una identidad." },
+      // Identidad de marca
+      { type: "image", src: "assets/media/proyectos/noormenaa/p-01.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/noormenaa/monolith.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/noormenaa/clearspace-1.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/noormenaa/clearspace-2.webp", slide: true },
+      { statement: "Desarrollamos la luz\ncomo principio de identidad." },
+      { body: ["Desarrollamos el logotipo, el sistema visual y la dirección de imágenes, pensados para revelar, orientar y transformar la marca. Reunimos cada pieza en un universo capaz de expresar y ampliar su identidad."] },
+      // Aplicaciones
+      { type: "image", src: "assets/media/proyectos/noormenaa/phone.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/noormenaa/laptop.webp", slide: true },
+      { type: "image", src: "assets/media/proyectos/noormenaa/sea.webp", slide: true },
+      { body: [], logo: "Noormenaa" },
+    ],
+  },
+  {
     slug: "jolly", name: "Jolly Hygge", cat: "Universo construido",
     desc: "Sistema de identidad de marca y manual de uso.",
     services: "Estrategia · Sistema visual · Manual de marca",
