@@ -78,23 +78,35 @@ const PROJECTS = [
     desc: "Diseño y desarrollo de la identidad de una agencia creativa.",
     services: "Diseño y desarrollo de identidad de marca",
     caseTitle: "Noormenaa Agency",
+    hideHint: true,
     panels: [
       // Hero: cielo + wordmark Noormenaa, a pantalla completa.
       { type: "image", src: "assets/media/proyectos/noormenaa/hero.webp", hero: true },
+      // Apertura: manifiesto visual "03"
       { type: "image", src: "assets/media/proyectos/noormenaa/p-03.webp", slide: true },
       { body: ["El punto de partida fue un nombre y una breve descripción sensorial. El desafío era convertir esa intención en una marca: encontrar un concepto que le diera dirección y construir un universo visual capaz de expresar una mirada propia."] },
-      { statement: "De una sensación,\na una identidad." },
-      // Identidad de marca
-      { type: "image", src: "assets/media/proyectos/noormenaa/p-01.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/noormenaa/monolith.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/noormenaa/clearspace-1.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/noormenaa/clearspace-2.webp", slide: true },
-      { statement: "Desarrollamos la luz\ncomo principio de identidad." },
-      { body: ["Desarrollamos el logotipo, el sistema visual y la dirección de imágenes, pensados para revelar, orientar y transformar la marca. Reunimos cada pieza en un universo capaz de expresar y ampliar su identidad."] },
-      // Aplicaciones
-      { type: "image", src: "assets/media/proyectos/noormenaa/phone.webp", slide: true },
+      { statement: "De una sensación,\n*a una identidad.*", sans: true },
+      // Sistema de identidad: composición (escalas y relaciones del boceto, no slides iguales)
+      { composition: [
+          { src: "assets/media/proyectos/noormenaa/clearspace-1.webp", x: 4, y: 11, w: 32 },
+          { src: "assets/media/proyectos/noormenaa/clearspace-2.webp", x: 52, y: 6, w: 24 },
+          { src: "assets/media/proyectos/noormenaa/p-01.webp", x: 11, y: 44, w: 45 },
+          { src: "assets/media/proyectos/noormenaa/monolith.webp", x: 73, y: 20, w: 25 },
+        ], width: 165 },
+      { statement: "Desarrollamos la luz como\n*principio de identidad.*", sans: true },
+      { body: ["El manual reúne las decisiones que ayudan a revelar, orientar y transformar información en significado: el logotipo, el sistema cromático, las tipografías y el lenguaje de imágenes. Reunimos estas decisiones en un manual que permite expresar y ampliar el universo de Noormenaa."] },
       { type: "image", src: "assets/media/proyectos/noormenaa/laptop.webp", slide: true },
+      // Paleta cromática
+      { palette: [
+          ["#2E6E96", "#7FD3E6", "#ECE9DF"],
+          ["#CFE4F6", "#FFFFFF", "#2B3A66"],
+          ["#D6436A", "#2E6E9E", "#E7E5DB"],
+        ] },
+      // Paisaje "06"
       { type: "image", src: "assets/media/proyectos/noormenaa/sea.webp", slide: true },
+      { body: ["Hoy, Noormenaa es una agencia de marketing internacional que utiliza el manual y el universo construido como base de su comunicación. Una intención sensorial transformada en un lenguaje propio, con criterios para sostenerlo mientras la marca crece."] },
+      // Cierre: mockup de Instagram
+      { type: "image", src: "assets/media/proyectos/noormenaa/phone.webp", slide: true },
       { body: [], logo: "Noormenaa" },
     ],
   },
@@ -223,16 +235,36 @@ function mediaPanel(m, p, i) {
     <div class="case__media"><img data-src="${m.src}" alt="${p.name} — ${p.cat} (${i + 1})" loading="lazy"${posStyle} /></div></div>`;
 }
 
-function statementPanel(text) {
-  return `<div class="case__panel case__panel--statement"><p class="case__statement">${text.replace(/\n/g, "<br />")}</p></div>`;
+function statementPanel(text, opts) {
+  opts = opts || {};
+  const cls = opts.sans ? " case__statement--sans" : "";
+  const align = opts.align ? ` case__panel--${opts.align}` : "";
+  // *negrita* → <strong>
+  const html = text.replace(/\n/g, "<br />").replace(/\*(.+?)\*/g, "<strong>$1</strong>");
+  return `<div class="case__panel case__panel--statement${align}"><p class="case__statement${cls}">${html}</p></div>`;
 }
 function bodyPanel(paragraphs, logo) {
   const bodyHTML = paragraphs.map((t) => `<p class="case__body-p">${t}</p>`).join("");
   return `<div class="case__panel case__panel--body">${logo ? `<span class="case__logo">${logo}</span>` : ""}${bodyHTML}</div>`;
 }
-// Un panel puede ser media, statement o body (texto).
+// Paleta cromática (swatches en ladrillo, sobre el negro).
+function palettePanel(rows) {
+  const html = rows.map((r) => `<div class="palette__row">${r.map((c) => `<span class="palette__chip" style="background:${c}"></span>`).join("")}</div>`).join("");
+  return `<div class="case__panel case__panel--palette"><div class="palette">${html}</div></div>`;
+}
+// Composición libre: varias imágenes posicionadas (escalas/relaciones del boceto).
+function compositionPanel(panel, p) {
+  const w = panel.width || 150;
+  const els = panel.composition.map((it, n) =>
+    `<img class="comp__img" data-src="${it.src}" alt="${p.name} — ${p.cat} (${n + 1})" loading="lazy" style="left:${it.x}%;top:${it.y}%;width:${it.w}%;z-index:${it.z || 1}" />`
+  ).join("");
+  return `<div class="case__panel case__panel--comp" style="width:${w}vw"><div class="comp">${els}</div></div>`;
+}
+// Un panel puede ser media, statement, body, paleta o composición.
 function panelHTML(panel, p, i) {
-  if (panel.statement) return statementPanel(panel.statement);
+  if (panel.statement) return statementPanel(panel.statement, panel);
+  if (panel.palette) return palettePanel(panel.palette);
+  if (panel.composition) return compositionPanel(panel, p);
   if (panel.body) return bodyPanel(panel.body, panel.logo);
   return mediaPanel(panel, p, i);
 }
@@ -270,7 +302,7 @@ function renderProject(p) {
           </span>
         </button>
         <div class="case__track">${panels}</div>
-        <div class="case__hint">Scrollea ↓ · recorré →</div>
+        ${p.hideHint ? "" : '<div class="case__hint">Scrollea ↓ · recorré →</div>'}
       </div>
     </div>
   </article>`;

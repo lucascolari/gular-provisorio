@@ -395,6 +395,22 @@ body.intro-lock { overflow: hidden; }
 /* Statement (serif, grande, blanco) */
 .case__panel--statement { width: min(90vw, 620px); justify-content: flex-end; }
 .case__statement { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.02em; color: #fff; }
+/* Statement en sans (ej. Noormenaa): regular + partes en *negrita* */
+.case__statement--sans { font-family: var(--font-body); font-weight: 400; letter-spacing: -0.03em; line-height: 1.04; }
+.case__statement--sans strong { font-weight: 800; }
+
+/* Paleta cromática (swatches en ladrillo, sobre el negro) */
+.case__panel--palette { width: min(64vw, 720px); justify-content: center; }
+.palette { display: flex; flex-direction: column; gap: clamp(.5rem, 1.1vw, .9rem); }
+.palette__row { display: flex; gap: clamp(.5rem, 1.1vw, .9rem); }
+.palette__row:nth-child(2) { margin-left: clamp(2.2rem, 7vw, 4.6rem); }
+.palette__row:nth-child(3) { margin-left: clamp(4.4rem, 14vw, 9.2rem); }
+.palette__chip { display: block; width: clamp(68px, 9vw, 128px); aspect-ratio: 1.25 / 1; border-radius: 16px; }
+
+/* Composición libre: imágenes posicionadas (escalas/relaciones del boceto) */
+.case__panel--comp { padding: 0; }
+.comp { position: relative; width: 100%; height: 100%; }
+.comp__img { position: absolute; height: auto; display: block; }
 
 /* Cuerpo de texto (sans, claro) + marca */
 .case__panel--body { width: min(88vw, 560px); gap: 1rem; }
