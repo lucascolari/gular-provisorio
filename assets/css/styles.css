@@ -407,10 +407,23 @@ body.intro-lock { overflow: hidden; }
 .palette__row:nth-child(3) { margin-left: clamp(4.4rem, 14vw, 9.2rem); }
 .palette__chip { display: block; width: clamp(68px, 9vw, 128px); aspect-ratio: 1.25 / 1; border-radius: 16px; }
 
-/* Composición libre: imágenes posicionadas (escalas/relaciones del boceto) */
-.case__panel--comp { padding: 0; }
-.comp { position: relative; width: 100%; height: 100%; }
-.comp__img { position: absolute; height: auto; display: block; }
+/* Escena: TODO el carrusel como una composición flotante con coordenadas del boceto.
+   El lienzo mantiene el aspecto del PDF y se escala al alto del pin; todo se posiciona en %. */
+.case__panel--scene { padding: 0; width: auto; }
+.scene { position: relative; height: 100%; aspect-ratio: 8000 / 975; container-type: size; }
+.scene__img { position: absolute; display: block; }
+.scene__text { position: absolute; color: #f3efe6; font-family: var(--font-body); line-height: 1.5; }
+/* Titulares grandes (sans): regular + *negrita* */
+.scene__head { color: #fff; font-weight: 400; line-height: 1.06; letter-spacing: -0.025em; }
+.scene__head strong { font-weight: 800; }
+/* Párrafo de resultado (sans, bold) */
+.scene__strong { color: #fff; font-weight: 700; line-height: 1.4; }
+.scene__palette { position: absolute; }
+.scene__palette .palette { gap: 8cqh; }
+.scene__palette .palette__row { gap: 8%; }
+.scene__palette .palette__row:nth-child(2) { margin-left: 16%; }
+.scene__palette .palette__row:nth-child(3) { margin-left: 32%; }
+.scene__palette .palette__chip { width: 28%; aspect-ratio: 1.25 / 1; border-radius: 12cqh; }
 
 /* Cuerpo de texto (sans, claro) + marca */
 .case__panel--body { width: min(88vw, 560px); gap: 1rem; }

@@ -82,32 +82,32 @@ const PROJECTS = [
     panels: [
       // Hero: cielo + wordmark Noormenaa, a pantalla completa.
       { type: "image", src: "assets/media/proyectos/noormenaa/hero.webp", hero: true },
-      // Apertura: manifiesto visual "03"
-      { type: "image", src: "assets/media/proyectos/noormenaa/p-03.webp", slide: true },
-      { body: ["El punto de partida fue un nombre y una breve descripción sensorial. El desafío era convertir esa intención en una marca: encontrar un concepto que le diera dirección y construir un universo visual capaz de expresar una mirada propia."] },
-      { statement: "De una sensación,\n*a una identidad.*", sans: true },
-      // Sistema de identidad: composición (escalas y relaciones del boceto, no slides iguales)
-      { composition: [
-          { src: "assets/media/proyectos/noormenaa/clearspace-1.webp", x: 4, y: 11, w: 32 },
-          { src: "assets/media/proyectos/noormenaa/clearspace-2.webp", x: 52, y: 6, w: 24 },
-          { src: "assets/media/proyectos/noormenaa/p-01.webp", x: 11, y: 44, w: 45 },
-          { src: "assets/media/proyectos/noormenaa/monolith.webp", x: 73, y: 20, w: 25 },
-        ], width: 165 },
-      { statement: "Desarrollamos la luz como\n*principio de identidad.*", sans: true },
-      { body: ["El manual reúne las decisiones que ayudan a revelar, orientar y transformar información en significado: el logotipo, el sistema cromático, las tipografías y el lenguaje de imágenes. Reunimos estas decisiones en un manual que permite expresar y ampliar el universo de Noormenaa."] },
-      { type: "image", src: "assets/media/proyectos/noormenaa/laptop.webp", slide: true },
-      // Paleta cromática
-      { palette: [
-          ["#2E6E96", "#7FD3E6", "#ECE9DF"],
-          ["#CFE4F6", "#FFFFFF", "#2B3A66"],
-          ["#D6436A", "#2E6E9E", "#E7E5DB"],
-        ] },
-      // Paisaje "06"
-      { type: "image", src: "assets/media/proyectos/noormenaa/sea.webp", slide: true },
-      { body: ["Hoy, Noormenaa es una agencia de marketing internacional que utiliza el manual y el universo construido como base de su comunicación. Una intención sensorial transformada en un lenguaje propio, con criterios para sostenerlo mientras la marca crece."] },
-      // Cierre: mockup de Instagram
-      { type: "image", src: "assets/media/proyectos/noormenaa/phone.webp", slide: true },
-      { body: [], logo: "Noormenaa" },
+      // Carrusel = una sola escena flotante con las coordenadas EXACTAS del boceto (PDF).
+      { scene: {
+        pw: 8000, ph: 975,
+        items: [
+          // Apertura: manifiesto "03"
+          { img: "assets/media/proyectos/noormenaa/p-03.webp", x: -3, y: -2, w: 1256, h: 707 },
+          { text: "El punto de partida fue un nombre y una breve descripción sensorial. El desafío era convertir esa intención en una marca: encontrar un concepto que le diera dirección y construir un universo visual capaz de expresar una mirada propia.", x: 1300, top: 250, w: 290, fs: 2.0 },
+          { text: "De una sensación,\n*a una identidad.*", x: 1288, top: 630, w: 400, fs: 6.6, cls: "scene__head" },
+          // Sistema de identidad
+          { img: "assets/media/proyectos/noormenaa/clearspace-1.webp", x: 1756, y: 627, w: 618, h: 348 },
+          { img: "assets/media/proyectos/noormenaa/p-01.webp", x: 1973, y: 279, w: 618, h: 348 },
+          { img: "assets/media/proyectos/noormenaa/clearspace-2.webp", x: 2373, y: 627, w: 643, h: 362 },
+          { img: "assets/media/proyectos/noormenaa/monolith.webp", x: 2591, y: 277, w: 617, h: 353 },
+          // Luz como principio de identidad + laptop
+          { text: "*Desarrollamos la luz como\nprincipio de identidad.*", x: 3100, top: 130, w: 680, fs: 5.6, cls: "scene__head" },
+          { text: "El manual reúne las decisiones que ayudan a revelar, orientar y transformar información en significado: el logotipo, el sistema cromático, las tipografías y el lenguaje de imágenes. Reunimos estas decisiones en un manual que permite expresar y ampliar el universo de Noormenaa.", x: 3880, top: 150, w: 470, fs: 2.0 },
+          { img: "assets/media/proyectos/noormenaa/laptop.webp", x: 3207, y: -31, w: 1151, h: 658 },
+          // Paleta cromática
+          { palette: [["#2E6E96","#7FD3E6","#ECE9DF"],["#CFE4F6","#FFFFFF","#2B3A66"],["#D6436A","#2E6E9E","#E7E5DB"]], x: 4480, top: 360, w: 560 },
+          // Paisaje "06"
+          { img: "assets/media/proyectos/noormenaa/sea.webp", x: 5193, y: 321, w: 1162, h: 654 },
+          { text: "Hoy, Noormenaa es una agencia de marketing internacional que utiliza el manual y el universo construido como base de su comunicación. Una intención sensorial transformada en un lenguaje propio, con criterios para sostenerlo mientras la marca crece.", x: 5230, top: 740, w: 560, fs: 2.1, cls: "scene__strong" },
+          // Cierre: Instagram
+          { img: "assets/media/proyectos/noormenaa/phone.webp", x: 6254, y: -3, w: 1712, h: 978, fit: "contain" },
+        ],
+      } },
     ],
   },
   {
@@ -252,19 +252,35 @@ function palettePanel(rows) {
   const html = rows.map((r) => `<div class="palette__row">${r.map((c) => `<span class="palette__chip" style="background:${c}"></span>`).join("")}</div>`).join("");
   return `<div class="case__panel case__panel--palette"><div class="palette">${html}</div></div>`;
 }
-// Composición libre: varias imágenes posicionadas (escalas/relaciones del boceto).
-function compositionPanel(panel, p) {
-  const w = panel.width || 150;
-  const els = panel.composition.map((it, n) =>
-    `<img class="comp__img" data-src="${it.src}" alt="${p.name} — ${p.cat} (${n + 1})" loading="lazy" style="left:${it.x}%;top:${it.y}%;width:${it.w}%;z-index:${it.z || 1}" />`
-  ).join("");
-  return `<div class="case__panel case__panel--comp" style="width:${w}vw"><div class="comp">${els}</div></div>`;
+// Escena: TODO el carrusel como una sola composición flotante con las
+// coordenadas EXACTAS del boceto (PDF). Cada item se posiciona en % sobre el
+// lienzo del PDF (ancho pw × alto ph, pt). Imágenes con `y` (origen abajo, como
+// el PDF); textos/cajas con `top` (origen arriba). El scroll horizontal recorre
+// la escena = experiencia de carrusel flotante.
+function paletteRows(rows) {
+  return `<div class="palette">${rows.map((r) => `<div class="palette__row">${r.map((c) => `<span class="palette__chip" style="background:${c}"></span>`).join("")}</div>`).join("")}</div>`;
 }
-// Un panel puede ser media, statement, body, paleta o composición.
+function scenePanel(scene, p) {
+  const PW = scene.pw, PH = scene.ph;
+  const pc = (v, tot) => (v / tot * 100).toFixed(3);
+  const items = scene.items.map((it) => {
+    const topPt = (it.top != null) ? it.top : (PH - it.y - it.h);
+    const base = `left:${pc(it.x, PW)}%;top:${pc(topPt, PH)}%;width:${pc(it.w, PW)}%;`;
+    if (it.img) return `<img class="scene__img" data-src="${it.img}" alt="${p.name} — ${p.cat}" loading="lazy" style="${base}height:${pc(it.h, PH)}%;object-fit:${it.fit || "cover"}" />`;
+    if (it.palette) return `<div class="scene__palette" style="${base}">${paletteRows(it.palette)}</div>`;
+    if (it.text != null) {
+      const html = it.text.replace(/\n/g, "<br />").replace(/\*(.+?)\*/g, "<strong>$1</strong>");
+      return `<div class="scene__text${it.cls ? " " + it.cls : ""}" style="${base}font-size:${it.fs || 2}cqh">${html}</div>`;
+    }
+    return "";
+  }).join("");
+  return `<div class="case__panel case__panel--scene"><div class="scene">${items}</div></div>`;
+}
+// Un panel puede ser media, statement, body, paleta o escena.
 function panelHTML(panel, p, i) {
   if (panel.statement) return statementPanel(panel.statement, panel);
   if (panel.palette) return palettePanel(panel.palette);
-  if (panel.composition) return compositionPanel(panel, p);
+  if (panel.scene) return scenePanel(panel.scene, p);
   if (panel.body) return bodyPanel(panel.body, panel.logo);
   return mediaPanel(panel, p, i);
 }
