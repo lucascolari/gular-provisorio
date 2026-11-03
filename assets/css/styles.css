@@ -412,6 +412,8 @@ body.intro-lock { overflow: hidden; }
 .case__panel--scene { padding: 0; width: auto; }
 .scene { position: relative; height: 100%; aspect-ratio: 8000 / 975; container-type: size; }
 .scene__img { position: absolute; display: block; }
+.scene__vid { position: absolute; overflow: hidden; }
+.scene__vid video { width: 100%; height: 100%; display: block; }
 .scene__text { position: absolute; color: #f3efe6; font-family: var(--font-body); line-height: 1.5; }
 /* Titulares grandes (sans): regular + *negrita* */
 .scene__head { color: #fff; font-weight: 400; line-height: 1.06; letter-spacing: -0.025em; }

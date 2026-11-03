@@ -41,36 +41,46 @@ const PROJECTS = [
   },
   {
     slug: "yuze", name: "Yuze", cat: "Universo construido",
-    desc: "Marca, producto y campaña de lanzamiento para un banco digital.",
-    services: "Branding · Producto digital · Campaña de lanzamiento",
+    desc: "Marca, sistema visual y campaña de lanzamiento para un banco digital.",
+    services: "Branding · Sistema de marca · Campaña de lanzamiento",
     caseTitle: "Yuze Digital Bank",
+    hideHint: true,
     panels: [
-      // Hero: film de marca a pantalla completa, con sonido.
-      { type: "video", src: "assets/media/video/yuze-hero.mp4", poster: "assets/media/video/yuze-hero.jpg", hero: true },
-      // Intro
-      { body: ["Yuze se preparaba para salir al mercado desde Emiratos Árabes Unidos. Ya tenía nombre, logo y una estrategia inicial. El desafío era transformar esa base en una marca con una forma propia de presentarse, explicar su propuesta y conectar con las personas."] },
-      { statement: "A partir de una identidad.\nUn universo por construir." },
-      // Producto / app
-      { type: "image", src: "assets/media/proyectos/yuze/hero-silk.webp", full: true },
-      { type: "image", src: "assets/media/proyectos/yuze/app-wallet.webp", slide: true },
-      // Identidad / brandbook
-      { type: "image", src: "assets/media/proyectos/yuze/bb-01-portada.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/yuze/bb-02-clearspace.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/yuze/bb-03-compositional.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/yuze/bb-04-graphic.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/yuze/bb-05-tone.webp", slide: true },
-      // Producto en mano
-      { type: "image", src: "assets/media/proyectos/yuze/phones-app.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/yuze/cards.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/yuze/next-gen.webp", slide: true },
-      // Campaña de lanzamiento (Freelancer app)
-      { body: ["Con la identidad definida, desarrollamos la campaña de lanzamiento: una pieza de marca en video y un sistema de contenidos para redes, pensado para hablarle a la comunidad freelancer y mostrar la propuesta de Yuze en movimiento."] },
-      { type: "video", src: "assets/media/video/yuze-ad1.mp4", poster: "assets/media/video/yuze-ad1.jpg", slide: true },
-      { type: "video", src: "assets/media/video/yuze-ad2.mp4", poster: "assets/media/video/yuze-ad2.jpg", slide: true },
-      { type: "image", src: "assets/media/proyectos/yuze/camp-01.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/yuze/camp-02.webp", slide: true },
-      { type: "image", src: "assets/media/proyectos/yuze/camp-03.webp", slide: true },
-      { body: [], logo: "Yuze" },
+      // Apertura (desplegado): teléfono sobre tela verde "Because you can".
+      { type: "image", src: "assets/media/proyectos/yuze/hero-silk.webp", hero: true },
+      // Carrusel = una sola escena flotante con las coordenadas EXACTAS del boceto (PDF).
+      { scene: {
+        pw: 7500, ph: 975,
+        items: [
+          // Interfaz (arranque del recorrido)
+          { img: "assets/media/proyectos/yuze/app-wallet.webp", x: 1, y: -2, w: 1248, h: 706 },
+          { text: "Yuze se preparaba para salir al mercado desde Emiratos Árabes Unidos. Ya tenía nombre, logo y una estrategia inicial. El desafío era transformar esa base en una marca con una forma propia de presentarse, explicar su propuesta y conectar con las personas.", x: 1320, top: 250, w: 250, fs: 2.0 },
+          { text: "A partir de una identidad inicial.\n*Un universo por construir.*", x: 1256, top: 650, w: 760, fs: 5.0, cls: "scene__head" },
+          // Sistema de marca (collage del brandbook, escalas/alturas/superposiciones del boceto)
+          { img: "assets/media/proyectos/yuze/bb-01-portada.webp", x: 1756, y: 447, w: 619, h: 348 },
+          { img: "assets/media/proyectos/yuze/bb-04-graphic.webp", x: 2238, y: 447, w: 619, h: 348 },
+          { img: "assets/media/proyectos/yuze/bb-03-compositional.webp", x: 2732, y: 251, w: 638, h: 362 },
+          { img: "assets/media/proyectos/yuze/next-gen.webp", x: 2732, y: -3, w: 1280, h: 320 },
+          { img: "assets/media/proyectos/yuze/bb-02-clearspace.webp", x: 2833, y: 613, w: 644, h: 362 },
+          { img: "assets/media/proyectos/yuze/bb-05-tone.webp", x: 3369, y: 432, w: 644, h: 362 },
+          // Refinamiento + prompt maestro
+          { text: "Refinamos su estrategia\n*y desarrollamos el sistema*", x: 4200, top: 320, w: 720, fs: 4.8, cls: "scene__head" },
+          { text: "Refinamos su estrategia visual y verbal, el manual de marca y el concepto de campaña. Esa dirección tomó forma en imágenes, guiones, animaciones y contenidos para su lanzamiento. Para sostenerla, creamos un prompt maestro, afinado mediante pruebas visuales, que traduce el universo conceptual de Yuze en criterios para producir nuevas piezas.", x: 4210, top: 700, w: 540, fs: 1.9 },
+          // Campaña (ads freelancer, videos funcionales)
+          { video: "assets/media/video/yuze-ad1.mp4", poster: "assets/media/video/yuze-ad1.jpg", x: 5205, y: 458, w: 291, h: 517 },
+          { video: "assets/media/video/yuze-ad2.mp4", poster: "assets/media/video/yuze-ad2.jpg", x: 5574, y: -3, w: 284, h: 506 },
+          // El resultado
+          { text: "*El resultado*", x: 5120, top: 600, w: 420, fs: 4.6, cls: "scene__head" },
+          { text: "fue un ecosistema de comunicación que conecta identidad, campaña y contenido bajo un mismo lenguaje, y que Yuze continúa aplicando y desarrollando.", x: 5120, top: 300, w: 360, fs: 1.9, cls: "scene__strong" },
+          // Producto en mano
+          { img: "assets/media/proyectos/yuze/phones-app.webp", x: 5778, y: 391, w: 675, h: 422, fit: "contain" },
+          { img: "assets/media/proyectos/yuze/cards.webp", x: 6195, y: 575, w: 708, h: 398, fit: "contain" },
+          // Línea de capacidades
+          { text: "Estrategia · Sistema de marca · Dirección de arte · Campaña de lanzamiento · Motion graphics y contenido", x: 5900, top: 820, w: 620, fs: 1.9, cls: "scene__strong" },
+          // Cierre: mosaico de contenidos (carrusel de Instagram)
+          { img: "assets/media/proyectos/yuze/mosaico.webp", x: 6903, y: -2, w: 441, h: 976, fit: "cover" },
+        ],
+      } },
     ],
   },
   {
@@ -267,6 +277,7 @@ function scenePanel(scene, p) {
     const topPt = (it.top != null) ? it.top : (PH - it.y - it.h);
     const base = `left:${pc(it.x, PW)}%;top:${pc(topPt, PH)}%;width:${pc(it.w, PW)}%;`;
     if (it.img) return `<img class="scene__img" data-src="${it.img}" alt="${p.name} — ${p.cat}" loading="lazy" style="${base}height:${pc(it.h, PH)}%;object-fit:${it.fit || "cover"}" />`;
+    if (it.video) return `<div class="scene__vid" style="${base}height:${pc(it.h, PH)}%"><video data-src="${it.video}" poster="${it.poster || ""}" loop muted playsinline preload="none" style="object-fit:${it.fit || "cover"}"></video></div>`;
     if (it.palette) return `<div class="scene__palette" style="${base}">${paletteRows(it.palette)}</div>`;
     if (it.text != null) {
       const html = it.text.replace(/\n/g, "<br />").replace(/\*(.+?)\*/g, "<strong>$1</strong>");
