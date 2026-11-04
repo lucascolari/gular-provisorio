@@ -61,7 +61,7 @@ const PROJECTS = [
         pw: 7344, ph: 975,
         items: [
           // Interfaz (arranque del recorrido)
-          { img: "assets/media/proyectos/yuze/app-wallet.webp", x: 1, y: -2, w: 1248, h: 706 },
+          { video: "assets/media/video/yuze-hero.mp4", poster: "assets/media/proyectos/yuze/app-wallet.webp", x: 1, y: -2, w: 1248, h: 706, fit: "cover" },
           { text: "Yuze se preparaba para salir al mercado desde Emiratos Árabes Unidos. Ya tenía nombre, logo y una estrategia inicial. El desafío era transformar esa base en una marca con una forma propia de presentarse, explicar su propuesta y conectar con las personas.", x: 1320, top: 250, w: 250, fs: 2.0 },
           { text: "A partir de una identidad inicial.\n*Un universo por construir.*", x: 1256, top: 650, w: 760, fs: 5.0, cls: "scene__head" },
           // Sistema de marca (collage del brandbook, escalas/alturas/superposiciones del boceto)
