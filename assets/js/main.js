@@ -35,16 +35,14 @@ const PROJECTS = [
       { scene: {
         pw: 1900, ph: 975,
         items: [
-          // Foto del tanque (secundaria, apaisada, arriba)
-          { img: "assets/media/proyectos/triumph/triumph-01.webp", x: 90, top: 165, w: 500, h: 333, fit: "cover" },
+          // Foto del tanque (secundaria, apaisada)
+          { img: "assets/media/proyectos/triumph/triumph-01.webp", x: 80, top: 210, w: 560, h: 373, fit: "cover" },
           // Titular
-          { text: "Una historia\ncompartida.", x: 70, top: 640, w: 470, fs: 4.0, cls: "scene__head" },
-          // Foto del motor (arriba, en relación con el texto)
-          { img: "assets/media/proyectos/triumph/triumph-engine.webp", x: 1000, top: 55, w: 820, h: 460, fit: "cover" },
-          // Cuerpo de texto (debajo del motor)
-          { text: "Triumph nos convocó para anunciar la incorporación de Diego Graziosi a su Rider Academy. Detrás de la noticia encontramos una oportunidad: presentar al instructor desde aquello que lo conecta con quienes se suben a una moto.\n\nPropusimos una videoentrevista breve, centrada en su vínculo personal con el motociclismo. Desarrollamos el enfoque narrativo, realizamos la grabación y trabajamos la edición y la posproducción para que su voz y su experiencia condujeran el relato.\n\nEl resultado fue una presentación más humana: además de comunicar quién se incorpora, la pieza puso en primer plano la pasión compartida entre Diego y la comunidad Triumph.", x: 1000, top: 555, w: 600, fs: 1.4 },
-          // Cierre: recurso gráfico Triumph
-          { img: "assets/media/proyectos/triumph/triumph-logo.webp", x: 1620, top: 895, w: 250, h: 64, fit: "contain" },
+          { text: "Una historia\ncompartida.", x: 70, top: 650, w: 480, fs: 4.0, cls: "scene__head" },
+          // Foto del motor (grande, con el logo Triumph incluido) — el texto va ENCIMA
+          { img: "assets/media/proyectos/triumph/triumph-engine2.webp", x: 860, top: 70, w: 1000, h: 707, fit: "cover" },
+          // Cuerpo de texto SUPERPUESTO sobre el motor
+          { text: "Triumph nos convocó para anunciar la incorporación de Diego Graziosi a su Rider Academy. Detrás de la noticia encontramos una oportunidad: presentar al instructor desde aquello que lo conecta con quienes se suben a una moto.\n\nPropusimos una videoentrevista breve, centrada en su vínculo personal con el motociclismo. Desarrollamos el enfoque narrativo, realizamos la grabación y trabajamos la edición y la posproducción para que su voz y su experiencia condujeran el relato.\n\nEl resultado fue una presentación más humana: además de comunicar quién se incorpora, la pieza puso en primer plano la pasión compartida entre Diego y la comunidad Triumph.", x: 905, top: 300, w: 470, fs: 1.35, cls: "scene__over" },
         ],
       } },
     ],

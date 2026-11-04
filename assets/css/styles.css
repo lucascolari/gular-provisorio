@@ -424,6 +424,8 @@ body.intro-lock { overflow: hidden; }
 .scene__head strong { font-weight: 800; }
 /* Párrafo de resultado (sans, bold) */
 .scene__strong { color: #fff; font-weight: 700; line-height: 1.4; }
+/* Texto SUPERPUESTO sobre una imagen (con sombra para legibilidad) */
+.scene__over { color: #fff; text-shadow: 0 1px 14px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.8); }
 .scene__palette { position: absolute; }
 .scene__palette .palette { gap: 8cqh; }
 .scene__palette .palette__row { gap: 8%; }
