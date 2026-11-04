@@ -65,12 +65,12 @@ const PROJECTS = [
           { text: "Yuze se preparaba para salir al mercado desde Emiratos Árabes Unidos. Ya tenía nombre, logo y una estrategia inicial. El desafío era transformar esa base en una marca con una forma propia de presentarse, explicar su propuesta y conectar con las personas.", x: 1320, top: 250, w: 250, fs: 2.0 },
           { text: "A partir de una identidad inicial.\n*Un universo por construir.*", x: 1256, top: 650, w: 760, fs: 5.0, cls: "scene__head" },
           // Sistema de marca (collage del brandbook, escalas/alturas/superposiciones del boceto)
-          { img: "assets/media/proyectos/yuze/bb-05-tone.webp", x: 3369, y: 432, w: 644, h: 362, shadow: true },
-          { img: "assets/media/proyectos/yuze/bb-01-portada.webp", x: 1756, y: 447, w: 619, h: 348, shadow: true },
-          { img: "assets/media/proyectos/yuze/bb-04-graphic.webp", x: 2238, y: 447, w: 619, h: 348, shadow: true },
-          { img: "assets/media/proyectos/yuze/next-gen.webp", x: 2732, y: -3, w: 1280, h: 320, shadow: true },
-          { img: "assets/media/proyectos/yuze/bb-03-compositional.webp", x: 2732, y: 251, w: 638, h: 362, shadow: true },
-          { img: "assets/media/proyectos/yuze/bb-02-clearspace.webp", x: 2833, y: 613, w: 644, h: 362, shadow: true },
+          { img: "assets/media/proyectos/yuze/bb-05-tone.webp", x: 3369, y: 432, w: 644, h: 362, shadow: true, tf: "perspective(1900px) rotateY(-16deg) translateZ(-140px)" },
+          { img: "assets/media/proyectos/yuze/bb-01-portada.webp", x: 1756, y: 447, w: 619, h: 348, shadow: true, tf: "perspective(1900px) rotateY(-16deg) translateZ(-95px)" },
+          { img: "assets/media/proyectos/yuze/bb-04-graphic.webp", x: 2238, y: 447, w: 619, h: 348, shadow: true, tf: "perspective(1900px) rotateY(-16deg) translateZ(-50px)" },
+          { img: "assets/media/proyectos/yuze/next-gen.webp", x: 2732, y: -3, w: 1280, h: 320, shadow: true, tf: "perspective(1900px) rotateY(-16deg) translateZ(-25px)" },
+          { img: "assets/media/proyectos/yuze/bb-03-compositional.webp", x: 2732, y: 251, w: 638, h: 362, shadow: true, tf: "perspective(1900px) rotateY(-16deg) translateZ(30px)" },
+          { img: "assets/media/proyectos/yuze/bb-02-clearspace.webp", x: 2833, y: 613, w: 644, h: 362, shadow: true, tf: "perspective(1900px) rotateY(-16deg) translateZ(75px)" },
           // Refinamiento + prompt maestro
           { text: "Refinamos su estrategia\n*y desarrollamos el sistema*", x: 4200, top: 320, w: 720, fs: 4.8, cls: "scene__head" },
           { text: "Refinamos su estrategia visual y verbal, el manual de marca y el concepto de campaña. Esa dirección tomó forma en imágenes, guiones, animaciones y contenidos para su lanzamiento. Para sostenerla, creamos un prompt maestro, afinado mediante pruebas visuales, que traduce el universo conceptual de Yuze en criterios para producir nuevas piezas.", x: 4210, top: 700, w: 540, fs: 1.9 },
@@ -285,7 +285,7 @@ function scenePanel(scene, p) {
     const topPt = (it.top != null) ? it.top : (PH - it.y - it.h);
     const base = `left:${pc(it.x, PW)}%;top:${pc(topPt, PH)}%;width:${pc(it.w, PW)}%;`;
     if (it.img) {
-      const extra = (it.shadow ? "box-shadow:0 22px 60px rgba(0,0,0,0.6);" : "") + (it.z != null ? `z-index:${it.z};` : "");
+      const extra = (it.shadow ? "box-shadow:0 22px 60px rgba(0,0,0,0.6);" : "") + (it.z != null ? `z-index:${it.z};` : "") + (it.tf ? `transform:${it.tf};` : "");
       return `<img class="scene__img" data-src="${it.img}" alt="${p.name} — ${p.cat}" loading="lazy" style="${base}height:${pc(it.h, PH)}%;object-fit:${it.fit || "cover"};${extra}" />`;
     }
     if (it.video) return `<div class="scene__vid" style="${base}height:${pc(it.h, PH)}%"><video data-src="${it.video}" poster="${it.poster || ""}" loop muted playsinline preload="none" style="object-fit:${it.fit || "cover"}"></video></div>`;
