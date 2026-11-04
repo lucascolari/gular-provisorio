@@ -114,8 +114,8 @@ const PROJECTS = [
           { img: "assets/media/proyectos/noormenaa/p-01.webp", x: 1756, top: 376, w: 643, h: 362 },
           { img: "assets/media/proyectos/noormenaa/monolith.webp", x: 2413, top: 376, w: 643, h: 362 },
           // Luz como principio de identidad + laptop
-          { text: "*Desarrollamos la luz como\nprincipio de identidad.*", x: 3100, top: 130, w: 680, fs: 5.6, cls: "scene__head" },
-          { text: "El manual reúne las decisiones que ayudan a revelar, orientar y transformar información en significado: el logotipo, el sistema cromático, las tipografías y el lenguaje de imágenes. Reunimos estas decisiones en un manual que permite expresar y ampliar el universo de Noormenaa.", x: 3880, top: 150, w: 470, fs: 2.0 },
+          { text: "*Desarrollamos la luz como\nprincipio de identidad.*", x: 3207, top: 0, w: 680, fs: 5.6, cls: "scene__head" },
+          { text: "El manual reúne las decisiones que ayudan a revelar, orientar y transformar información en significado: el logotipo, el sistema cromático, las tipografías y el lenguaje de imágenes. Reunimos estas decisiones en un manual que permite expresar y ampliar el universo de Noormenaa.", x: 3888, top: 0, w: 470, fs: 2.0 },
           { video: "assets/media/video/noor-laptop.mp4", poster: "assets/media/proyectos/noormenaa/laptop.webp", x: 3207, top: 348, w: 1151, h: 658, fit: "cover", sound: true },
           // Paleta cromática (imagen HD)
           { img: "assets/media/proyectos/noormenaa/palette.webp", x: 4440, top: 330, w: 620, h: 373, fit: "contain" },
