@@ -26,18 +26,27 @@ const PROJECTS = [
     slug: "triumph", name: "Triumph Argentina", cat: "Universo construido",
     desc: "Dirección, edición y posproducción de la campaña Rider Academy.",
     services: "Concepto creativo · Producción audiovisual · Edición y posproducción",
-    logo: "Triumph",
-    statement: "Una historia\ncompartida.",
-    media: [
-      { type: "video", src: "assets/media/video/triumph.mp4", poster: "assets/media/video/triumph.jpg", hero: true },
-      { type: "image", src: "assets/media/proyectos/triumph/triumph-01.webp", full: true },
+    caseTitle: "Triumph Argentina",
+    hideHint: true,
+    panels: [
+      { scene: {
+        pw: 3350, ph: 975,
+        items: [
+          // Entrevista (pieza DOMINANTE)
+          { video: "assets/media/video/triumph.mp4", poster: "assets/media/video/triumph.jpg", x: 0, top: 40, w: 1560, h: 880, fit: "cover" },
+          // Foto del tanque (secundaria, apaisada, arriba)
+          { img: "assets/media/proyectos/triumph/triumph-01.webp", x: 1770, top: 150, w: 500, h: 333, fit: "cover" },
+          // Titular
+          { text: "Una historia\ncompartida.", x: 1650, top: 640, w: 470, fs: 4.0, cls: "scene__head" },
+          // Foto del motor (arriba, en relación con el texto)
+          { img: "assets/media/proyectos/triumph/triumph-engine.webp", x: 2470, top: 50, w: 820, h: 460, fit: "cover" },
+          // Cuerpo de texto (debajo del motor)
+          { text: "Triumph nos convocó para anunciar la incorporación de Diego Graziosi a su Rider Academy. Detrás de la noticia encontramos una oportunidad: presentar al instructor desde aquello que lo conecta con quienes se suben a una moto.\n\nPropusimos una videoentrevista breve, centrada en su vínculo personal con el motociclismo. Desarrollamos el enfoque narrativo, realizamos la grabación y trabajamos la edición y la posproducción para que su voz y su experiencia condujeran el relato.\n\nEl resultado fue una presentación más humana: además de comunicar quién se incorpora, la pieza puso en primer plano la pasión compartida entre Diego y la comunidad Triumph.", x: 2470, top: 560, w: 640, fs: 1.35 },
+          // Cierre: recurso gráfico Triumph
+          { img: "assets/media/proyectos/triumph/triumph-logo.webp", x: 3080, top: 895, w: 250, h: 64, fit: "contain" },
+        ],
+      } },
     ],
-    body: [
-      "Triumph nos convocó para anunciar la incorporación de Diego Graziosi a su Rider Academy. Detrás de la noticia encontramos una oportunidad: presentar al instructor desde aquello que lo conecta con quienes se suben a una moto.",
-      "Propusimos una videoentrevista breve, centrada en su vínculo personal con el motociclismo. Desarrollamos el enfoque narrativo, realizamos la grabación y trabajamos la edición y la posproducción para que su voz y su experiencia condujeran el relato.",
-      "El resultado fue una presentación más humana: además de comunicar quién se incorpora, la pieza puso en primer plano la pasión compartida entre Diego y la comunidad Triumph.",
-    ],
-    outro: [{ type: "image", src: "assets/media/proyectos/triumph/triumph-02.webp", bleed: true, pos: "right center" }],
   },
   {
     slug: "yuze", name: "Yuze", cat: "Universo construido",
@@ -420,6 +429,7 @@ function closeProject() {
   caseEl.setAttribute("hidden", "");
   openProj = openCase = openTrack = null; overflow = 0;
   heroVideo = null; heroPanelW = 0;
+  if (typeof updateNavState === "function") updateNavState();
   // Volvemos la fila a la vista.
   const y = window.scrollY + art.getBoundingClientRect().top - navHeight() - 8;
   window.scrollTo({ top: Math.max(0, y), behavior: reduceMotion ? "auto" : "smooth" });
@@ -435,6 +445,7 @@ function openProject(proj) {
   openCase.removeAttribute("hidden");
   proj.setAttribute("data-open", "");
   proj.querySelector(".proj__row").setAttribute("aria-expanded", "true");
+  if (typeof updateNavState === "function") updateNavState();
   if (openTrack) openTrack.style.transform = "translate3d(0,0,0)";
   heroVideo = openCase.querySelector("video[data-hero]");
   loadMedia(openCase);
@@ -479,10 +490,19 @@ const nav = document.getElementById("nav");
 const menuBtn = document.getElementById("menuBtn");
 const menuPanel = document.getElementById("menuPanel");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 10) nav.setAttribute("data-scrolled", "");
-  else nav.removeAttribute("data-scrolled");
-}, { passive: true });
+function updateNavState() {
+  if (openProj) {
+    // Con un caso abierto: nav completo (gular izq · navegación centro · iso der),
+    // NO el compacto "gularagency" centrado. Fondo claro para verse sobre el negro.
+    nav.setAttribute("data-case", "");
+    nav.removeAttribute("data-scrolled");
+  } else {
+    nav.removeAttribute("data-case");
+    if (window.scrollY > 10) nav.setAttribute("data-scrolled", "");
+    else nav.removeAttribute("data-scrolled");
+  }
+}
+window.addEventListener("scroll", updateNavState, { passive: true });
 
 function setMenu(open) {
   menuPanel.toggleAttribute("data-open", open);
