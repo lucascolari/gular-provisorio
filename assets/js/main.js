@@ -490,16 +490,9 @@ const menuBtn = document.getElementById("menuBtn");
 const menuPanel = document.getElementById("menuPanel");
 
 function updateNavState() {
-  if (openProj) {
-    // Con un caso abierto: nav completo (gular izq · navegación centro · iso der),
-    // NO el compacto "gularagency" centrado. Fondo claro para verse sobre el negro.
-    nav.setAttribute("data-case", "");
-    nav.removeAttribute("data-scrolled");
-  } else {
-    nav.removeAttribute("data-case");
-    if (window.scrollY > 10) nav.setAttribute("data-scrolled", "");
-    else nav.removeAttribute("data-scrolled");
-  }
+  // La barra se mantiene siempre igual: "gularagency" centrado al scrollear/abrir un caso.
+  if (window.scrollY > 10 || openProj) nav.setAttribute("data-scrolled", "");
+  else nav.removeAttribute("data-scrolled");
 }
 window.addEventListener("scroll", updateNavState, { passive: true });
 

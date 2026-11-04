@@ -154,9 +154,6 @@ body.intro-lock { overflow: hidden; }
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   font-size: clamp(1.8rem, 4.4vw, 2.9rem);
 }
-/* Con un caso abierto: nav completo (gular · navegación · iso) sobre fondo claro,
-   para que se vea sobre el lienzo negro. NO el compacto "gularagency" centrado. */
-.nav[data-case] { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(14px); border-bottom-color: var(--line-soft); }
 
 .nav__brand { justify-self: start; font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.01em; line-height: 1; }
 /* "agency" en el wordmark del nav: oculto arriba, se revela al scrollear. */
