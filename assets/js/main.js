@@ -66,9 +66,9 @@ const PROJECTS = [
           // Refinamiento + prompt maestro
           { text: "Refinamos su estrategia\n*y desarrollamos el sistema*", x: 4200, top: 320, w: 720, fs: 4.8, cls: "scene__head" },
           { text: "Refinamos su estrategia visual y verbal, el manual de marca y el concepto de campaña. Esa dirección tomó forma en imágenes, guiones, animaciones y contenidos para su lanzamiento. Para sostenerla, creamos un prompt maestro, afinado mediante pruebas visuales, que traduce el universo conceptual de Yuze en criterios para producir nuevas piezas.", x: 4210, top: 700, w: 540, fs: 1.9 },
-          // Campaña (piezas de freelancer, como en el boceto)
-          { img: "assets/media/proyectos/yuze/ad-work.webp", x: 5205, y: 458, w: 291, h: 517, fit: "contain" },
-          { img: "assets/media/proyectos/yuze/ad-hey.webp", x: 5574, y: -3, w: 284, h: 506, fit: "contain" },
+          // Campaña (piezas de freelancer, VIDEOS en reproducción)
+          { video: "assets/media/video/yuze-ad1.mp4", poster: "assets/media/proyectos/yuze/ad-work.webp", x: 5205, y: 458, w: 291, h: 517, fit: "cover" },
+          { video: "assets/media/video/yuze-ad2.mp4", poster: "assets/media/proyectos/yuze/ad-hey.webp", x: 5574, y: -3, w: 284, h: 506, fit: "cover" },
           // El resultado
           { text: "*El resultado*", x: 5126, top: 585, w: 400, fs: 4.4, cls: "scene__head" },
           { text: "fue un ecosistema de comunicación que conecta identidad, campaña y contenido bajo un mismo lenguaje, y que Yuze continúa aplicando y desarrollando.", x: 5600, top: 235, w: 340, fs: 1.8, cls: "scene__strong" },
