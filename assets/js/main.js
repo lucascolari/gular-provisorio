@@ -62,7 +62,7 @@ const PROJECTS = [
         items: [
           // Interfaz (arranque del recorrido)
           { video: "assets/media/video/yuze-hero.mp4", poster: "assets/media/proyectos/yuze/app-wallet.webp", x: 1, y: -2, w: 1248, h: 706, fit: "cover" },
-          { text: "Yuze se preparaba para salir al mercado desde Emiratos Árabes Unidos. Ya tenía nombre, logo y una estrategia inicial. El desafío era transformar esa base en una marca con una forma propia de presentarse, explicar su propuesta y conectar con las personas.", x: 1320, top: 271, w: 250, fs: 2.0 },
+          { text: "Yuze se preparaba para salir al mercado desde Emiratos Árabes Unidos. Ya tenía nombre, logo y una estrategia inicial. El desafío era transformar esa base en una marca con una forma propia de presentarse, explicar su propuesta y conectar con las personas.", x: 1320, top: 262, w: 250, fs: 2.0 },
           { text: "A partir de una identidad inicial.\n*Un universo por construir.*", x: 1320, top: 650, w: 760, fs: 5.0, cls: "scene__head" },
           // Sistema de marca (collage del brandbook, escalas/alturas/superposiciones del boceto)
           { img: "assets/media/proyectos/yuze/bb-05-tone.webp", x: 3369, y: 432, w: 644, h: 362, shadow: true, tf: "perspective(1900px) rotateY(-16deg) translateZ(-140px)" },
@@ -73,12 +73,12 @@ const PROJECTS = [
           { img: "assets/media/proyectos/yuze/bb-02-clearspace.webp", x: 2833, y: 613, w: 644, h: 362, shadow: true, tf: "perspective(1900px) rotateY(-16deg) translateZ(75px)" },
           // Refinamiento + prompt maestro
           { text: "Refinamos su estrategia\n*y desarrollamos el sistema*", x: 4200, top: 444, w: 720, fs: 4.8, cls: "scene__head" },
-          { text: "Refinamos su estrategia visual y verbal, el manual de marca y el concepto de campaña. Esa dirección tomó forma en imágenes, guiones, animaciones y contenidos para su lanzamiento. Para sostenerla, creamos un prompt maestro, afinado mediante pruebas visuales, que traduce el universo conceptual de Yuze en criterios para producir nuevas piezas.", x: 4210, top: 543, w: 540, fs: 1.9 },
+          { text: "Refinamos su estrategia visual y verbal, el manual de marca y el concepto de campaña. Esa dirección tomó forma en imágenes, guiones, animaciones y contenidos para su lanzamiento. Para sostenerla, creamos un prompt maestro, afinado mediante pruebas visuales, que traduce el universo conceptual de Yuze en criterios para producir nuevas piezas.", x: 4200, top: 643, w: 540, fs: 1.9 },
           // Campaña (piezas de freelancer, VIDEOS en reproducción)
           { video: "assets/media/video/yuze-ad1.mp4", poster: "assets/media/proyectos/yuze/ad-work.webp", x: 5126, y: 458, w: 291, h: 517, fit: "cover" },
           { video: "assets/media/video/yuze-ad2.mp4", poster: "assets/media/proyectos/yuze/ad-hey.webp", x: 5574, y: -3, w: 284, h: 506, fit: "cover" },
           // El resultado: título en dos líneas debajo del video; cuerpo SUPERPUESTO sobre el video
-          { text: "fue un ecosistema de comunicación que conecta identidad, campaña y contenido bajo un mismo lenguaje, y que Yuze continúa aplicando y desarrollando.", x: 5150, top: 225, w: 250, fs: 1.8, cls: "scene__over" },
+          { text: "fue un ecosistema de comunicación que conecta identidad, campaña y contenido bajo un mismo lenguaje, y que Yuze continúa aplicando y desarrollando.", x: 5600, top: 585, w: 240, fs: 1.8, cls: "scene__over" },
           { text: "*El\nresultado*", x: 5126, top: 585, w: 400, fs: 4.4, cls: "scene__head" },
           // Producto en mano: la tarjeta va DETRÁS del teléfono y arranca donde este termina (continuidad)
           { img: "assets/media/proyectos/yuze/cards.webp", x: 6160, y: 520, w: 760, h: 430, fit: "contain" },
