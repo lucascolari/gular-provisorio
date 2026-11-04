@@ -116,7 +116,7 @@ const PROJECTS = [
           // Luz como principio de identidad + laptop
           { text: "*Desarrollamos la luz como\nprincipio de identidad.*", x: 3100, top: 130, w: 680, fs: 5.6, cls: "scene__head" },
           { text: "El manual reúne las decisiones que ayudan a revelar, orientar y transformar información en significado: el logotipo, el sistema cromático, las tipografías y el lenguaje de imágenes. Reunimos estas decisiones en un manual que permite expresar y ampliar el universo de Noormenaa.", x: 3880, top: 150, w: 470, fs: 2.0 },
-          { img: "assets/media/proyectos/noormenaa/laptop.webp", x: 3207, y: -31, w: 1151, h: 658 },
+          { video: "assets/media/video/noor-laptop.mp4", poster: "assets/media/proyectos/noormenaa/laptop.webp", x: 3207, top: 348, w: 1151, h: 658, fit: "cover", sound: true },
           // Paleta cromática (imagen HD)
           { img: "assets/media/proyectos/noormenaa/palette.webp", x: 4440, top: 330, w: 620, h: 373, fit: "contain" },
           // Paisaje "06"
@@ -288,7 +288,7 @@ function scenePanel(scene, p) {
       const extra = (it.shadow ? "box-shadow:0 22px 60px rgba(0,0,0,0.6);" : "") + (it.z != null ? `z-index:${it.z};` : "") + (it.tf ? `transform:${it.tf};` : "");
       return `<img class="scene__img" data-src="${it.img}" alt="${p.name} — ${p.cat}" loading="lazy" style="${base}height:${pc(it.h, PH)}%;object-fit:${it.fit || "cover"};${extra}" />`;
     }
-    if (it.video) return `<div class="scene__vid" style="${base}height:${pc(it.h, PH)}%"><video data-src="${it.video}" poster="${it.poster || ""}" loop muted playsinline preload="none" style="object-fit:${it.fit || "cover"}"></video></div>`;
+    if (it.video) return `<div class="scene__vid" style="${base}height:${pc(it.h, PH)}%"><video data-src="${it.video}" poster="${it.poster || ""}" loop muted playsinline preload="none"${it.sound ? " data-scene-sound" : ""} style="object-fit:${it.fit || "cover"}${it.sound ? ";cursor:pointer" : ""}"></video></div>`;
     if (it.palette) return `<div class="scene__palette" style="${base}">${paletteRows(it.palette)}</div>`;
     if (it.text != null) {
       const html = it.text.replace(/\n/g, "<br />").replace(/\*(.+?)\*/g, "<strong>$1</strong>");
@@ -356,6 +356,7 @@ let openTrack = null;     // su .case__track
 let overflow = 0;         // px horizontales a recorrer
 let heroVideo = null;     // video "hero" (full screen + sonido) del caso abierto
 let heroPanelW = 0;       // ancho del panel del video hero
+let sceneSoundVideo = null; // video DENTRO de la escena que lleva sonido (suena cuando está a la vista)
 
 function navHeight() {
   const v = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h"), 10);
@@ -417,6 +418,20 @@ function updateTrack() {
       heroVideo.muted = true;
     }
   }
+
+  // Sonido de un video dentro de la escena: suena mientras está mayormente a la vista.
+  if (sceneSoundVideo) {
+    const vw = document.documentElement.clientWidth;
+    const r = sceneSoundVideo.getBoundingClientRect();
+    const vis = Math.max(0, Math.min(vw, r.right) - Math.max(0, r.left));
+    const onScreen = r.width > 0 && vis > r.width * 0.55;
+    if (onScreen) {
+      if (sceneSoundVideo.dataset.needsTap !== "1") sceneSoundVideo.muted = false;
+      if (sceneSoundVideo.paused) playVideo(sceneSoundVideo);
+    } else {
+      sceneSoundVideo.muted = true;
+    }
+  }
 }
 
 function closeProject() {
@@ -430,7 +445,7 @@ function closeProject() {
   stopMedia(caseEl);
   caseEl.setAttribute("hidden", "");
   openProj = openCase = openTrack = null; overflow = 0;
-  heroVideo = null; heroPanelW = 0;
+  heroVideo = null; heroPanelW = 0; sceneSoundVideo = null;
   if (typeof updateNavState === "function") updateNavState();
   // Volvemos la fila a la vista.
   const y = window.scrollY + art.getBoundingClientRect().top - navHeight() - 8;
@@ -450,7 +465,18 @@ function openProject(proj) {
   if (typeof updateNavState === "function") updateNavState();
   if (openTrack) openTrack.style.transform = "translate3d(0,0,0)";
   heroVideo = openCase.querySelector("video[data-hero]");
+  sceneSoundVideo = openCase.querySelector("video[data-scene-sound]");
   loadMedia(openCase);
+  // Tocar el video de la escena activa/silencia su sonido (y lo desbloquea si el navegador lo frenó).
+  if (sceneSoundVideo && !sceneSoundVideo.dataset.soundBound) {
+    sceneSoundVideo.dataset.soundBound = "1";
+    sceneSoundVideo.addEventListener("click", (e) => {
+      e.stopPropagation();
+      sceneSoundVideo.dataset.needsTap = "";
+      sceneSoundVideo.muted = !sceneSoundVideo.muted;
+      playVideo(sceneSoundVideo);
+    });
+  }
   // Tocar el video hero activa/silencia el sonido (y lo desbloquea si el navegador lo frenó).
   if (heroVideo) {
     const stage = heroVideo.closest(".case__media");
