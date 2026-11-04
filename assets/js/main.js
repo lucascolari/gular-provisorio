@@ -38,7 +38,7 @@ const PROJECTS = [
           // Foto del tanque (apaisada, centro-izq)
           { img: "assets/media/proyectos/triumph/triumph-01.webp", x: 398, top: 141, w: 619, h: 410, fit: "cover" },
           // Titular (grande, abajo-izq)
-          { text: "Una historia\ncompartida.", x: 110, top: 735, w: 520, fs: 4.4, cls: "scene__head" },
+          { text: "Una historia\ncompartida.", x: 110, top: 735, w: 520, fs: 6.56, weight: 900, cls: "scene__head" },
           // Foto del motor (grande, toca arriba y sangra a la derecha; con el logo Triumph)
           { img: "assets/media/proyectos/triumph/triumph-engine2.webp", x: 1083, top: 0, w: 1010, h: 794, fit: "cover" },
           // Cuerpo de texto SUPERPUESTO sobre el motor (empieza en el negro, cae sobre el motor)
@@ -292,7 +292,7 @@ function scenePanel(scene, p) {
     if (it.palette) return `<div class="scene__palette" style="${base}">${paletteRows(it.palette)}</div>`;
     if (it.text != null) {
       const html = it.text.replace(/\n/g, "<br />").replace(/\*(.+?)\*/g, "<strong>$1</strong>");
-      return `<div class="scene__text${it.cls ? " " + it.cls : ""}" style="${base}font-size:${it.fs || 2}cqh">${html}</div>`;
+      return `<div class="scene__text${it.cls ? " " + it.cls : ""}" style="${base}font-size:${it.fs || 2}cqh${it.weight ? `;font-weight:${it.weight}` : ""}">${html}</div>`;
     }
     return "";
   }).join("");
