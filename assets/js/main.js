@@ -106,13 +106,13 @@ const PROJECTS = [
         items: [
           // Apertura: manifiesto "03"
           { img: "assets/media/proyectos/noormenaa/p-03.webp", x: -3, y: -2, w: 1256, h: 707 },
-          { text: "El punto de partida fue un nombre y una breve descripción sensorial. El desafío era convertir esa intención en una marca: encontrar un concepto que le diera dirección y construir un universo visual capaz de expresar una mirada propia.", x: 1300, top: 250, w: 290, fs: 2.0 },
+          { text: "El punto de partida fue un nombre y una breve descripción sensorial. El desafío era convertir esa intención en una marca: encontrar un concepto que le diera dirección y construir un universo visual capaz de expresar una mirada propia.", x: 1288, top: 261, w: 290, fs: 2.0 },
           { text: "De una sensación,\n*a una identidad.*", x: 1288, top: 630, w: 400, fs: 6.6, cls: "scene__head" },
           // Sistema de identidad
-          { img: "assets/media/proyectos/noormenaa/clearspace-1.webp", x: 1756, y: 627, w: 618, h: 348 },
-          { img: "assets/media/proyectos/noormenaa/p-01.webp", x: 1973, y: 279, w: 618, h: 348 },
-          { img: "assets/media/proyectos/noormenaa/clearspace-2.webp", x: 2373, y: 627, w: 643, h: 362 },
-          { img: "assets/media/proyectos/noormenaa/monolith.webp", x: 2591, y: 277, w: 617, h: 353 },
+          { img: "assets/media/proyectos/noormenaa/clearspace-1.webp", x: 1756, top: 0, w: 643, h: 362 },
+          { img: "assets/media/proyectos/noormenaa/clearspace-2.webp", x: 2413, top: 0, w: 643, h: 362 },
+          { img: "assets/media/proyectos/noormenaa/p-01.webp", x: 1756, top: 376, w: 643, h: 362 },
+          { img: "assets/media/proyectos/noormenaa/monolith.webp", x: 2413, top: 376, w: 643, h: 362 },
           // Luz como principio de identidad + laptop
           { text: "*Desarrollamos la luz como\nprincipio de identidad.*", x: 3100, top: 130, w: 680, fs: 5.6, cls: "scene__head" },
           { text: "El manual reúne las decisiones que ayudan a revelar, orientar y transformar información en significado: el logotipo, el sistema cromático, las tipografías y el lenguaje de imágenes. Reunimos estas decisiones en un manual que permite expresar y ampliar el universo de Noormenaa.", x: 3880, top: 150, w: 470, fs: 2.0 },
@@ -121,7 +121,7 @@ const PROJECTS = [
           { img: "assets/media/proyectos/noormenaa/palette.webp", x: 4440, top: 330, w: 620, h: 373, fit: "contain" },
           // Paisaje "06"
           { img: "assets/media/proyectos/noormenaa/sea.webp", x: 5193, y: 321, w: 1162, h: 654 },
-          { text: "Hoy, Noormenaa es una agencia de marketing internacional que utiliza el manual y el universo construido como base de su comunicación. Una intención sensorial transformada en un lenguaje propio, con criterios para sostenerlo mientras la marca crece.", x: 5230, top: 740, w: 560, fs: 2.1, cls: "scene__strong" },
+          { text: "Hoy, Noormenaa es una agencia de marketing internacional que utiliza el manual y el universo construido como base de su comunicación. Una intención sensorial transformada en un lenguaje propio, con criterios para sostenerlo mientras la marca crece.", x: 5193, top: 740, w: 560, fs: 2.1, cls: "scene__strong" },
           // Cierre: Instagram
           { img: "assets/media/proyectos/noormenaa/phone.webp", x: 6254, y: -3, w: 1712, h: 978, fit: "contain" },
         ],
