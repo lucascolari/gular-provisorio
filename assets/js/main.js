@@ -50,7 +50,7 @@ const PROJECTS = [
       { type: "image", src: "assets/media/proyectos/yuze/hero-silk.webp", hero: true },
       // Carrusel = una sola escena flotante con las coordenadas EXACTAS del boceto (PDF).
       { scene: {
-        pw: 7500, ph: 975,
+        pw: 7344, ph: 975,
         items: [
           // Interfaz (arranque del recorrido)
           { img: "assets/media/proyectos/yuze/app-wallet.webp", x: 1, y: -2, w: 1248, h: 706 },
@@ -66,12 +66,12 @@ const PROJECTS = [
           // Refinamiento + prompt maestro
           { text: "Refinamos su estrategia\n*y desarrollamos el sistema*", x: 4200, top: 320, w: 720, fs: 4.8, cls: "scene__head" },
           { text: "Refinamos su estrategia visual y verbal, el manual de marca y el concepto de campaña. Esa dirección tomó forma en imágenes, guiones, animaciones y contenidos para su lanzamiento. Para sostenerla, creamos un prompt maestro, afinado mediante pruebas visuales, que traduce el universo conceptual de Yuze en criterios para producir nuevas piezas.", x: 4210, top: 700, w: 540, fs: 1.9 },
-          // Campaña (ads freelancer, videos funcionales)
-          { video: "assets/media/video/yuze-ad1.mp4", poster: "assets/media/video/yuze-ad1.jpg", x: 5205, y: 458, w: 291, h: 517 },
-          { video: "assets/media/video/yuze-ad2.mp4", poster: "assets/media/video/yuze-ad2.jpg", x: 5574, y: -3, w: 284, h: 506 },
+          // Campaña (piezas de freelancer, como en el boceto)
+          { img: "assets/media/proyectos/yuze/ad-work.webp", x: 5205, y: 458, w: 291, h: 517, fit: "contain" },
+          { img: "assets/media/proyectos/yuze/ad-hey.webp", x: 5574, y: -3, w: 284, h: 506, fit: "contain" },
           // El resultado
-          { text: "*El resultado*", x: 5120, top: 600, w: 420, fs: 4.6, cls: "scene__head" },
-          { text: "fue un ecosistema de comunicación que conecta identidad, campaña y contenido bajo un mismo lenguaje, y que Yuze continúa aplicando y desarrollando.", x: 5120, top: 300, w: 360, fs: 1.9, cls: "scene__strong" },
+          { text: "*El resultado*", x: 5126, top: 585, w: 400, fs: 4.4, cls: "scene__head" },
+          { text: "fue un ecosistema de comunicación que conecta identidad, campaña y contenido bajo un mismo lenguaje, y que Yuze continúa aplicando y desarrollando.", x: 5600, top: 235, w: 340, fs: 1.8, cls: "scene__strong" },
           // Producto en mano
           { img: "assets/media/proyectos/yuze/phones-app.webp", x: 5778, y: 391, w: 675, h: 422, fit: "contain" },
           { img: "assets/media/proyectos/yuze/cards.webp", x: 6195, y: 575, w: 708, h: 398, fit: "contain" },
