@@ -29,21 +29,22 @@ const PROJECTS = [
     caseTitle: "Triumph Argentina",
     hideHint: true,
     panels: [
+      // Entrevista: pieza dominante, a PANTALLA COMPLETA y con sonido.
+      { type: "video", src: "assets/media/video/triumph.mp4", poster: "assets/media/video/triumph.jpg", hero: true },
+      // Carrusel: escena con el resto de las piezas.
       { scene: {
-        pw: 3350, ph: 975,
+        pw: 1900, ph: 975,
         items: [
-          // Entrevista (pieza DOMINANTE)
-          { video: "assets/media/video/triumph.mp4", poster: "assets/media/video/triumph.jpg", x: 0, top: 40, w: 1560, h: 880, fit: "cover" },
           // Foto del tanque (secundaria, apaisada, arriba)
-          { img: "assets/media/proyectos/triumph/triumph-01.webp", x: 1770, top: 150, w: 500, h: 333, fit: "cover" },
+          { img: "assets/media/proyectos/triumph/triumph-01.webp", x: 90, top: 165, w: 500, h: 333, fit: "cover" },
           // Titular
-          { text: "Una historia\ncompartida.", x: 1650, top: 640, w: 470, fs: 4.0, cls: "scene__head" },
+          { text: "Una historia\ncompartida.", x: 70, top: 640, w: 470, fs: 4.0, cls: "scene__head" },
           // Foto del motor (arriba, en relación con el texto)
-          { img: "assets/media/proyectos/triumph/triumph-engine.webp", x: 2470, top: 50, w: 820, h: 460, fit: "cover" },
+          { img: "assets/media/proyectos/triumph/triumph-engine.webp", x: 1000, top: 55, w: 820, h: 460, fit: "cover" },
           // Cuerpo de texto (debajo del motor)
-          { text: "Triumph nos convocó para anunciar la incorporación de Diego Graziosi a su Rider Academy. Detrás de la noticia encontramos una oportunidad: presentar al instructor desde aquello que lo conecta con quienes se suben a una moto.\n\nPropusimos una videoentrevista breve, centrada en su vínculo personal con el motociclismo. Desarrollamos el enfoque narrativo, realizamos la grabación y trabajamos la edición y la posproducción para que su voz y su experiencia condujeran el relato.\n\nEl resultado fue una presentación más humana: además de comunicar quién se incorpora, la pieza puso en primer plano la pasión compartida entre Diego y la comunidad Triumph.", x: 2470, top: 560, w: 640, fs: 1.35 },
+          { text: "Triumph nos convocó para anunciar la incorporación de Diego Graziosi a su Rider Academy. Detrás de la noticia encontramos una oportunidad: presentar al instructor desde aquello que lo conecta con quienes se suben a una moto.\n\nPropusimos una videoentrevista breve, centrada en su vínculo personal con el motociclismo. Desarrollamos el enfoque narrativo, realizamos la grabación y trabajamos la edición y la posproducción para que su voz y su experiencia condujeran el relato.\n\nEl resultado fue una presentación más humana: además de comunicar quién se incorpora, la pieza puso en primer plano la pasión compartida entre Diego y la comunidad Triumph.", x: 1000, top: 555, w: 600, fs: 1.4 },
           // Cierre: recurso gráfico Triumph
-          { img: "assets/media/proyectos/triumph/triumph-logo.webp", x: 3080, top: 895, w: 250, h: 64, fit: "contain" },
+          { img: "assets/media/proyectos/triumph/triumph-logo.webp", x: 1620, top: 895, w: 250, h: 64, fit: "contain" },
         ],
       } },
     ],
@@ -294,7 +295,7 @@ function scenePanel(scene, p) {
     }
     return "";
   }).join("");
-  return `<div class="case__panel case__panel--scene"><div class="scene">${items}</div></div>`;
+  return `<div class="case__panel case__panel--scene"><div class="scene" style="aspect-ratio:${PW} / ${PH}">${items}</div></div>`;
 }
 // Un panel puede ser media, statement, body, paleta o escena.
 function panelHTML(panel, p, i) {

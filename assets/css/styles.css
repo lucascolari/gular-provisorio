@@ -414,6 +414,7 @@ body.intro-lock { overflow: hidden; }
    El lienzo mantiene el aspecto del PDF y se escala al alto del pin; todo se posiciona en %. */
 .case__panel--scene { padding: 0; width: auto; }
 .scene { position: relative; height: 100%; aspect-ratio: 8000 / 975; container-type: size; }
+/* el aspect-ratio real lo fija cada escena inline (style="aspect-ratio:pw/ph"). */
 .scene__img { position: absolute; display: block; }
 .scene__vid { position: absolute; overflow: hidden; }
 .scene__vid video { width: 100%; height: 100%; display: block; }
