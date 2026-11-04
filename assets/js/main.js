@@ -80,9 +80,9 @@ const PROJECTS = [
           // El resultado
           { text: "*El resultado*", x: 5126, top: 585, w: 400, fs: 4.4, cls: "scene__head" },
           { text: "fue un ecosistema de comunicación que conecta identidad, campaña y contenido bajo un mismo lenguaje, y que Yuze continúa aplicando y desarrollando.", x: 5126, top: 720, w: 400, fs: 1.8, cls: "scene__strong" },
-          // Producto en mano
+          // Producto en mano: la tarjeta va DETRÁS del teléfono y arranca donde este termina (continuidad)
+          { img: "assets/media/proyectos/yuze/cards.webp", x: 6160, y: 520, w: 760, h: 430, fit: "contain" },
           { img: "assets/media/proyectos/yuze/phones-app.webp", x: 5778, y: 391, w: 675, h: 422, fit: "contain" },
-          { img: "assets/media/proyectos/yuze/cards.webp", x: 6195, y: 575, w: 708, h: 398, fit: "contain" },
           // Línea de capacidades
           { text: "Estrategia · Sistema de marca · Dirección de arte · Campaña de lanzamiento · Motion graphics y contenido", x: 5900, top: 820, w: 620, fs: 1.9, cls: "scene__strong" },
           // Cierre: mosaico de contenidos (carrusel de Instagram)
