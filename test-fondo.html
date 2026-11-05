@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prueba fondo — Gular</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    html { background: #ffffff; }
+    body { background: transparent; }
+    /* Video de partículas (negativo) como fondo fijo de toda la web */
+    .bgfx {
+      position: fixed; inset: 0; width: 100vw; height: 100vh;
+      object-fit: cover; z-index: -2; pointer-events: none;
+      background: #ffffff;
+    }
+    /* El contenido va por encima del video */
+    .nav, main { position: relative; z-index: 2; }
+    /* Las secciones quedan transparentes para dejar ver el fondo */
+    .hero, .proj, .projects, #proyectos { background: transparent; }
+  </style>
+</head>
+<body>
+  <video class="bgfx" autoplay muted loop playsinline preload="auto"
+         src="assets/media/video/posiblefondogular-neg.mp4"></video>
+
+  <header class="nav" id="nav" data-scrolled>
+    <a class="nav__brand" href="#hero" aria-label="Gular — inicio">gular<span class="agency">agency</span></a>
+    <nav class="nav__center" aria-label="Accesos rápidos">
+      <a href="#proyectos">clientes.</a>
+      <a href="#gular">agency.</a>
+      <a href="#contacto" class="accent">trabajemos juntos.</a>
+    </nav>
+    <button class="nav__menu" aria-label="Menú"><span class="iso"><span class="iso__top"></span><span class="iso__tail"></span></span></button>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <h1 class="hero__title">gular<span class="agency">agency</span></h1>
+      <p class="hero__statement">No hay solución sin <span class="accent">Gular</span></p>
+      <p class="hero__lead">
+        Y cada proyecto tiene una solución <em>singular</em>. En Gular combinamos sensibilidad
+        artística, estrategia comercial y tecnología para encontrarla. Desarrollamos el
+        universo de cada marca: cómo se define, cómo se expresa y cómo se conecta con las
+        personas.
+      </p>
+      <p class="hero__place">Buenos Aires, Argentina</p>
+      <div class="hero__scroll" aria-hidden="true"><span></span>Scrolleá para explorar</div>
+    </section>
+  </main>
+</body>
+</html>
