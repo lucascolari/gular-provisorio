@@ -74,7 +74,7 @@ const PROJECTS = [
           { img: "assets/media/proyectos/yuze/bb-02-clearspace.webp", x: 2833, y: 613, w: 644, h: 362, shadow: true, z: 6 },
           // Refinamiento + prompt maestro
           { text: "Refinamos su estrategia\n*y desarrollamos el sistema*", x: 4200, top: 444, w: 720, fs: 4.8, cls: "scene__head" },
-          { text: "Refinamos su estrategia visual y verbal, el manual de marca y el concepto de campaña. Esa dirección tomó forma en imágenes, guiones, animaciones y contenidos para su lanzamiento. Para sostenerla, creamos un prompt maestro, afinado mediante pruebas visuales, que traduce el universo conceptual de Yuze en criterios para producir nuevas piezas.", x: 4200, top: 643, w: 540, fs: 1.9 },
+          { text: "Refinamos su estrategia visual y verbal, el manual de marca y el concepto de campaña. Esa dirección tomó forma en imágenes, guiones, animaciones y contenidos para su lanzamiento. Para sostenerla, creamos un prompt maestro, afinado mediante pruebas visuales, que traduce el universo conceptual de Yuze en criterios para producir nuevas piezas.", x: 4200, top: 652, w: 540, fs: 1.9 },
           // Campaña (piezas de freelancer, VIDEOS en reproducción)
           { video: "assets/media/video/yuze-ad1.mp4", poster: "assets/media/proyectos/yuze/ad-work.webp", x: 5126, y: 458, w: 291, h: 517, fit: "cover" },
           { video: "assets/media/video/yuze-ad2.mp4", poster: "assets/media/proyectos/yuze/ad-hey.webp", x: 5574, y: -3, w: 284, h: 506, fit: "cover" },
