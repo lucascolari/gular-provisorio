@@ -78,7 +78,7 @@ const PROJECTS = [
           { video: "assets/media/video/yuze-ad1.mp4", poster: "assets/media/proyectos/yuze/ad-work.webp", x: 5126, y: 458, w: 291, h: 517, fit: "cover" },
           { video: "assets/media/video/yuze-ad2.mp4", poster: "assets/media/proyectos/yuze/ad-hey.webp", x: 5574, y: -3, w: 284, h: 506, fit: "cover" },
           // El resultado: título en dos líneas debajo del video; cuerpo SUPERPUESTO sobre el video
-          { text: "fue un ecosistema de comunicación que conecta identidad, campaña y contenido bajo un mismo lenguaje, y que Yuze continúa aplicando y desarrollando.", x: 5600, top: 585, w: 240, fs: 1.8, cls: "scene__over" },
+          { text: "fue un ecosistema de comunicación que conecta identidad, campaña y contenido bajo un mismo lenguaje, y que Yuze continúa aplicando y desarrollando.", x: 5574, top: 250, w: 200, fs: 1.8, cls: "scene__over" },
           { text: "*El\nresultado*", x: 5126, top: 585, w: 400, fs: 4.4, cls: "scene__head" },
           // Producto en mano: la tarjeta va DETRÁS del teléfono y arranca donde este termina (continuidad)
           { img: "assets/media/proyectos/yuze/cards.webp", x: 6160, y: 520, w: 760, h: 430, fit: "contain" },
