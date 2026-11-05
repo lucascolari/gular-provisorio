@@ -118,7 +118,7 @@ const PROJECTS = [
           { text: "El manual reúne las decisiones que ayudan a revelar, orientar y transformar información en significado: el logotipo, el sistema cromático, las tipografías y el lenguaje de imágenes. Reunimos estas decisiones en un manual que permite expresar y ampliar el universo de Noormenaa.", x: 3888, top: 116, w: 470, fs: 2.0 },
           { video: "assets/media/video/noor-laptop.mp4", poster: "assets/media/proyectos/noormenaa/laptop.webp", x: 3207, top: 348, w: 1151, h: 658, fit: "cover" },
           // Paleta cromática (imagen HD)
-          { img: "assets/media/proyectos/noormenaa/palette.webp", x: 4440, top: 330, w: 620, h: 373, fit: "contain" },
+          { img: "assets/media/proyectos/noormenaa/palette.webp", x: 4440, top: 212, w: 620, h: 373, fit: "contain" },
           // Paisaje "06"
           { img: "assets/media/proyectos/noormenaa/sea.webp", x: 5193, y: 321, w: 1162, h: 654 },
           { text: "Hoy, Noormenaa es una agencia de marketing internacional que utiliza el manual y el universo construido como base de su comunicación. Una intención sensorial transformada en un lenguaje propio, con criterios para sostenerlo mientras la marca crece.", x: 5193, top: 740, w: 560, fs: 2.1, cls: "scene__strong" },
