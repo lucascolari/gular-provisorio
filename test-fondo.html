@@ -3,46 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Prueba fondo interactivo — Gular</title>
+  <title>Pruebas de fondo — Gular</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <script type="importmap">
-  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js" } }
-  </script>
   <style>
     html, body { background: #ffffff; }
-    .nav, main { position: relative; z-index: 2; }
-    .hero { background: transparent; }
+    .wrap { max-width: 820px; margin: 0 auto; padding: clamp(3rem, 9vh, 7rem) var(--gutter) 6rem; }
+    .wrap h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1; letter-spacing: -0.02em; margin: 0 0 .5rem; }
+    .wrap .sub { font-family: var(--font-body); color: #000; opacity: .65; margin: 0 0 2.6rem; font-size: .98rem; }
+    .tests { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .9rem; }
+    .tests a {
+      display: block; text-decoration: none; color: #000;
+      border: 1px solid rgba(0,0,0,.16); border-radius: 14px; padding: 1.1rem 1.3rem;
+      transition: border-color .25s, transform .25s, background .25s;
+    }
+    .tests a:hover { border-color: #000; transform: translateX(4px); background: rgba(0,0,0,.02); }
+    .tests .t { font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .tests .d { font-family: var(--font-body); font-size: .9rem; opacity: .7; margin-top: .2rem; }
+    .note { margin-top: 2.4rem; font-family: var(--font-body); font-size: .82rem; opacity: .55; line-height: 1.6; }
   </style>
 </head>
 <body>
-  <!-- Fondo de partículas INTERACTIVO (estilo video) -->
-  <canvas id="space" class="space-canvas" aria-hidden="true"></canvas>
-
-  <header class="nav" id="nav" data-scrolled>
-    <a class="nav__brand" href="#hero" aria-label="Gular — inicio">gular<span class="agency">agency</span></a>
-    <nav class="nav__center" aria-label="Accesos rápidos">
-      <a href="#proyectos">clientes.</a>
-      <a href="#gular">agency.</a>
-      <a href="#contacto" class="accent">trabajemos juntos.</a>
-    </nav>
-    <button class="nav__menu" aria-label="Menú"><span class="iso"><span class="iso__top"></span><span class="iso__tail"></span></span></button>
-  </header>
-
-  <main>
-    <section class="hero" id="hero">
-      <h1 class="hero__title">gular<span class="agency">agency</span></h1>
-      <p class="hero__statement">No hay solución sin <span class="accent">Gular</span></p>
-      <p class="hero__lead">
-        Y cada proyecto tiene una solución <em>singular</em>. En Gular combinamos sensibilidad
-        artística, estrategia comercial y tecnología para encontrarla. Desarrollamos el
-        universo de cada marca: cómo se define, cómo se expresa y cómo se conecta con las
-        personas.
-      </p>
-      <p class="hero__place">Buenos Aires, Argentina</p>
-      <div class="hero__scroll" aria-hidden="true"><span></span>Scrolleá para explorar</div>
-    </section>
-  </main>
-
-  <script type="module" src="assets/js/space-fx.js"></script>
+  <div class="wrap">
+    <h1>Pruebas de fondo</h1>
+    <p class="sub">Versiones del fondo del home, en orden. Para retomar más adelante.</p>
+    <ul class="tests">
+      <li><a href="test1.html"><span class="t">test1 — Video en loop</span><span class="d">El video (negativo) como fondo fijo por CSS. El primero que vimos.</span></a></li>
+      <li><a href="test2.html"><span class="t">test2 — Partículas generativas</span><span class="d">Campo de polvo/puntos generativo e interactivo (no usa el video).</span></a></li>
+      <li><a href="test3.html"><span class="t">test3 — Video como textura WebGL</span><span class="d">El video llevado a WebGL, interactivo con el mouse (parallax + deformación).</span></a></li>
+      <li><a href="test4.html"><span class="t">test4 — Video textura + anti-loop</span><span class="d">Igual que test3 con deriva/ruido para romper la repetición.</span></a></li>
+      <li><a href="test5.html"><span class="t">test5 — Moléculas generativas</span><span class="d">Moléculas reales del video (recortadas) flotando de forma generativa.</span></a></li>
+    </ul>
+    <p class="note">Nota: son pruebas, no tocan el home real (gular.agency sigue igual). Cuando retomemos elegimos una dirección y la integro al home.</p>
+  </div>
 </body>
 </html>

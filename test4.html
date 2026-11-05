@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>test4 — fondo Gular</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js" } }
+  </script>
+  <style>
+    html, body { background: #ffffff; }
+    .nav, main { position: relative; z-index: 2; }
+    .hero { background: transparent; }
+  </style>
+</head>
+<body>
+  <!-- Fondo de partículas INTERACTIVO (estilo video) -->
+  <canvas id="space" class="space-canvas" aria-hidden="true"></canvas>
+
+  <header class="nav" id="nav" data-scrolled>
+    <a class="nav__brand" href="#hero" aria-label="Gular — inicio">gular<span class="agency">agency</span></a>
+    <nav class="nav__center" aria-label="Accesos rápidos">
+      <a href="#proyectos">clientes.</a>
+      <a href="#gular">agency.</a>
+      <a href="#contacto" class="accent">trabajemos juntos.</a>
+    </nav>
+    <button class="nav__menu" aria-label="Menú"><span class="iso"><span class="iso__top"></span><span class="iso__tail"></span></span></button>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <h1 class="hero__title">gular<span class="agency">agency</span></h1>
+      <p class="hero__statement">No hay solución sin <span class="accent">Gular</span></p>
+      <p class="hero__lead">
+        Y cada proyecto tiene una solución <em>singular</em>. En Gular combinamos sensibilidad
+        artística, estrategia comercial y tecnología para encontrarla. Desarrollamos el
+        universo de cada marca: cómo se define, cómo se expresa y cómo se conecta con las
+        personas.
+      </p>
+      <p class="hero__place">Buenos Aires, Argentina</p>
+      <div class="hero__scroll" aria-hidden="true"><span></span>Scrolleá para explorar</div>
+    </section>
+  </main>
+
+  <script type="module" src="assets/js/space-fx-4.js"></script>
+</body>
+</html>
