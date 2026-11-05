@@ -81,7 +81,7 @@ function init(shotCanvas) {
       uPrev:{value:null}, uTexel:{value:new THREE.Vector2(1/sw,1/sh)},
       uMouse:{value:new THREE.Vector2(-9,-9)}, uVel:{value:new THREE.Vector2(0,0)},
       uAspect:{value:window.innerWidth/window.innerHeight},
-      uDecay:{value:0.958}, uRadius:{value:0.08}, uStrength:{value:7.5}, uDiffuse:{value:0.16},
+      uDecay:{value:0.90}, uRadius:{value:0.058}, uStrength:{value:6.0}, uDiffuse:{value:0.11},
     },
     vertexShader: VS,
     fragmentShader: `
@@ -105,7 +105,7 @@ function init(shotCanvas) {
   });
 
   const dispMat = new THREE.ShaderMaterial({
-    uniforms: { uTex:{value:tex}, uDisp:{value:null}, uAmp:{value:0.16} },
+    uniforms: { uTex:{value:tex}, uDisp:{value:null}, uAmp:{value:0.045} },
     vertexShader: VS,
     fragmentShader: `
       precision highp float;
