@@ -81,16 +81,43 @@ function init() {
       uniform vec2 uMouse;            // -1..1 (suavizado)
       uniform float uViewA, uTexA, uTime, uScroll, uRipple;
       varying vec2 vUv;
+
+      float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }
+      float vnoise(vec2 p){
+        vec2 i = floor(p), f = fract(p);
+        vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x),
+                   mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+      }
+
       void main(){
         // "cover": la textura llena la pantalla recortando el sobrante
         vec2 scale = (uViewA > uTexA) ? vec2(1.0, uTexA / uViewA) : vec2(uViewA / uTexA, 1.0);
-        float zoom = 0.94 - uScroll * 0.07;         // leve zoom (deja aire para el parallax) + scroll
-        vec2 uv = (vUv - 0.5) * scale * zoom + 0.5;
+        // zoom con leve "respiración" (periodo largo) + scroll
+        float zoom = (0.94 - uScroll * 0.07) * (1.0 + 0.03 * sin(uTime * 0.019));
+
+        // rotación muy lenta alrededor del centro (rompe la repetición)
+        vec2 uv = vUv - 0.5;
+        float ang = 0.02 * sin(uTime * 0.011);
+        float c = cos(ang), s = sin(ang);
+        uv = mat2(c, -s, s, c) * uv;
+        uv = uv * scale * zoom + 0.5;
+
+        // deriva global lenta con frecuencias incon­mensurables → nunca repite igual
+        uv += vec2(sin(uTime * 0.017) + 0.6 * sin(uTime * 0.041),
+                   cos(uTime * 0.013) + 0.6 * sin(uTime * 0.037)) * 0.012;
+
+        // flujo orgánico continuo (domain-warp con ruido que evoluciona en el tiempo)
+        vec2 fw = vec2(
+          vnoise(uv * 2.6 + vec2(uTime * 0.030, uTime * 0.012)),
+          vnoise(uv * 2.6 + vec2(uTime * 0.011, uTime * 0.028) + 17.0)
+        ) - 0.5;
+        uv += fw * 0.032;
 
         // parallax: el campo se desplaza con el mouse
         uv += uMouse * 0.03;
 
-        // desplazamiento suave alrededor del cursor (sensación interactiva)
+        // onda suave alrededor del cursor (sensación interactiva)
         vec2 m = uMouse * 0.5 + 0.5;
         vec2 d = (vUv - m) * vec2(uViewA, 1.0);
         float dist = length(d);
@@ -124,7 +151,7 @@ function init() {
 
   /* ---------------- Loop -------------------------------------------------- */
   const clock = new THREE.Clock();
-  let running = true, first = false;
+  let running = true, first = false, lastRate = -1;
   document.addEventListener("visibilitychange", () => {
     running = !document.hidden;
     if (running) { video.play().catch(() => {}); clock.start(); loop(); }
@@ -139,6 +166,13 @@ function init() {
     mat.uniforms.uMouse.value.set(cX, -cY);
     mat.uniforms.uScroll.value += (scrollP - mat.uniforms.uScroll.value) * 0.06;
     mat.uniforms.uTime.value = t;
+
+    // Velocidad de reproducción con variación lenta: el ritmo interno del loop
+    // deja de ser fijo (se actualiza cada ~0.4s para no trabar el video).
+    if (!reduceMotion && video.readyState >= 2 && t - lastRate > 0.4) {
+      lastRate = t;
+      video.playbackRate = 0.92 + 0.08 * Math.sin(t * 0.05);
+    }
 
     renderer.render(scene, camera);
     if (!first) { first = true; window.dispatchEvent(new Event("space:ready")); }
