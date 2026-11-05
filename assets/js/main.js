@@ -122,9 +122,9 @@ const PROJECTS = [
           { img: "assets/media/proyectos/noormenaa/palette.webp", x: 4440, top: 212, w: 620, h: 373, fit: "contain" },
           // Paisaje "06"
           { img: "assets/media/proyectos/noormenaa/sea.webp", x: 5193, y: 321, w: 1162, h: 654 },
-          { text: "Hoy, Noormenaa es una agencia de marketing internacional que utiliza el manual y el universo construido como base de su comunicación. Una intención sensorial transformada en un lenguaje propio, con criterios para sostenerlo mientras la marca crece.", x: 5193, top: 700, w: 1060, fs: 2.1, cls: "scene__strong", align: "center" },
+          { text: "Hoy, Noormenaa es una agencia de marketing internacional que utiliza el manual y el universo construido como base de su comunicación. Una intención sensorial transformada en un lenguaje propio, con criterios para sostenerlo mientras la marca crece.", x: 5193, top: 700, w: 1162, fs: 2.1, cls: "scene__strong", align: "center" },
           // Cierre: Instagram
-          { img: "assets/media/proyectos/noormenaa/phone.webp", x: 6254, y: -3, w: 1712, h: 978, fit: "contain" },
+          { img: "assets/media/proyectos/noormenaa/phone.webp", x: 6500, y: -3, w: 1500, h: 978, fit: "contain" },
         ],
       } },
     ],
