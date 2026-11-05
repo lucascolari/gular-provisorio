@@ -3,26 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Prueba fondo — Gular</title>
+  <title>Prueba fondo interactivo — Gular</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js" } }
+  </script>
   <style>
-    html { background: #ffffff; }
-    body { background: transparent; }
-    /* Video de partículas (negativo) como fondo fijo de toda la web */
-    .bgfx {
-      position: fixed; inset: 0; width: 100vw; height: 100vh;
-      object-fit: cover; z-index: -2; pointer-events: none;
-      background: #ffffff;
-    }
-    /* El contenido va por encima del video */
+    html, body { background: #ffffff; }
     .nav, main { position: relative; z-index: 2; }
-    /* Las secciones quedan transparentes para dejar ver el fondo */
-    .hero, .proj, .projects, #proyectos { background: transparent; }
+    .hero { background: transparent; }
   </style>
 </head>
 <body>
-  <video class="bgfx" autoplay muted loop playsinline preload="auto"
-         src="assets/media/video/posiblefondogular-neg.mp4"></video>
+  <!-- Fondo de partículas INTERACTIVO (estilo video) -->
+  <canvas id="space" class="space-canvas" aria-hidden="true"></canvas>
 
   <header class="nav" id="nav" data-scrolled>
     <a class="nav__brand" href="#hero" aria-label="Gular — inicio">gular<span class="agency">agency</span></a>
@@ -48,5 +42,7 @@
       <div class="hero__scroll" aria-hidden="true"><span></span>Scrolleá para explorar</div>
     </section>
   </main>
+
+  <script type="module" src="assets/js/space-fx.js"></script>
 </body>
 </html>
