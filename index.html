@@ -51,7 +51,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261103" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261111" />
   <!-- Si no hay JS, no dejamos la intro tapando el sitio -->
   <noscript><style>.intro{display:none!important}</style></noscript>
 
@@ -88,6 +88,25 @@
         "areaServed": [
           { "@type": "Country", "name": "Argentina" },
           { "@type": "Place", "name": "Latinoamérica" }
+        ],
+        "email": "sin@gular.agency",
+        "telephone": "+5493624131305",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "sin@gular.agency",
+            "telephone": "+5493624131305",
+            "availableLanguage": ["es", "en"],
+            "areaServed": "AR"
+          },
+          {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "telephone": "+5492364341337",
+            "availableLanguage": ["es", "en"],
+            "areaServed": "AR"
+          }
         ],
         "knowsLanguage": ["es", "en"],
         "knowsAbout": [
@@ -242,11 +261,6 @@
         <div class="contact__intro reveal">
           <h2>Contanos qué estás construyendo.</h2>
           <p>Compartinos tu idea, el momento de tu marca o lo que necesitás transformar.</p>
-          <div class="contact__direct">
-            <a class="btn btn--ghost" href="https://wa.me/5493624131305" target="_blank" rel="noopener">WhatsApp +54 3624131305</a>
-            <a class="btn btn--ghost" href="https://wa.me/5492364341337" target="_blank" rel="noopener">WhatsApp +54 2364341337</a>
-            <a class="btn btn--ghost" href="mailto:sin@gular.agency">sin@gular.agency</a>
-          </div>
         </div>
 
         <form class="contact__form reveal" id="contactForm" novalidate>
@@ -270,8 +284,15 @@
   </main>
 
   <footer class="footer">
-    <span class="footer__brand">gular</span>
-    <p>© <span id="year"></span> Gular · Buenos Aires, Argentina</p>
+    <div class="footer__top">
+      <span class="footer__brand">gular</span>
+      <nav class="footer__contact" aria-label="Contacto">
+        <a href="mailto:sin@gular.agency">sin@gular.agency</a>
+        <a href="https://wa.me/5493624131305" target="_blank" rel="noopener">WhatsApp +54 3624131305</a>
+        <a href="https://wa.me/5492364341337" target="_blank" rel="noopener">WhatsApp +54 2364341337</a>
+      </nav>
+    </div>
+    <p class="footer__legal">© <span id="year"></span> Gular · Buenos Aires, Argentina</p>
   </footer>
 
   <script type="module" src="assets/js/intro.js"></script>
