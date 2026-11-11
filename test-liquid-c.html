@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>test3 — fondo Gular</title>
+  <title>Liquid liviano sobre Fondo C · Gular</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
   <script type="importmap">
   { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js" } }
@@ -12,10 +12,18 @@
     html, body { background: #ffffff; }
     .nav, main { position: relative; z-index: 2; }
     .hero { background: transparent; }
+    .fondo-badge{position:fixed;left:18px;bottom:16px;z-index:50;font:500 12px/1.4 system-ui,sans-serif;
+      letter-spacing:.02em;color:#111;background:rgba(255,255,255,.72);backdrop-filter:blur(8px);
+      border:1px solid rgba(0,0,0,.1);border-radius:10px;padding:9px 12px;max-width:300px;pointer-events:auto}
+    .fondo-badge b{display:block;font-weight:700;margin-bottom:2px}
+    .fondo-badge a{color:#111;text-decoration:underline;text-underline-offset:2px}
+
+    /* El título grande lo dibuja WebGL (para aplicarle la aberración del fluido);
+       lo ocultamos pero mantenemos su espacio para no mover el resto del hero. */
+    .hero__title{ visibility:hidden; }
   </style>
 </head>
 <body>
-  <!-- Fondo de partículas INTERACTIVO (estilo video) -->
   <canvas id="space" class="space-canvas" aria-hidden="true"></canvas>
 
   <header class="nav" id="nav" data-scrolled>
@@ -43,6 +51,12 @@
     </section>
   </main>
 
-  <script type="module" src="assets/js/space-fx-3.js"></script>
+  <div class="fondo-badge">
+    <b>Liquid liviano sobre Fondo C</b>
+    El fondo de moléculas (video) se ondula bajo el mouse. Suma interacción y rompe el loop plano.
+    &nbsp;·&nbsp; <a href="test-fondos.html">volver</a>
+  </div>
+
+  <script type="module" src="assets/js/liquid-c.js"></script>
 </body>
 </html>

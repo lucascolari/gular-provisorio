@@ -167,8 +167,8 @@ body.intro-lock { overflow: hidden; }
 .nav__center { justify-self: center; display: flex; gap: clamp(1rem, 2.6vw, 2.2rem); font-size: .9rem; letter-spacing: .02em; color: var(--text); }
 .nav__center a { transition: color .25s; }
 .nav__center a:hover { opacity: .7; }
-.nav__center .accent { color: #e83b2f; }
-.nav__center .accent:hover { color: #cf2d22; opacity: 1; }
+.nav__center .accent { color: var(--text); }
+.nav__center .accent:hover { opacity: .7; }
 
 .nav__menu {
   grid-column: 3; justify-self: end;

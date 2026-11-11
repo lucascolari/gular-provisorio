@@ -55,6 +55,14 @@
   <!-- Si no hay JS, no dejamos la intro tapando el sitio -->
   <noscript><style>.intro{display:none!important}</style></noscript>
 
+  <!-- El título del hero se dibuja en WebGL (liquid-bg.js) para aplicarle el
+       efecto. Solo si el efecto arranca, transparentamos el texto del DOM
+       (queda en el mismo lugar y accesible). Sin WebGL, el título se ve normal. -->
+  <style>
+    html[data-liquid="on"] .hero__title { color: transparent; -webkit-text-fill-color: transparent; }
+    html[data-liquid="on"] .hero__title .agency { background: none; color: transparent; -webkit-text-fill-color: transparent; }
+  </style>
+
   <!-- Datos estructurados (SEO + GEO): organización, sitio, FAQ y proyectos -->
   <script type="application/ld+json">
   {
@@ -267,7 +275,7 @@
   </footer>
 
   <script type="module" src="assets/js/intro.js"></script>
-  <script type="module" src="assets/js/space.js"></script>
+  <script type="module" src="assets/js/liquid-bg.js"></script>
   <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
