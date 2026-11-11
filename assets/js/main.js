@@ -563,7 +563,7 @@ const revealIO = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach((el) => revealIO.observe(el));
 
 /* ---------- Formulario de contacto (provisorio: abre el correo) ---------- */
-const CONTACT_EMAIL = "hola@gular.com"; // TODO: correo real de Gular
+const CONTACT_EMAIL = "sin@gular.agency";
 const form = document.getElementById("contactForm");
 const note = document.getElementById("formNote");
 
