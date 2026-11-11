@@ -490,21 +490,21 @@ body.intro-lock { overflow: hidden; }
 /* =========================================================================
    Footer
    ========================================================================= */
-.footer { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1.4rem 2rem; padding: 2.6rem var(--gutter); border-top: 1px solid rgba(255, 255, 255, 0.12); color: #f3efe6; font-size: .82rem; letter-spacing: .02em; background: #000000; }
-.footer__left { display: flex; flex-direction: column; gap: 1.1rem; }
+.footer { display: flex; flex-direction: column; gap: 2rem; padding: 2.6rem var(--gutter); border-top: 1px solid rgba(255, 255, 255, 0.12); color: #f3efe6; font-size: .82rem; letter-spacing: .02em; background: #000000; }
+.footer__top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1.4rem 2rem; }
 .footer__brand { font-family: var(--font-display); font-size: 1.3rem; line-height: 1; color: #f3efe6; }
-.footer__legal { margin: 0; font-family: var(--font-body); color: rgba(243, 239, 230, .62); }
 .footer__contact { display: grid; grid-template-columns: auto auto; justify-content: end; gap: .5rem .6rem; }
-.footer__contact a { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; font-family: var(--font-body); font-size: 1rem; line-height: 1.25; letter-spacing: .01em; color: #f3efe6; text-decoration: none; transition: opacity .25s; }
+.footer__contact a { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; font-family: var(--font-display); font-size: 1rem; line-height: 1.3; letter-spacing: .01em; color: #f3efe6; text-decoration: none; transition: opacity .25s; }
 .footer__contact a:hover { opacity: .6; }
+.footer__legal { margin: 0; font-family: var(--font-body); color: rgba(243, 239, 230, .62); }
 
 /* =========================================================================
    Responsive
    ========================================================================= */
 @media (max-width: 860px) {
   .contact__grid { grid-template-columns: 1fr; }
-  /* Footer: en celular, marca/copyright y contactos se apilan a la izquierda. */
-  .footer { flex-direction: column; }
+  /* Footer: en celular, marca y contactos se apilan a la izquierda. */
+  .footer__top { flex-direction: column; }
   .footer__contact { justify-content: start; }
   /* En celular, las imágenes/videos del caso entran COMPLETAS (sin recorte agresivo). */
   .case__media img, .case__media video { object-fit: contain; }
