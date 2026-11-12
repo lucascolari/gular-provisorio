@@ -188,6 +188,15 @@ const camOpen = { pos: new THREE.Vector3(0, 1.02, 5.35), at: new THREE.Vector3(0
 const camPos = camClosed.pos.clone(), camAt = camClosed.at.clone();
 let px = 0, py = 0;
 
+/* encuadre adaptativo: en pantallas angostas/altas (celular, tablet vertical)
+   alejamos la cámara para que la notebook entre ENTERA, sin cortarse. */
+const BASE_ASPECT = 1.55;        // proporción donde el encuadre fijo queda bien (desktop)
+const _tmp = new THREE.Vector3();
+function framedPos(cam) {
+  const zf = Math.max(1, BASE_ASPECT / (sizeW() / sizeH()));
+  return _tmp.copy(cam.pos).sub(cam.at).multiplyScalar(zf).add(cam.at);
+}
+
 function openLaptop() {
   if (open) return;
   open = true;
@@ -255,7 +264,7 @@ function tick() {
   lid.rotation.x = lidX;
 
   const k = reduce ? 1 : 0.06;
-  camPos.lerp(open ? camOpen.pos : camClosed.pos, k);
+  camPos.lerp(framedPos(open ? camOpen : camClosed), k);
   camAt.lerp(open ? camOpen.at : camClosed.at, k);
   const pxT = open ? 0 : px * 0.7, pyT = open ? 0 : py * 0.4;
   camera.position.set(camPos.x + pxT, camPos.y - pyT, camPos.z);

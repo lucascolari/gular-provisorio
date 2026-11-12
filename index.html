@@ -86,6 +86,8 @@
     #nbOverlay .scr__g { font-size: 38cqi; }
     .nb-contact .nb-hint { position: absolute; left: 50%; bottom: 1%; transform: translateX(-50%); z-index: 3; }
     .nb-hint.is-gone { opacity: 0; pointer-events: none; transition: opacity .4s; }
+    /* celular / tablet vertical: sección menos alta para que la notebook no quede chica */
+    @media (max-width: 900px) { .nb-stage { height: clamp(360px, 52vh, 460px); margin-top: 1.4rem; } }
   </style>
 
   <!-- El título del hero se dibuja en WebGL (liquid-bg.js) para aplicarle el
@@ -319,6 +321,6 @@
   <script type="module" src="assets/js/intro.js"></script>
   <script type="module" src="assets/js/liquid-bg.js"></script>
   <script type="module" src="assets/js/main.js"></script>
-  <script type="module" src="assets/js/notebook-contact.js"></script>
+  <script type="module" src="assets/js/notebook-contact.js?v=20261112b"></script>
 </body>
 </html>
