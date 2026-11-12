@@ -1,0 +1,286 @@
+/* =========================================================================
+   NOTEBOOK · estilos compartidos de la PANTALLA + notebook CSS 3D (test A)
+   Depende de styles.css (tipografías Sahlia/Satoshi y variables :root).
+   ========================================================================= */
+
+/* ---------------------------------------------------------------- lienzo */
+.nb-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.2rem, 4vw, 3rem);
+  background: var(--bg);
+}
+.nb-page__tag {
+  position: fixed; left: 18px; bottom: 16px; z-index: 50;
+  font: 500 12px/1.4 var(--font-body); letter-spacing: .02em; color: #111;
+  background: rgba(255,255,255,.72); backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,.1); border-radius: 10px; padding: 9px 12px; max-width: 320px;
+}
+.nb-page__tag b { display: block; font-weight: 700; margin-bottom: 2px; }
+
+/* ===================================================================== *
+ *  PANTALLA (compartida por A y C)                                       *
+ * ===================================================================== */
+.scr {
+  position: relative;
+  width: 100%; height: 100%;
+  container-type: size;
+  background: #0a0a0c;
+  color: #fff;
+  overflow: hidden;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+/* backlight apagado */
+.scr[data-stage="off"] { background: #050506; }
+.scr::after { /* leve brillo de pantalla encendida */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.06), transparent 60%);
+  opacity: 0; transition: opacity .6s ease;
+}
+.scr[data-stage="boot"]::after,
+.scr[data-stage="form"]::after { opacity: 1; }
+
+.scr__boot, .scr__form, .scr__sent {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  opacity: 0; visibility: hidden; transition: opacity .55s ease, visibility .55s;
+}
+.scr[data-stage="boot"] .scr__boot { opacity: 1; visibility: visible; }
+.scr[data-stage="form"] .scr__form { opacity: 1; visibility: visible; }
+.scr[data-stage="sent"] .scr__sent { opacity: 1; visibility: visible; }
+
+/* ----- encendido / intro de marca ----- */
+.scr__word {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: 17cqi; line-height: 1; letter-spacing: -0.02em; color: #fff;
+  opacity: 0; transform: translateY(.14em);
+  animation: scrWord 1.5s var(--ease-cinematic, cubic-bezier(.16,1,.3,1)) forwards;
+}
+.scr__line {
+  width: 0; height: 1px; margin-top: 5cqh; background: rgba(255,255,255,.55);
+  animation: scrLine 1.4s .25s var(--ease-cinematic, cubic-bezier(.16,1,.3,1)) forwards;
+}
+@keyframes scrWord { to { opacity: 1; transform: translateY(0); } }
+@keyframes scrLine { to { width: 34cqi; } }
+
+/* ----- formulario ----- */
+.scr__form { justify-content: center; gap: 2.4cqh; padding: 7cqi 9cqi; }
+.scr__kick {
+  margin: 0 0 1cqh; align-self: flex-start;
+  font-family: var(--font-display); font-size: 5.4cqi; line-height: 1.05; letter-spacing: -0.01em;
+}
+.scr__field { display: flex; flex-direction: column; gap: .7cqh; width: 100%; }
+.scr__field > span {
+  font-size: 2.7cqi; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5);
+}
+.scr__field input, .scr__field textarea {
+  width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,.24);
+  color: #fff; font-family: var(--font-body); font-size: 3.6cqi; padding: .6cqh 0; resize: none;
+  transition: border-color .25s;
+}
+.scr__field input:focus, .scr__field textarea:focus { outline: none; border-color: #fff; }
+
+/* desplegable de servicios (se ve vacío como un campo; al tocar abre la barra) */
+.scr__select { position: relative; }
+.scr__select-trigger {
+  width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,.24);
+  color: #fff; font-family: var(--font-body); font-size: 3.6cqi; padding: .6cqh 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 2cqi;
+  cursor: pointer; text-align: left;
+}
+.scr__select-trigger:focus { outline: none; border-color: #fff; }
+.scr__select-value { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.scr__select-caret {
+  flex: none; width: 0; height: 0;
+  border-left: 1cqi solid transparent; border-right: 1cqi solid transparent;
+  border-top: 1cqi solid rgba(255,255,255,.55); transition: transform .25s;
+}
+.scr__select[data-open="true"] .scr__select-caret { transform: rotate(180deg); }
+.scr__select-list {
+  list-style: none; margin: 0; padding: .6cqh 0;
+  position: absolute; left: 0; right: 0; top: calc(100% + .6cqh);
+  background: #15151a; border: 1px solid rgba(255,255,255,.14); border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.55); z-index: 20;
+  max-height: 46cqh; overflow-y: auto;
+  opacity: 0; transform: translateY(-6px); pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.scr__select[data-open="true"] .scr__select-list { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.scr__select-list li {
+  padding: 1.5cqi 3cqi; font-size: 3cqi; color: rgba(255,255,255,.78);
+  cursor: pointer; transition: background .15s, color .15s;
+}
+.scr__select-list li:hover { background: rgba(255,255,255,.1); color: #fff; }
+.scr__select-list li.is-active { background: rgba(255,255,255,.14); color: #fff; }
+.scr__select-list::-webkit-scrollbar { width: 5px; }
+.scr__select-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,.22); border-radius: 3px; }
+.scr__send {
+  margin-top: 1.4cqh; align-self: flex-start;
+  background: #fff; color: #0a0a0c; border: 0; cursor: pointer;
+  font-family: var(--font-body); font-weight: 600; font-size: 3.2cqi; letter-spacing: .01em;
+  padding: 1.8cqh 5cqi; border-radius: 999px; transition: opacity .2s, transform .2s;
+}
+.scr__send:hover { opacity: .85; transform: translateY(-1px); }
+.scr__note { margin: .4cqh 0 0; min-height: 3cqi; font-size: 2.7cqi; color: rgba(255,255,255,.6); }
+.scr__note[data-state="err"] { color: #ff8a7a; }
+
+/* ----- enviado: negro con la "g" ----- */
+.scr__sent { background: #000; gap: 3cqh; }
+.scr__g {
+  font-family: var(--font-display); font-weight: 400; color: #fff;
+  font-size: 38cqi; line-height: 1; letter-spacing: -0.03em;
+}
+.scr__thanks {
+  margin: 0; font-size: 3cqi; letter-spacing: .04em; color: rgba(255,255,255,.7);
+  transition: opacity .9s ease;
+}
+.scr--justg .scr__thanks { opacity: 0; }
+
+/* ===================================================================== *
+ *  TEST A · notebook en CSS 3D                                           *
+ * ===================================================================== */
+.nb-a-stage { perspective: 2000px; perspective-origin: 50% 40%; }
+.nb-a {
+  position: relative;
+  width: min(600px, 84vw);
+  height: calc(min(600px, 84vw) * 1.14);
+  transform-style: preserve-3d;
+  transform: rotateX(34deg);                 /* cerrada: vista algo desde arriba (se ve la tapa) */
+  transition: transform 1.1s cubic-bezier(.16,1,.3,1);
+  cursor: pointer;
+}
+.nb-a[data-open="true"] { transform: rotateX(7deg); cursor: default; } /* abierta: vista de frente */
+
+/* tapa / pantalla: ocupa la mitad de arriba; bisagra en su borde inferior */
+.nb-a__lid {
+  position: absolute; left: 0; top: 0; width: 100%; height: 55%;
+  transform-style: preserve-3d; transform-origin: 50% 100%;
+  transform: rotateX(90deg);                 /* cerrada: volcada sobre el teclado (tapa hacia arriba) */
+  transition: transform 1.1s cubic-bezier(.16,1,.3,1);
+}
+.nb-a[data-open="true"] .nb-a__lid { transform: rotateX(0deg); } /* abierta (vertical) */
+
+/* Las dos caras miran al mismo lado (+z); se muestra una u otra por opacidad
+   según el estado, evitando el problema de orden de dibujado de CSS 3D. */
+.nb-a__face {
+  position: absolute; inset: 0; border-radius: 16px; overflow: hidden;
+  transition: opacity .5s ease;
+}
+/* frente = la pantalla (visible cuando está abierta) */
+.nb-a__front {
+  background: #0a0a0c; border: 7px solid #15151a;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+  transform: translateZ(5px);
+  opacity: 0;
+}
+/* tapa con el sticker (visible cuando está cerrada) */
+.nb-a__back {
+  background: linear-gradient(150deg, #e9e9ec, #d6d6db);
+  border: 1px solid rgba(0,0,0,.08);
+  transform: translateZ(6px) rotate(180deg);  /* la tapa se pliega adelante: pre-giro para que el texto quede derecho */
+  display: grid; place-items: center;
+  opacity: 1;
+}
+.nb-a[data-open="true"] .nb-a__front { opacity: 1; }
+.nb-a[data-open="true"] .nb-a__back  { opacity: 0; }
+
+.nb-a__logo {
+  font-family: var(--font-display); font-size: clamp(2.4rem,7vw,3.8rem); color: #c3c3c9;
+}
+/* etiqueta flotante (fuera del plegado 3D → siempre legible) */
+.nb-a__sticker {
+  position: absolute; top: 50%; right: 14%; z-index: 5;
+  transform: translateZ(90px) rotate(-7deg);
+  background: #fff; color: #111; font-family: var(--font-body); font-weight: 600;
+  font-size: clamp(.8rem, 1.9vw, 1.05rem); letter-spacing: .01em;
+  padding: .5rem .85rem; border-radius: 6px;
+  box-shadow: 0 14px 26px rgba(0,0,0,.2);
+}
+.nb-a__sticker::after { content: " →"; }
+.nb-a[data-open="false"] .nb-a__sticker { animation: stickerPulse 1.8s ease-in-out infinite; }
+.nb-a[data-open="true"]  .nb-a__sticker { opacity: 0; transition: opacity .3s; }
+@keyframes stickerPulse {
+  0%,100% { transform: translateZ(90px) rotate(-7deg) scale(1); }
+  50%     { transform: translateZ(90px) rotate(-7deg) scale(1.05); }
+}
+
+/* base / teclado: mitad de abajo, recostado como tablero hacia el visitante.
+   Oculto mientras la notebook está cerrada; se revela al abrir. */
+.nb-a__deck {
+  position: absolute; left: 0; top: 55%; width: 100%; height: 45%;
+  transform-origin: 50% 0%; transform: rotateX(76deg);
+  background: linear-gradient(175deg, #e4e4e8, #cfcfd4);
+  border-radius: 4px 4px 14px 14px;
+  box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 40px 44px -26px rgba(0,0,0,.4);
+  opacity: 0; transition: opacity .5s ease .1s;
+}
+.nb-a[data-open="true"] .nb-a__deck { opacity: 1; }
+.nb-a__kb {
+  position: absolute; left: 8%; right: 8%; top: 16%; height: 46%;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.14) 0 2px, transparent 2px 6.4%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.12) 0 2px, transparent 2px 25%);
+  border-radius: 4px; opacity: .5;
+}
+.nb-a__pad {
+  position: absolute; left: 50%; bottom: 10%; width: 26%; height: 26%;
+  transform: translateX(-50%); border: 1px solid rgba(0,0,0,.16); border-radius: 7px;
+}
+
+/* ===================================================================== *
+ *  TEST B · notebook como ILUSTRACIÓN PLANA (SVG) + crossfade            *
+ * ===================================================================== */
+.nb-b {
+  position: relative;
+  width: min(620px, 86vw);
+  aspect-ratio: 800 / 560;
+  cursor: pointer;
+}
+.nb-b[data-open="true"] { cursor: default; }
+.nb-b__art { position: absolute; inset: 0; transition: opacity .6s ease, transform .6s ease; }
+.nb-b__art svg { width: 100%; height: 100%; display: block; }
+
+/* estado cerrado visible / abierto oculto */
+.nb-b__closed { opacity: 1; transform: translateY(0) scale(1); }
+.nb-b__open   { opacity: 0; transform: translateY(14px) scale(.985); }
+.nb-b[data-open="true"] .nb-b__closed { opacity: 0; transform: translateY(-14px) scale(1.01); pointer-events: none; }
+.nb-b[data-open="true"] .nb-b__open   { opacity: 1; transform: translateY(0) scale(1); }
+
+/* sticker de la tapa cerrada (HTML sobre el SVG) */
+.nb-b__sticker {
+  position: absolute; top: 20%; right: 20%; z-index: 3;
+  transform: rotate(-7deg);
+  background: #fff; color: #111; font-family: var(--font-body); font-weight: 600;
+  font-size: clamp(.8rem, 1.9vw, 1.05rem); padding: .5rem .85rem; border-radius: 6px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+.nb-b__sticker::after { content: " →"; }
+.nb-b[data-open="false"] .nb-b__sticker { animation: stickerPulse2 1.8s ease-in-out infinite; }
+.nb-b[data-open="true"]  .nb-b__sticker { opacity: 0; transition: opacity .3s; }
+@keyframes stickerPulse2 { 0%,100% { transform: rotate(-7deg) scale(1); } 50% { transform: rotate(-7deg) scale(1.05); } }
+
+/* pantalla: formulario HTML sobre el área de pantalla del SVG abierto */
+.nb-b__screen {
+  position: absolute; z-index: 2;
+  left: 21%; width: 58%; top: 10.5%; height: 49%;
+  border-radius: 8px; overflow: hidden;
+  opacity: 0; transition: opacity .4s ease .35s; pointer-events: none;
+}
+.nb-b[data-open="true"] .nb-b__screen { opacity: 1; pointer-events: auto; }
+.nb-b__screen .scr { border-radius: 8px; }
+
+/* pista de interacción */
+.nb-hint {
+  position: fixed; left: 50%; bottom: 7vh; transform: translateX(-50%);
+  background: none; border: 0; color: var(--muted, #666);
+  font-family: var(--font-body); font-size: .9rem; letter-spacing: .02em;
+}
+.nb-a[data-open="true"] ~ .nb-hint,
+.nb-b[data-open="true"] ~ .nb-hint { opacity: 0; transition: opacity .4s; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-a__lid, .nb-b__art, .scr__boot, .scr__form, .scr__sent { transition: none; }
+  .scr__word, .scr__line, .nb-a__sticker, .nb-b__sticker { animation: none; opacity: 1; }
+}

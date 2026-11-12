@@ -52,8 +52,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/styles.css?v=20261111d" />
+  <link rel="stylesheet" href="assets/css/notebook.css?v=20261112" />
   <!-- Si no hay JS, no dejamos la intro tapando el sitio -->
   <noscript><style>.intro{display:none!important}</style></noscript>
+
+  <!-- Notebook interactiva en la sección de contacto -->
+  <style>
+    .nb-contact .contact__intro { text-align: center; max-width: 640px; margin: 0 auto; }
+    .nb-contact .contact__intro p { margin-left: auto; margin-right: auto; }
+    .nb-stage { position: relative; width: 100%; max-width: 1000px; height: clamp(460px, 76vh, 700px); margin: 2rem auto 0; }
+    #nbCanvas { position: absolute; inset: 0; }
+    #nbCanvas canvas { display: block; width: 100%; height: 100%; }
+    #nbOverlay {
+      position: absolute; left: 0; top: 0; width: 0; height: 0;
+      border-radius: 10px; overflow: hidden; opacity: 0;
+      transition: opacity .4s ease; pointer-events: none; z-index: 2;
+    }
+    #nbOverlay.is-on { opacity: 1; pointer-events: auto; }
+    #nbOverlay .scr { border-radius: 10px; }
+    #nbOverlay .scr__kick { font-size: 4cqi; margin-bottom: .2cqh; }
+    #nbOverlay .scr__form { padding: 4cqi 6cqi; gap: 1.2cqh; justify-content: center; overflow: visible; }
+    #nbOverlay .scr__field { gap: .4cqh; }
+    #nbOverlay .scr__field > span { font-size: 2.3cqi; }
+    #nbOverlay .scr__field input,
+    #nbOverlay .scr__field textarea,
+    #nbOverlay .scr__select-trigger { font-size: 3cqi; padding: .4cqh 0; }
+    #nbOverlay .scr__select-list {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .3cqh .6cqi;
+      align-content: start; padding: .7cqh .8cqi; max-height: 54cqh;
+    }
+    #nbOverlay .scr__select-list li { padding: 1.1cqi 1.5cqi; font-size: 2.4cqi; border-radius: 6px; line-height: 1.15; }
+    #nbOverlay .scr__send { font-size: 2.8cqi; padding: 1.3cqh 4.2cqi; margin-top: .8cqh; }
+    #nbOverlay .scr__g { font-size: 38cqi; }
+    .nb-contact .nb-hint { position: absolute; left: 50%; bottom: 1%; transform: translateX(-50%); z-index: 3; }
+    .nb-hint.is-gone { opacity: 0; pointer-events: none; transition: opacity .4s; }
+  </style>
 
   <!-- El título del hero se dibuja en WebGL (liquid-bg.js) para aplicarle el
        efecto. Solo si el efecto arranca, transparentamos el texto del DOM
@@ -183,7 +216,8 @@
   <script type="importmap">
   {
     "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js"
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"
     }
   }
   </script>
@@ -256,29 +290,16 @@
     </section>
 
     <!-- 4 · CONTACTO -->
-    <section class="contact" id="contacto">
-      <div class="contact__grid">
-        <div class="contact__intro reveal">
-          <h2>Contanos qué estás construyendo.</h2>
-          <p>Compartinos tu idea, el momento de tu marca o lo que necesitás transformar.</p>
-        </div>
+    <section class="contact nb-contact" id="contacto">
+      <div class="contact__intro reveal">
+        <h2>Contanos qué estás construyendo.</h2>
+        <p>Compartinos tu idea, el momento de tu marca o lo que necesitás transformar.</p>
+      </div>
 
-        <form class="contact__form reveal" id="contactForm" novalidate>
-          <div class="field">
-            <label for="nombre">Nombre</label>
-            <input id="nombre" name="nombre" type="text" autocomplete="name" required />
-          </div>
-          <div class="field">
-            <label for="email">Correo</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
-          </div>
-          <div class="field">
-            <label for="mensaje">Contanos tu proyecto</label>
-            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn btn--solid">Enviar consulta</button>
-          <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
-        </form>
+      <div class="nb-stage" id="nbStage">
+        <div id="nbCanvas" aria-hidden="true"></div>
+        <div id="nbOverlay"></div>
+        <button class="nb-hint" type="button">tocá la notebook para abrirla</button>
       </div>
     </section>
   </main>
@@ -298,5 +319,6 @@
   <script type="module" src="assets/js/intro.js"></script>
   <script type="module" src="assets/js/liquid-bg.js"></script>
   <script type="module" src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/notebook-contact.js"></script>
 </body>
 </html>
