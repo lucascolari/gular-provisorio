@@ -256,11 +256,11 @@ function init() {
     drawTitle(true);
   }, { passive: true });
 
-  let running = true, firstDone = false;
+  let running = true, firstDone = false, rafId = 0;
   document.addEventListener("visibilitychange", () => {
     running = !document.hidden;
-    if (running) { video.play().catch(() => {}); if (!reduceMotion) loop(); }
-    else video.pause();
+    if (running) { video.play().catch(() => {}); ensureLoop(); }
+    else { video.pause(); if (rafId) cancelAnimationFrame(rafId); rafId = 0; }
   });
 
   function frame() {
@@ -285,7 +285,16 @@ function init() {
     renderer.render(sScene, sCam);
     if (!firstDone) { firstDone = true; window.dispatchEvent(new Event("space:ready")); }
   }
-  function loop() { if (!running) return; frame(); requestAnimationFrame(loop); }
+  // Una SOLA cadena de animación. Antes, cada vez que la pestaña se volvía visible se
+  // llamaba a loop() y se ACUMULABAN loops en paralelo (se multiplicaba el trabajo de GPU
+  // y el fondo terminaba trabándose/congelándose). Ahora se garantiza una sola cadena.
+  function loop() {
+    rafId = 0;
+    if (!running) return;
+    try { frame(); } catch (e) { /* un error puntual NO debe dejar el fondo congelado */ }
+    rafId = requestAnimationFrame(loop);
+  }
+  function ensureLoop() { if (running && !rafId) rafId = requestAnimationFrame(loop); }
 
-  loop();
+  ensureLoop();
 }
