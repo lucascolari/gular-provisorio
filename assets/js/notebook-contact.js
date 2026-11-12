@@ -193,7 +193,11 @@ let px = 0, py = 0;
 const BASE_ASPECT = 1.55;        // proporción donde el encuadre fijo queda bien (desktop)
 const _tmp = new THREE.Vector3();
 function framedPos(cam) {
-  const zf = Math.max(1, BASE_ASPECT / (sizeW() / sizeH()));
+  const aspect = sizeW() / sizeH();
+  // En CELULAR encuadramos más ajustado (notebook más grande, formulario legible).
+  // Desktop/tablet quedan igual. El 1.18 deja un pequeño margen para que no se corte.
+  const base = window.innerWidth <= 640 ? 1.1 : BASE_ASPECT;
+  const zf = Math.max(1, base / aspect);
   return _tmp.copy(cam.pos).sub(cam.at).multiplyScalar(zf).add(cam.at);
 }
 
