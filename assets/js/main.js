@@ -538,18 +538,40 @@ document.addEventListener("keydown", (e) => { if (e.key === "Escape") { setMenu(
 
 /* ---------- Hero a ancho completo (como el boceto) ---------- */
 const heroTitle = document.querySelector(".hero__title");
-function fitHero() {
+/* Ajusta el título para que llene el ancho, SIN reflujo del hero visible.
+   - Antes esto ponía el título real en 1000px para medir → reflujo gigante que, en el
+     celular, con cada resize (la barra del navegador mueve el viewport) hacía saltar el
+     scroll. Ahora medimos en un clon OCULTO fuera de flujo (position:fixed) y seteamos el
+     tamaño real directo. Además solo recalculamos cuando cambia el ANCHO (ignoramos los
+     resize de solo-alto). */
+let heroLastW = -1;
+let heroMeasurer = null;
+function fitHero(force) {
   if (!heroTitle) return;
-  const BASE = 1000;                             // base grande para forzar overflow y medir bien
-  heroTitle.style.fontSize = BASE + "px";
-  const avail = heroTitle.clientWidth;           // ancho disponible (sin padding del hero)
-  const text = heroTitle.scrollWidth;            // ancho real del texto a BASE px
+  const avail = heroTitle.clientWidth;           // ancho disponible (no depende del font-size)
+  if (!avail) return;
+  if (!force && avail === heroLastW) return;     // mismo ancho → no tocar nada (evita el salto)
+  heroLastW = avail;
+  if (!heroMeasurer) {
+    heroMeasurer = heroTitle.cloneNode(true);
+    heroMeasurer.removeAttribute("id");
+    heroMeasurer.setAttribute("aria-hidden", "true");
+    const sr = heroMeasurer.querySelector(".sr-only");
+    if (sr) sr.remove();
+    heroMeasurer.style.cssText =
+      "position:fixed; left:-99999px; top:0; width:auto; max-width:none; " +
+      "white-space:nowrap; visibility:hidden; pointer-events:none; margin:0; z-index:-1;";
+    document.body.appendChild(heroMeasurer);     // fixed → no afecta el alto del documento
+  }
+  const BASE = 1000;
+  heroMeasurer.style.fontSize = BASE + "px";
+  const text = heroMeasurer.getBoundingClientRect().width;  // ancho natural del texto a BASE px
   if (text > 0) heroTitle.style.fontSize = (BASE * avail / text) * 0.995 + "px";
 }
-fitHero();
-window.addEventListener("resize", fitHero, { passive: true });
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHero);
-window.addEventListener("load", fitHero);
+fitHero(true);
+window.addEventListener("resize", () => fitHero(false), { passive: true });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => fitHero(true));
+window.addEventListener("load", () => fitHero(true));
 
 /* ---------- Reveals al entrar en viewport ---------- */
 const revealIO = new IntersectionObserver(
