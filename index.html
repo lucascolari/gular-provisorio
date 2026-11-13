@@ -96,6 +96,19 @@
   <style>
     html[data-liquid="on"] .hero__title { color: transparent; -webkit-text-fill-color: transparent; }
     html[data-liquid="on"] .hero__title .agency { background: none; color: transparent; -webkit-text-fill-color: transparent; }
+
+    /* Fondo de moléculas LIVIANO (video): se muestra cuando el WebGL del hero está
+       apagado (celular/touch o sin WebGL). El título normal del DOM va encima y
+       scrollea nativo. Bajo reduce-motion no se muestra (video animado). */
+    .mol-bg { display: none; }
+    html[data-webgl="off"] .mol-bg {
+      display: block; position: fixed; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 0; pointer-events: none;
+    }
+    @media (prefers-reduced-motion: reduce) { .mol-bg { display: none !important; } }
+
+    /* Menos "rebote"/overscroll de scroll (sobre todo en celular). */
+    html, body { overscroll-behavior-y: none; }
   </style>
 
   <!-- Datos estructurados (SEO + GEO): organización, sitio, FAQ y proyectos -->
@@ -233,6 +246,10 @@
 
   <!-- Fondo de partículas (WebGL). Fallback por CSS si no hay WebGL. -->
   <canvas id="space" class="space-canvas" aria-hidden="true"></canvas>
+  <!-- Fondo de moléculas LIVIANO (solo video, sin WebGL): se muestra en celular/touch
+       o cuando no hay WebGL, con el título normal del DOM encima (ver .mol-bg). -->
+  <video class="mol-bg" aria-hidden="true" muted loop autoplay playsinline webkit-playsinline preload="auto"
+         src="assets/media/video/posiblefondogular-neg.mp4"></video>
 
   <!-- Navegación: "gular" izquierda · links centro · "g" (menú) derecha -->
   <header class="nav" id="nav">
@@ -319,7 +336,7 @@
   </footer>
 
   <script type="module" src="assets/js/intro.js"></script>
-  <script type="module" src="assets/js/liquid-bg.js?v=20261112"></script>
+  <script type="module" src="assets/js/liquid-bg.js?v=20261113"></script>
   <script type="module" src="assets/js/main.js"></script>
   <script type="module" src="assets/js/notebook-contact.js?v=20261112d"></script>
 </body>

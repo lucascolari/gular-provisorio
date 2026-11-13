@@ -11,6 +11,12 @@ import * as THREE from "three";
 const root = document.documentElement;
 const canvas = document.getElementById("space");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// En celular/touch el efecto WebGL (fluido + video + título compuesto) es demasiado
+// pesado: baja el framerate y el título se ATRASA respecto del scroll (se superpone),
+// y el canvas fijo se redimensiona con la barra del navegador (scroll con rebote).
+// Ahí usamos el fallback liviano: título normal del DOM (scroll nativo) + fondo de
+// video por CSS (ver .mol-bg en index.html).
+const isTouch = window.matchMedia("(max-width: 860px)").matches || window.matchMedia("(pointer: coarse)").matches;
 const VIDEO_SRC = "assets/media/video/posiblefondogular-neg.mp4";
 const TEX_A = 1280 / 720;
 
@@ -88,9 +94,9 @@ class Fluid {
 }
 
 if (renderer) {
-  if (reduceMotion) {
-    // Accesibilidad: sin animación dejamos el sitio como el fallback normal
-    // (título del DOM visible, fondo por CSS). No tomamos el título.
+  if (reduceMotion || isTouch) {
+    // Celular/touch o accesibilidad: fallback liviano (título del DOM visible +
+    // fondo .mol-bg por CSS). No corremos el WebGL pesado del hero.
     root.setAttribute("data-webgl", "off");
     if (canvas) canvas.remove();
   } else {
