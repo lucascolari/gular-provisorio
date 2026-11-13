@@ -184,10 +184,12 @@ body.intro-lock { overflow: hidden; }
   .nav__brand { font-size: 1.2rem; }
   .nav__center { gap: .6rem; font-size: .58rem; letter-spacing: 0; }
   .nav { gap: .4rem; padding-inline: clamp(.7rem, 3vw, 1.2rem); }
-  /* Celular: más aire entre el wordmark y el texto, así el bloque de texto baja
-     y achica el hueco vacío que quedaba arriba de "scrolleá para explorar".
-     No cambia el texto: solo la distancia. */
-  .hero__title { margin-bottom: clamp(3.5rem, 22vh, 12rem); }
+  /* Celular: la sección del hero termina cerca del texto (altura según el
+     contenido), así no queda un vacío grande arriba de "scrolleá para explorar".
+     Y un poco más de aire entre el wordmark y el texto. El texto no cambia. */
+  .hero { min-height: auto; }
+  .hero__title { margin-bottom: clamp(3rem, 10vh, 6rem); }
+  .hero__scroll { margin-top: clamp(2.5rem, 8vh, 4.5rem); }
 }
 
 /* Overlay de menú */
