@@ -350,6 +350,57 @@ function renderProject(p) {
 indexEl.innerHTML = '<h2 class="sr-only">Proyectos de Gular</h2>' + PROJECTS.map(renderProject).join("");
 if (useNative) indexEl.setAttribute("data-native", "");
 
+/* ---------- Aparición POR RENGLONES (SOLO textos de los proyectos) ----------
+   Envolvemos cada palabra en <span class="gl-w"> (respetando <strong>/<br>) y,
+   al entrar en pantalla, encendemos renglón por renglón. Animamos opacidad + un
+   leve desplazamiento que vuelve a 0: la posición en reposo no cambia. No toca el
+   índice, la barra ni los textos de la web. En reduce-motion no se hace nada. */
+if (!reduceMotion) {
+  const GL_SEL = ".case__track .scene__text, .case__track .case__statement, .case__track .case__body-p";
+
+  const glWrap = (node) => {
+    Array.prototype.slice.call(node.childNodes).forEach((n) => {
+      if (n.nodeType === 3) {
+        if (!/\S/.test(n.nodeValue)) return;              // solo espacios → se deja igual
+        const frag = document.createDocumentFragment();
+        n.nodeValue.split(/(\s+)/).forEach((p) => {
+          if (p === "") return;
+          if (/^\s+$/.test(p)) frag.appendChild(document.createTextNode(p));
+          else { const s = document.createElement("span"); s.className = "gl-w"; s.textContent = p; frag.appendChild(s); }
+        });
+        node.replaceChild(frag, n);
+      } else if (n.nodeType === 1 && n.nodeName !== "BR") {
+        glWrap(n);                                         // recursa dentro de <strong>
+      }
+    });
+  };
+
+  const glLines = (el) => {
+    let top = null, line = -1;
+    el.querySelectorAll(".gl-w").forEach((w) => {
+      const t = w.offsetTop;                               // posición real del renglón
+      if (top === null || t > top + 4) { line++; top = t; }
+      w.style.setProperty("--l", line);
+    });
+    el.dataset.glReady = "1";
+  };
+
+  const glIO = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      if (!e.target.dataset.glReady) glLines(e.target);
+      e.target.classList.add("is-in");
+      glIO.unobserve(e.target);
+    }
+  }, { threshold: 0.18 });
+
+  document.querySelectorAll(GL_SEL).forEach((el) => {
+    glWrap(el);
+    el.classList.add("gl-rv");
+    glIO.observe(el);
+  });
+}
+
 /* ---------- Apertura / cierre de casos (uno por vez) ---------- */
 let openProj = null;      // <article> abierto
 let openCase = null;      // su .proj__case

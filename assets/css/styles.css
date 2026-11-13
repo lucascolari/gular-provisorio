@@ -436,6 +436,17 @@ body.intro-lock { overflow: hidden; }
 .case__body-p { font-family: var(--font-body); font-size: .9rem; line-height: 1.65; color: #f3efe6; max-width: 48ch; margin: 0; }
 .case__body-p + .case__body-p { margin-top: .85rem; }
 
+/* Aparición POR RENGLONES de los textos de los proyectos.
+   main.js envuelve cada palabra en .gl-w y le pone --l = nº de renglón real.
+   Animamos solo opacidad + un leve desplazamiento que vuelve a 0: la posición
+   en reposo no cambia (no mueve la escena ni el cuerpo). */
+.gl-rv .gl-w {
+  display: inline-block; opacity: 0; transform: translateY(.5em);
+  transition: opacity .6s var(--ease-out-expo), transform .6s var(--ease-out-expo);
+  transition-delay: calc(var(--l, 0) * .08s);
+}
+.gl-rv.is-in .gl-w { opacity: 1; transform: none; }
+
 .case__hint {
   position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
   font-family: var(--font-body); font-size: .64rem; letter-spacing: .22em; text-transform: uppercase;
@@ -526,6 +537,7 @@ body.intro-lock { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .gl-rv .gl-w { opacity: 1 !important; transform: none !important; transition: none !important; }
   .hero__scroll span { animation: none; }
   .iso__tail { animation: none; transform: rotateX(58deg) rotateZ(25deg); }
   .intro__beat { transition: none; }
