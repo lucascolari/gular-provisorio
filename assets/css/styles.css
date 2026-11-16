@@ -266,11 +266,12 @@ body.intro-lock { overflow: hidden; }
 .hero__scroll span { width: 1px; height: 40px; background: linear-gradient(var(--text), transparent); animation: scrollLine 2.2s var(--ease-cinematic) infinite; }
 @keyframes scrollLine { 0% { opacity: 0; transform: scaleY(0); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); transform-origin: top; } 100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; } }
 
-/* Celular: el "gularagency" queda ARRIBA, donde estaba (no se toca). Bajamos solo
-   el bloque de texto de abajo: el margen automático en el statement reparte el hueco
-   con el del "scrolleá", así el texto baja y queda menos vacío entre el texto y el
-   final. Va DESPUÉS del hero base a propósito, para ganarle a la cascada. */
+/* Celular: bajamos el "gularagency" un renglón (margin-top) y, además, el bloque de
+   texto de abajo baja con el margen automático del statement (reparte el hueco con
+   el del "scrolleá"), dejando menos vacío entre el texto y el final.
+   Va DESPUÉS del hero base a propósito, para ganarle a la cascada. */
 @media (max-width: 680px) {
+  .hero__title { margin-top: 1.6rem; }
   .hero__statement { margin-top: auto; }
 }
 
