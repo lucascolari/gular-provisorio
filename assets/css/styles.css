@@ -184,12 +184,6 @@ body.intro-lock { overflow: hidden; }
   .nav__brand { font-size: 1.2rem; }
   .nav__center { gap: .6rem; font-size: .58rem; letter-spacing: 0; }
   .nav { gap: .4rem; padding-inline: clamp(.7rem, 3vw, 1.2rem); }
-  /* Celular: la sección del hero termina cerca del texto (altura según el
-     contenido), así no queda un vacío grande arriba de "scrolleá para explorar".
-     Y un poco más de aire entre el wordmark y el texto. El texto no cambia. */
-  .hero { min-height: auto; }
-  .hero__title { margin-bottom: clamp(3rem, 10vh, 6rem); }
-  .hero__scroll { margin-top: clamp(2.5rem, 8vh, 4.5rem); }
 }
 
 /* Overlay de menú */
@@ -271,6 +265,15 @@ body.intro-lock { overflow: hidden; }
 }
 .hero__scroll span { width: 1px; height: 40px; background: linear-gradient(var(--text), transparent); animation: scrollLine 2.2s var(--ease-cinematic) infinite; }
 @keyframes scrollLine { 0% { opacity: 0; transform: scaleY(0); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); transform-origin: top; } 100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; } }
+
+/* Celular: centramos verticalmente el bloque de texto del hero para que baje y no
+   quede tanto vacío debajo (antes quedaba todo arriba y el "scrolleá" al fondo).
+   Va DESPUÉS del hero base a propósito, para ganarle a la cascada. El .hero__scroll
+   ya tiene margin-top:auto; al sumar el del título, el hueco se reparte 50/50.
+   No cambia el texto: solo la posición del bloque. */
+@media (max-width: 680px) {
+  .hero__title { margin-top: auto; }
+}
 
 /* =========================================================================
    Franja negra · Trabajos · Proyectos · Experiencias
