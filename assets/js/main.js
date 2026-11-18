@@ -132,14 +132,34 @@ const PROJECTS = [
   {
     slug: "jolly", name: "Jolly Hygge", cat: "Universo construido",
     desc: "Sistema de identidad de marca y manual de uso.",
-    services: "Estrategia · Sistema visual · Manual de marca",
-    logo: "Jolly Hygge",
-    statement: "Una identidad cálida,\nde principio a fin.",
-    media: gallery("jolly", 1, 10),
-    body: [
-      "Jolly Hygge es una marca de lifestyle de real food que necesitaba una identidad cálida, consistente y fácil de sostener en el tiempo.",
-      "Construimos el sistema visual completo: logotipo, paleta, tipografías, iconografía y criterios de uso, documentados en un manual de marca claro para todo el equipo.",
-      "Cada aplicación —del packaging a lo digital— habla el mismo idioma: una marca con carácter propio y reglas simples para crecer.",
+    services: "Concepto y estrategia de marca · Sistema visual · Packaging · Manual de marca",
+    caseTitle: "Jolly Hygge",
+    hideHint: true,
+    panels: [
+      // Escena = coordenadas EXACTAS del boceto (PDF 7343 x 975, mapeo 1:1).
+      // Imágenes = recortes del boceto (placeholders); se reemplazan por HD.
+      { scene: {
+        pw: 7343, ph: 975,
+        items: [
+          { img: "assets/media/proyectos/jolly/esc-1.jpg", x: 1, top: 270, w: 1248, h: 705 },
+          { img: "assets/media/proyectos/jolly/esc-2.jpg", x: 1973, top: 264, w: 737, h: 414 },
+          { img: "assets/media/proyectos/jolly/esc-3.jpg", x: 2710, top: 0, w: 766, h: 431 },
+          { img: "assets/media/proyectos/jolly/esc-4.jpg", x: 2710, top: 420, w: 990, h: 555 },
+          { img: "assets/media/proyectos/jolly/esc-5.jpg", x: 3700, top: 420, w: 605, h: 341 },
+          { img: "assets/media/proyectos/jolly/esc-6.jpg", x: 4304, top: 420, w: 605, h: 341 },
+          { img: "assets/media/proyectos/jolly/esc-7.jpg", x: 5217, top: 162, w: 761, h: 428 },
+          { img: "assets/media/proyectos/jolly/esc-8.jpg", x: 6287, top: 0, w: 1056, h: 975 },
+          { text: "Jolly Hygge llegó con un nombre, un logo y una primera idea conceptual. El desafío era desarrollar una identidad propia y trasladarla a sus productos.", x: 1342, top: 264, w: 245, fs: 2.05 },
+          { text: "Una forma\nde vivir.\n*Una identidad\npara expresarla.*", x: 1339, top: 651, w: 496, fs: 6.56, cls: "scene__head" },
+          { text: "Desarrollamos el concepto de marca, su universo visual y el diseño de sus envases alrededor de una misma búsqueda: conectar la alimentación basada en plantas con el disfrute de lo cotidiano.", x: 1973, top: 785, w: 399, fs: 2.05 },
+          { text: "Encontramos en la filosofía Hygge un punto de partida: el placer de lo simple, la calidez y el equilibrio entre el movimiento y la pausa.", x: 3607, top: 156, w: 242, fs: 2.05 },
+          { text: "Esa sensibilidad orientó la elección de colores, tipografías, texturas e imágenes. Una manera de expresar la marca desde situaciones cercanas, materiales naturales y pequeños momentos de disfrute.", x: 4001, top: 158, w: 911, fs: 3.28 },
+          { text: "Una identidad que puede continuar.\nReunimos el desarrollo en un manual que establece cómo se presenta, se expresa y se aplica Jolly Hygge.\nEl resultado fue un sistema visual documentado: una base para desarrollar nuevos envases, contenidos y experiencias con un criterio común.", x: 3975, top: 802, w: 927, fs: 2.05, align: "center" },
+          { text: "*El concepto\ntoma forma.*", x: 5211, top: 637, w: 341, fs: 5.95, cls: "scene__head" },
+          { text: "Llevamos esa personalidad al packaging, combinando información clara, recursos gráficos propios y una identidad compartida entre las distintas variedades.", x: 5640, top: 657, w: 333, fs: 2.36 },
+          { text: "Concepto y estrategia de marca · Sistema visual · Packaging · Manual de marca.", x: 6390, top: 921, w: 855, fs: 2.36 },
+        ],
+      } },
     ],
   },
   {
