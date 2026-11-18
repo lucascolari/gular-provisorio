@@ -510,24 +510,21 @@ body.intro-lock { overflow: hidden; }
 /* =========================================================================
    Footer
    ========================================================================= */
-.footer { display: flex; align-items: stretch; justify-content: space-between; flex-wrap: wrap; gap: 1.2rem 2rem; padding: 1.9rem var(--gutter); border-top: 1px solid rgba(255, 255, 255, 0.12); color: #f3efe6; font-size: .82rem; letter-spacing: .02em; background: #000000; }
-.footer__left { display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; }
-.footer__brand { font-family: var(--font-display); font-size: 1.3rem; line-height: 1; color: #f3efe6; }
-.footer__contact { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: end; gap: .4rem 1.3rem; }
-.footer__contact a { font-family: var(--font-body); font-size: 1rem; line-height: 1.2; letter-spacing: .01em; color: #f3efe6; text-decoration: none; transition: opacity .25s; }
-/* En compu, los dos números en Sahlia (el mail queda en la tipografía de texto). */
-.footer__contact a[href^="https://wa.me"] { font-family: var(--font-display); }
+.footer { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; column-gap: 1.6rem; row-gap: 1rem; padding: 1.9rem var(--gutter); border-top: 1px solid rgba(255, 255, 255, 0.12); color: #f3efe6; font-size: .82rem; letter-spacing: .02em; background: #000000; }
+/* "gular" y los contactos pasan a ser hijos directos del footer para alinearlos en fila. */
+.footer__left { display: contents; }
+.footer__brand { order: 0; font-family: var(--font-display); font-size: 1.3rem; line-height: 1; color: #f3efe6; }
+.footer__contact { order: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.3rem; }
+/* Los tres contactos (los dos números y el mail) en Sahlia. */
+.footer__contact a { font-family: var(--font-display); font-size: 1rem; line-height: 1.2; letter-spacing: .01em; color: #f3efe6; text-decoration: none; transition: opacity .25s; }
 .footer__contact a:hover { opacity: .6; }
-.footer__legal { margin: 0; font-family: var(--font-body); color: rgba(243, 239, 230, .62); }
+.footer__legal { order: 2; flex-basis: 100%; margin: 0; font-family: var(--font-body); color: rgba(243, 239, 230, .62); }
 
 /* =========================================================================
    Responsive
    ========================================================================= */
 @media (max-width: 860px) {
   .contact__grid { grid-template-columns: 1fr; }
-  /* Footer: en celular, marca/copyright y contactos se apilan a la izquierda. */
-  .footer { flex-direction: column; align-items: flex-start; gap: 1.4rem; }
-  .footer__contact { justify-content: start; }
   /* En celular, las imágenes/videos del caso entran COMPLETAS (sin recorte agresivo). */
   .case__media img, .case__media video { object-fit: contain; }
   /* Fotos grandes del caso (Triumph): en celular se ven ENTERAS de una,
@@ -546,16 +543,12 @@ body.intro-lock { overflow: hidden; }
 }
 
 @media (max-width: 680px) {
-  /* Footer en celular: "gular" y los tres contactos en un solo renglón (los contactos
-     en una línea, al lado de la marca); el copyright baja debajo. display:contents sube
-     "gular" y el copyright a hijos directos del footer para poder ordenarlos. */
-  .footer { flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; column-gap: .7rem; row-gap: .9rem; }
-  .footer__left { display: contents; }
-  .footer__brand { order: 0; font-size: 1.1rem; }
-  .footer__contact { order: 1; flex-wrap: nowrap; gap: .5rem; }
+  /* Celular: mismo renglón que en compu, pero compacto para que "gular" + los tres
+     contactos (números y mail, en Sahlia) entren en una sola línea. */
+  .footer { column-gap: .7rem; row-gap: .9rem; }
+  .footer__brand { font-size: 1.1rem; }
+  .footer__contact { flex-wrap: nowrap; gap: .5rem; }
   .footer__contact a { font-size: clamp(.55rem, 2.8vw, .72rem); white-space: nowrap; }
-  .footer__contact a[href^="https://wa.me"] { font-family: var(--font-body); }
-  .footer__legal { order: 2; flex-basis: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
