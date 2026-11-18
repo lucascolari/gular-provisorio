@@ -515,6 +515,8 @@ body.intro-lock { overflow: hidden; }
 .footer__brand { font-family: var(--font-display); font-size: 1.3rem; line-height: 1; color: #f3efe6; }
 .footer__contact { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: end; gap: .4rem 1.3rem; }
 .footer__contact a { font-family: var(--font-body); font-size: 1rem; line-height: 1.2; letter-spacing: .01em; color: #f3efe6; text-decoration: none; transition: opacity .25s; }
+/* En compu, los dos números en Sahlia (el mail queda en la tipografía de texto). */
+.footer__contact a[href^="https://wa.me"] { font-family: var(--font-display); }
 .footer__contact a:hover { opacity: .6; }
 .footer__legal { margin: 0; font-family: var(--font-body); color: rgba(243, 239, 230, .62); }
 
@@ -541,6 +543,19 @@ body.intro-lock { overflow: hidden; }
   /* Hero-IMAGEN a pantalla completa: en celular se ve ENTERO (no corta el wordmark);
      el hero-VIDEO sigue en cover. */
   .case__panel--full .case__media img { object-fit: contain; }
+}
+
+@media (max-width: 680px) {
+  /* Footer en celular: "gular" y los tres contactos en un solo renglón (los contactos
+     en una línea, al lado de la marca); el copyright baja debajo. display:contents sube
+     "gular" y el copyright a hijos directos del footer para poder ordenarlos. */
+  .footer { flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; column-gap: .7rem; row-gap: .9rem; }
+  .footer__left { display: contents; }
+  .footer__brand { order: 0; font-size: 1.1rem; }
+  .footer__contact { order: 1; flex-wrap: nowrap; gap: .5rem; }
+  .footer__contact a { font-size: clamp(.55rem, 2.8vw, .72rem); white-space: nowrap; }
+  .footer__contact a[href^="https://wa.me"] { font-family: var(--font-body); }
+  .footer__legal { order: 2; flex-basis: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
